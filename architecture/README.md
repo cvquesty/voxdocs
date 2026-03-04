@@ -194,39 +194,55 @@ When the agent finishes, it returns an exit code:
 
 ## Environments
 
-Environments let you **isolate different versions of your Puppet code**. The most common setup is:
+Environments let you **isolate different versions of your Puppet code**. Each environment is simply a directory under the `environmentpath` (by default `/etc/puppetlabs/code/environments/`), and every environment is self-contained with its own manifests, modules, and data.
 
-| Environment | Purpose |
-|-------------|---------|
-| `production` | The live, stable code that runs on all production nodes |
-| `staging` | Testing ground for code changes before they hit production |
-| `development` | Wild west — for active development and experimentation |
+OpenVox ships with a single default environment: **`production`**. That's it — everything else is up to you and your workflow. There's no mandated set of environments; you create whatever makes sense for your organization.
+
+When using **r10k** for code deployment (which most teams do), environments map **directly to Git branches** in your control repository. Create a branch, deploy with r10k, and a matching environment appears on the server. This means your environments are as dynamic as your Git workflow:
+
+```
+Git Branch                              Puppet Environment
+──────────                              ──────────────────
+main               ─── r10k deploy ──►  production/
+feature/add-nginx  ─── r10k deploy ──►  feature_add_nginx/
+hotfix/ssl-cert    ─── r10k deploy ──►  hotfix_ssl_cert/
+```
+
+> **Note:** Puppet converts characters that aren't valid in environment names (like `/` and `-`) to underscores. The Git branch `feature/add-nginx` becomes the environment `feature_add_nginx`.
 
 Each environment has its own:
 - **Manifests** (`manifests/site.pp`)
 - **Modules** (`modules/`)
 - **Hiera data** (`data/`)
 - **Hiera config** (`hiera.yaml`)
+- **Environment config** (`environment.conf`)
 
-Environments live in `/etc/puppetlabs/code/environments/`:
+The directory structure looks like this:
 
 ```
 /etc/puppetlabs/code/environments/
-├── production/
+├── production/              ← The default (and often only permanent) environment
 │   ├── manifests/
 │   │   └── site.pp
-│   ├── modules/
+│   ├── modules/             ← Managed by r10k (from Puppetfile)
+│   ├── site-modules/        ← Your organization's custom modules
 │   ├── data/
 │   │   ├── common.yaml
 │   │   └── nodes/
-│   └── hiera.yaml
-├── staging/
+│   ├── hiera.yaml
+│   ├── environment.conf
+│   └── Puppetfile
+├── feature_add_nginx/       ← Created automatically by r10k from a Git branch
 │   └── ...
-└── development/
+└── hotfix_ssl_cert/         ← Temporary — removed when the branch is merged/deleted
     └── ...
 ```
 
-Agents are assigned to environments via their `puppet.conf` or through an **External Node Classifier** (ENC). Code deployment is typically managed by **r10k** or **Code Manager**, which maps Git branches to environments.
+Agents are assigned to environments in one of three ways:
+
+1. **`puppet.conf`** — set `environment = production` in the `[agent]` section (this is the default)
+2. **External Node Classifier (ENC)** — a script or service that tells the server which environment a node belongs to
+3. **Command line** — `puppet agent -t --environment feature_add_nginx` (great for testing a branch on a single node before merging)
 
 ---
 

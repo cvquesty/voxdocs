@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.95] - 2026-03-04
+
+### Changed
+- architecture/README.md: Rewrote the Environments section to match standard
+  Puppet/OpenVox documentation conventions rather than a site-specific setup
+- Removed prescriptive "most common setup" table (production/staging/development)
+  which reflected one administrator's preference, not the upstream default
+- Now correctly documents that only `production` ships as a default environment
+- Explains the r10k Git-branch-to-environment workflow with diagram
+- Added note about branch name character conversion (e.g. `/` and `-` to `_`)
+- Added `site-modules/`, `environment.conf`, and `Puppetfile` to the directory
+  tree (matching the standard control repo layout)
+- Documents three methods for assigning agents to environments (puppet.conf,
+  ENC, command line)
+
 ## [0.94] - 2026-03-04
 
 ### Fixed
