@@ -12,14 +12,14 @@ OpenVox (like Puppet before it) follows a **client-server** architecture with a 
 ┌─────────────────────────────────────────────────────┐
 │                  OpenVox Primary Server             │
 │                                                     │
-│  ┌──────────────┐  ┌──────────┐  ┌──────────────┐  │
-│  │ PuppetServer │  │ PuppetDB │  │ Certificate  │  │
-│  │  (Catalog    │  │ (Facts,  │  │ Authority    │  │
-│  │   Compiler)  │  │ Reports, │  │ (SSL/TLS)    │  │
-│  │              │  │ Resources│  │              │  │
-│  └──────┬───────┘  └────┬─────┘  └──────┬───────┘  │
-│         │               │               │          │
-│         └───────────────┼───────────────┘          │
+│  ┌──────────────┐  ┌──────────┐  ┌──────────────┐   │
+│  │ PuppetServer │  │ PuppetDB │  │ Certificate  │   │
+│  │  (Catalog    │  │ (Facts,  │  │ Authority    │   │
+│  │   Compiler)  │  │ Reports, │  │ (SSL/TLS)    │   │
+│  │              │  │ Resources│  │              │   │
+│  └──────┬───────┘  └────┬─────┘  └──────┬───────┘   │
+│         │               │               │           │
+│         └───────────────┼───────────────┘           │
 │                         │                           │
 │  ┌──────────────────────┴────────────────────────┐  │
 │  │        Code Directory (/etc/puppetlabs/code)  │  │
