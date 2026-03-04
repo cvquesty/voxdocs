@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.94] - 2026-03-04
+
+### Fixed
+- architecture/README.md: Corrected PuppetServer description item #3 from
+  "Serves file content from modules" to "Serves configuration elements from
+  modules"
+
 ## [0.93] - 2026-03-04
 
 ### Added

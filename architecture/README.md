@@ -67,7 +67,7 @@ PuppetServer is the **brains of the operation**. It's a JVM-based (Clojure + JRu
 
 1. **Receives agent requests** over HTTPS (port 8140)
 2. **Compiles catalogs** — takes your Puppet code + the node's facts and produces a catalog
-3. **Serves file content** from modules
+3. **Serves configuration elements** from modules
 4. **Manages the Certificate Authority** (CA)
 5. **Connects to PuppetDB** for stored data
 
