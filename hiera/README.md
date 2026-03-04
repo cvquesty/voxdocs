@@ -22,15 +22,15 @@ Hiera has three layers of configuration, which combine into a single ordered "su
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  1. Global Layer                                 │
+│  1. Global Layer                                │
 │     /etc/puppetlabs/puppet/hiera.yaml           │
 │     (applies to all environments)               │
 ├─────────────────────────────────────────────────┤
-│  2. Environment Layer                            │
+│  2. Environment Layer                           │
 │     <env>/hiera.yaml                            │
 │     (per-environment hierarchy)                 │
 ├─────────────────────────────────────────────────┤
-│  3. Module Layer                                 │
+│  3. Module Layer                                │
 │     <module>/hiera.yaml                         │
 │     (module-specific defaults)                  │
 └─────────────────────────────────────────────────┘

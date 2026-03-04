@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.95.3] - 2026-03-04
+
+### Fixed
+- hiera/README.md: Removed extra trailing space on three lines in the
+  "The Three Layers" ASCII diagram (Global Layer, Environment Layer,
+  Module Layer) so the box characters align correctly
+
 ## [0.95.2] - 2026-03-04
 
 ### Changed
