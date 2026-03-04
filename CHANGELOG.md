@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.95.4] - 2026-03-04
+
+### Fixed
+- architecture/README.md: Fixed spacing in "The Big Picture" ASCII diagram
+  - Removed extra trailing space on the "OpenVox Primary Server" title line
+  - Removed extra space after "Certificate", "Authority", and "(SSL/TLS)"
+    inside the Certificate Authority box (content was 15 chars, should be 14
+    to match the box border dashes)
+
 ## [0.95.3] - 2026-03-04
 
 ### Fixed

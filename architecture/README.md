@@ -10,12 +10,12 @@ OpenVox (like Puppet before it) follows a **client-server** architecture with a 
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                  OpenVox Primary Server              │
+│                  OpenVox Primary Server             │
 │                                                     │
 │  ┌──────────────┐  ┌──────────┐  ┌──────────────┐  │
-│  │ PuppetServer │  │ PuppetDB │  │  Certificate  │  │
-│  │  (Catalog    │  │ (Facts,  │  │  Authority    │  │
-│  │   Compiler)  │  │ Reports, │  │  (SSL/TLS)    │  │
+│  │ PuppetServer │  │ PuppetDB │  │ Certificate  │  │
+│  │  (Catalog    │  │ (Facts,  │  │ Authority    │  │
+│  │   Compiler)  │  │ Reports, │  │ (SSL/TLS)    │  │
 │  │              │  │ Resources│  │              │  │
 │  └──────┬───────┘  └────┬─────┘  └──────┬───────┘  │
 │         │               │               │          │
