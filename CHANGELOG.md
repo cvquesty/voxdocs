@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.96.2] - 2026-03-04
+
+### Changed
+- language: Split the 926-line README.md into 14 individual topic pages
+  following the existing Table of Contents structure
+- language/README.md: Rewritten as intro + TOC index with three sections
+  (Language Basics, Control Flow & Structure, Advanced Topics)
+
+### Added
+- language/resources.md — Resources, titles, and namevars
+- language/resource-types.md — file, package, service, user, group, cron, exec
+- language/variables.md — Variables, data types, facts, scope
+- language/strings.md — Strings, interpolation, heredocs, arrays, hashes
+- language/conditionals.md — if/elsif/else, case, selectors
+- language/classes.md — Defining, declaring, and parameterizing classes
+- language/defined-types.md — Reusable resource templates
+- language/relationships.md — Arrows, metaparameters, chaining
+- language/functions.md — Built-in functions
+- language/templates.md — EPP and ERB templates
+- language/node-definitions.md — Node definitions in site.pp
+- language/iteration.md — each, map, filter, reduce
+- language/regex.md — Regular expressions
+- language/example.md — Real-world NTP module example
+
 ## [0.96.1] - 2026-03-04
 
 ### Changed
