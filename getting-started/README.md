@@ -188,7 +188,7 @@ Let's break down what just happened:
 Everything in Puppet/OpenVox is a **resource**. A resource is a single unit of configuration — a file, a package, a service, a user, a cron job. Each resource has:
 
 - A **type** (what kind of thing: `file`, `package`, `service`, etc.)
-- A **title** (a unique name for this resource)
+- A **title** (identifies the resource — often the thing itself, like a file path)
 - **Attributes** (the desired properties: `ensure`, `content`, `mode`, etc.)
 
 ```puppet
@@ -198,6 +198,31 @@ type { 'title':
   another   => value,
 }
 ```
+
+#### A Word About Titles
+
+The title serves double duty. Most of the time, the title **is** the resource you're managing — the file path, the package name, or the service name:
+
+```puppet
+# The title IS the file path — clean and simple
+file { '/tmp/hello-openvox.txt':
+  ensure  => file,
+  content => "Hello!\n",
+}
+```
+
+But sometimes you want a descriptive title instead. When you do that, you **must** explicitly specify the resource's identity using the appropriate parameter (`path` for files, `name` for packages/services, etc.):
+
+```puppet
+# Descriptive title — must include 'path' to tell Puppet which file
+file { 'hello_file':
+  ensure  => file,
+  path    => '/tmp/hello-openvox.txt',
+  content => "Hello!\n",
+}
+```
+
+Both forms manage the exact same file. The first is shorthand; the second is more readable when the path is long or you want the title to describe *intent* rather than *location*. For a deeper dive into this, see [Resource Titles vs. Namevar](../language/README.md#resource-titles-vs-namevar) in the Language Reference.
 
 ### Idempotence
 

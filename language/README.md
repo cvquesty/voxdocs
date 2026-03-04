@@ -74,21 +74,68 @@ type { 'title':
 
 ### Resource Titles vs. Namevar
 
-Most resource types have a **namevar** — a special attribute that defaults to the title. For `file`, the namevar is `path`. For `package`, it's `name`. This means:
+Most resource types have a **namevar** — a special attribute that identifies the real-world thing being managed. For `file` the namevar is `path`, for `package` and `service` it's `name`, for `user` it's also `name`. When you don't set the namevar explicitly, **Puppet uses the title as its value**.
+
+This gives you two ways to write any resource:
 
 ```puppet
-# These two are equivalent:
+# Form 1: Title IS the resource identity (shorthand)
+# The title '/etc/motd' is automatically used as the 'path' parameter.
 file { '/etc/motd':
-  content => 'Welcome!\n',
+  content => "Welcome!\n",
 }
 
-file { 'motd_file':
+# Form 2: Descriptive title + explicit namevar
+# When the title is NOT the resource identity, you MUST specify the namevar.
+file { 'message_of_the_day':
   path    => '/etc/motd',
-  content => 'Welcome!\n',
+  content => "Welcome!\n",
 }
 ```
 
-The first form uses the title as the path (because `path` is the namevar for `file`). The second form uses a descriptive title and specifies the path explicitly. Both are valid — use whichever is clearer.
+Both declarations manage the exact same file — they are functionally identical. Form 1 is concise and works well when the resource identity is short and clear. Form 2 is useful when paths are long, when you want the title to describe intent, or when multiple resources might manage files in similar locations.
+
+Here's the same pattern applied to other resource types:
+
+```puppet
+# Package: title as name (shorthand)
+package { 'httpd':
+  ensure => installed,
+}
+
+# Package: descriptive title + explicit name
+package { 'web_server_package':
+  name   => 'httpd',
+  ensure => installed,
+}
+
+# Service: title as name (shorthand)
+service { 'httpd':
+  ensure => running,
+  enable => true,
+}
+
+# Service: descriptive title + explicit name
+service { 'web_server_service':
+  name   => 'httpd',
+  ensure => running,
+  enable => true,
+}
+```
+
+**Common namevars by type:**
+
+| Resource Type | Namevar | What It Identifies |
+|---------------|---------|-------------------|
+| `file` | `path` | Absolute path on disk |
+| `package` | `name` | Package name |
+| `service` | `name` | Service name |
+| `user` | `name` | Username |
+| `group` | `name` | Group name |
+| `cron` | `name` | Cron job identifier |
+| `exec` | `command` | Command to execute |
+
+> **Rule of thumb:** If the title looks like the actual thing (a path, a package name, a service name), you're using the shorthand and Puppet will figure it out. If the title is descriptive (like `'web_server_package'`), you *must* explicitly set the namevar parameter or Puppet won't know what to manage.
 
 ---
 

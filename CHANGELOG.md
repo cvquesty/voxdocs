@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.95.2] - 2026-03-04
+
+### Changed
+- getting-started/README.md: Expanded the Resources section under
+  "Understanding the Magic" with a new "A Word About Titles" subsection
+  explaining that titles often serve as the resource identity (file path,
+  package name), and that when using a descriptive title instead, you must
+  explicitly provide the namevar parameter (path, name, etc.)
+- language/README.md: Significantly expanded the "Resource Titles vs. Namevar"
+  section with clearer explanation of both forms (shorthand vs. explicit),
+  parallel examples for file/package/service types, a "Common namevars by type"
+  reference table, and a rule-of-thumb callout
+- getting-started/README.md: Added cross-reference link to the Language
+  Reference for the full namevar explanation
+
 ## [0.95.1] - 2026-03-04
 
 ### Changed
