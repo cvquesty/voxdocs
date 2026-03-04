@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.96.0] - 2026-03-04
+
+### Summary
+Second tagged release. Consolidates all corrections, content improvements,
+and diagram fixes since the initial v0.92 tag. Documentation is now
+genericized for public use (no site-specific references), includes full AI
+disclosure on every page, and all ASCII diagrams render correctly.
+
+### Highlights since v0.92
+- All `questy.org` domain references replaced with `example.com`
+- Internal IP addresses and personal usernames genericized
+- AI disclosure footer added to all 12 documentation pages
+- VoxPupuli Community Slack and Connect added to community resources
+- PuppetServer description corrected in architecture docs
+- Environments section rewritten to match upstream Puppet/OpenVox conventions
+- Resource title vs. namevar documentation expanded with examples and reference table
+- Related Projects table reorganized (PDK and Onceover removed)
+- All ASCII diagrams in architecture and hiera docs aligned and corrected
+
 ## [0.95.8] - 2026-03-04
 
 ### Fixed
