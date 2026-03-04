@@ -391,3 +391,5 @@ pdk build
 ---
 
 *Next up: [Orchestration →](../orchestration/README.md)*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

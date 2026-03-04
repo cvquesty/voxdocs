@@ -114,3 +114,5 @@ And of course, thanks to **you** for reading this far. Now go automate something
 ---
 
 *You've reached the end of the docs. Go back to the [Documentation Map](../README.md) or start managing some infrastructure!*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

@@ -875,3 +875,5 @@ class ntp (
 ---
 
 *Next up: [CLI Reference →](../cli-reference/README.md)*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

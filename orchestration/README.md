@@ -398,3 +398,5 @@ mod 'experimental_module',
 ---
 
 *Next up: [Troubleshooting & FAQ →](../troubleshooting/README.md)*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.93] - 2026-03-04
+
+### Added
+- AI disclosure footer on all 12 documentation pages for full transparency
+- Each page now includes: "This document was created with the assistance of
+  AI (Grok, xAI). All technical content has been reviewed and verified by
+  human contributors." rendered in small type (`<sub>`) at the bottom
+
+### Files updated
+- README.md, getting-started, architecture, language, cli-reference,
+  configuration, server-admin, hiera, module-development, orchestration,
+  troubleshooting, community
+
 ## [0.92] - 2026-03-04
 
 ### Added

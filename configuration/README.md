@@ -534,3 +534,5 @@ sudo journalctl -u puppet --since "1 hour ago"
 ---
 
 *Next up: [Server Administration →](../server-admin/README.md)*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

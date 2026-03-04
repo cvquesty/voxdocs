@@ -380,3 +380,5 @@ df -h /etc/puppetlabs /opt/puppetlabs 2>/dev/null | tail -n +2
 ---
 
 *Next up: [Hiera Deep-Dive →](../hiera/README.md)*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

@@ -322,3 +322,5 @@ r10k puppetfile check                      # Puppetfile syntax OK?
 ---
 
 *Next up: [Community & Contributing →](../community/README.md)*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

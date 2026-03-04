@@ -112,3 +112,5 @@ You are free to share and adapt this material, provided you give appropriate cre
 ---
 
 *Built with ☕, sudo access, and mild frustration by the community. Last updated: March 2026.*
+
+<sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>
