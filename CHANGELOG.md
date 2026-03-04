@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.95.8] - 2026-03-04
+
+### Fixed
+- architecture/README.md: Realigned all boxes in the "How Data Flows" diagram;
+  the gaps between boxes were 9 characters but the arrow labels were 10, causing
+  Code Dir, PuppetServer, and PuppetDB boxes to shift right on content lines;
+  all inter-box gaps are now a consistent 10 characters
+
 ## [0.95.7] - 2026-03-04
 
 ### Fixed

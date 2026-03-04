@@ -279,17 +279,17 @@ The [Puppet Forge](https://forge.puppet.com/) hosts thousands of community modul
 Here's a complete picture of how data flows through the system:
 
 ```
-┌─────────────┐         ┌──────────────┐
-│  Git Repo   │─r10k──►│  Code Dir    │
-│  (control   │  deploy │  /etc/puppet │
-│   repo)     │         │  labs/code/  │
-└─────────────┘         └──────┬───────┘
-                               │
-┌─────────────┐         ┌──────┴───────┐         ┌──────────┐
+┌─────────────┐          ┌──────────────┐
+│  Git Repo   │──r10k───►│  Code Dir    │
+│  (control   │  deploy  │  /etc/puppet │
+│   repo)     │          │  labs/code/  │
+└─────────────┘          └──────┬───────┘
+                                │
+┌─────────────┐          ┌──────┴───────┐          ┌──────────┐
 │   Agent     │──facts──►│ PuppetServer │──store──►│ PuppetDB │
-│   (node)    │         │  (compiler)  │         │ (Postgres│
-│             │◄─catalog─│              │◄─query──│  backend)│
-│             │         └──────────────┘         └──────────┘
+│   (node)    │          │  (compiler)  │          │ (Postgres│
+│             │◄─catalog─│              │◄─query───│  backend)│
+│             │          └──────────────┘          └──────────┘
 │             │
 │  ┌────────┐ │
 │  │ Facter │ │  (gathers facts)
