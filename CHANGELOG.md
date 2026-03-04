@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.96.1] - 2026-03-04
+
+### Changed
+- cli-reference: Split the monolithic 1,556-line README.md into 16 individual
+  command pages, each with its own .md file
+- cli-reference/README.md: Rewritten as a table-of-contents index page with
+  three sections (Core Commands, Server & Infrastructure, Additional References)
+
+### Added
+- cli-reference/puppet.md — puppet overview (--help, --version)
+- cli-reference/puppet-agent.md — puppet agent
+- cli-reference/puppet-apply.md — puppet apply
+- cli-reference/puppet-resource.md — puppet resource
+- cli-reference/puppet-config.md — puppet config
+- cli-reference/puppet-ssl.md — puppet ssl
+- cli-reference/puppet-module.md — puppet module
+- cli-reference/puppet-parser.md — puppet parser
+- cli-reference/puppet-lookup.md — puppet lookup
+- cli-reference/puppet-subcommands.md — additional subcommands (facts, catalog,
+  epp, node, describe, filebucket, device, script, generate)
+- cli-reference/facter.md — facter
+- cli-reference/puppetserver.md — puppetserver + CA
+- cli-reference/r10k.md — r10k (deploy, puppetfile)
+- cli-reference/bolt.md — OpenBolt
+- cli-reference/puppet-query.md — PuppetDB/PQL queries
+- cli-reference/cheatsheet.md — utility commands quick reference
+
 ## [0.96.0] - 2026-03-04
 
 ### Summary
