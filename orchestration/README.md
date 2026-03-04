@@ -9,8 +9,8 @@
 OpenVox's agent-server model is great for **convergence** (gradually bringing systems into compliance), but sometimes you need **orchestration** — running commands across your fleet right now, deploying code immediately, or executing complex multi-step workflows.
 
 This guide covers:
-- [**Puppet Bolt**](#puppet-bolt) — Agentless orchestration
-- [**r10k**](#r10k-code-deployment) — Code deployment from Git
+- [**OpenBolt**](#openbolt-puppet-bolt) — Agentless orchestration
+- [**r10k**](#r10k-code-deployment-v502) — Code deployment from Git
 - [**Tasks and Plans**](#tasks-and-plans) — Reusable automation
 
 ---

@@ -2,7 +2,7 @@
 
 > *Every binary, every subcommand, every flag. Because `--help` is never quite enough.*
 >
-> **All output on this page is real.** Captured from `openvox.questy.org` running OpenVox 8.25.0 on RHEL 9.7.
+> **All output on this page is real.** Captured from `openvox.example.com` running OpenVox 8.25.0 on RHEL 9.7.
 
 ---
 
@@ -174,13 +174,13 @@ sudo puppet agent -t
 sudo puppet agent -t --noop
 
 # Run against a specific server
-sudo puppet agent -t --server=openvox.questy.org
+sudo puppet agent -t --server=openvox.example.com
 
 # Run in a specific environment (great for testing feature branches)
 sudo puppet agent -t --environment=staging
 
 # Disable the agent with a reason (shows up in reports)
-sudo puppet agent --disable "Maintenance window - jsheets 2026-03-04"
+sudo puppet agent --disable "Maintenance window - admin 2026-03-04"
 
 # Re-enable the agent
 sudo puppet agent --enable
@@ -375,7 +375,7 @@ puppet resource --types
 sudo puppet resource user root --to_yaml
 ```
 
-**Live example** from `openvox.questy.org`:
+**Live example** from `openvox.example.com`:
 
 ```
 $ sudo puppet resource user root
@@ -840,7 +840,7 @@ facter -t os
 facter -y os
 ```
 
-**Live example** from `openvox.questy.org`:
+**Live example** from `openvox.example.com`:
 
 ```
 $ facter os
@@ -878,8 +878,8 @@ $ facter os
 ```
 $ facter networking.fqdn networking.ip memory.system.total processors.count virtual
 memory.system.total => 15.15 GiB
-networking.fqdn => openvox.questy.org
-networking.ip => 10.0.100.225
+networking.fqdn => openvox.example.com
+networking.ip => 192.168.1.100
 processors.count => 4
 virtual => physical
 ```
@@ -982,19 +982,19 @@ sudo puppetserver ca clean --certname old-server.example.com
 sudo puppetserver ca generate --certname new-service.example.com
 ```
 
-**Live example** from `openvox.questy.org`:
+**Live example** from `openvox.example.com`:
 
 ```
 $ sudo puppetserver ca list --all
 
 Signed Certificates:
-    openvox.questy.org       (SHA256)  F9:70:1B:30:19:46:10:5D:7A:19:41:94:8D:40:92:34:...
-        alt names: ["DNS:puppet", "DNS:openvox.questy.org"]
+    openvox.example.com       (SHA256)  F9:70:1B:30:19:46:10:5D:7A:19:41:94:8D:40:92:34:...
+        alt names: ["DNS:puppet", "DNS:openvox.example.com"]
         authorization extensions: [pp_cli_auth: true]
-    agent1.questy.org        (SHA256)  94:2C:B9:EA:C4:16:98:0A:52:D2:71:BA:3E:BC:76:56:...
-        alt names: ["DNS:agent1.questy.org"]
-    agent2.questy.org        (SHA256)  17:26:8C:66:4D:B0:43:F4:96:FE:D0:D4:72:FB:C3:37:...
-        alt names: ["DNS:agent2.questy.org"]
+    agent1.example.com        (SHA256)  94:2C:B9:EA:C4:16:98:0A:52:D2:71:BA:3E:BC:76:56:...
+        alt names: ["DNS:agent1.example.com"]
+    agent2.example.com        (SHA256)  17:26:8C:66:4D:B0:43:F4:96:FE:D0:D4:72:FB:C3:37:...
+        alt names: ["DNS:agent2.example.com"]
 ```
 
 > **Pro tip:** Notice the server cert has `alt names` including `puppet` — this is the `dns_alt_names` setting. The `pp_cli_auth: true` extension means this cert can be used for CLI-based CA operations.
@@ -1462,7 +1462,7 @@ puppet query 'nodes[certname] { facts.os.name = "RedHat" }'
 puppet query 'resources[certname] { type = "Package" and title = "httpd" }'
 
 # Find facts for a node
-puppet query 'facts { certname = "agent1.questy.org" }'
+puppet query 'facts { certname = "agent1.example.com" }'
 
 # Find nodes that changed on last run
 puppet query 'nodes[certname] { latest_report_status = "changed" }'

@@ -39,7 +39,7 @@ These versions are currently shipping from the Vox Pupuli repositories, verified
 | **r10k** | `5.0.2` | `/opt/puppetlabs/puppet/bin/r10k` | Git-to-environment deployer |
 | **PuppetDB** | `8.x` | systemd service | PostgreSQL-backed data warehouse |
 
-> **📌 Note:** All CLI output in this documentation is **real output** captured from `openvox.questy.org` — a live three-node fleet running RHEL 9.7 with 4 CPUs, 15 GiB RAM, and SELinux in enforcing mode. Nothing here is fabricated.
+> **📌 Note:** All CLI output in this documentation is **real output** captured from `openvox.example.com` — a live three-node fleet running RHEL 9.7 with 4 CPUs, 15 GiB RAM, and SELinux in enforcing mode. Nothing here is fabricated.
 
 ## 📂 Documentation Map
 
@@ -73,7 +73,7 @@ This documentation is an **original work**, written specifically for the OpenVox
 
 - ✅ The [Puppet docs-archive](https://github.com/puppetlabs/docs-archive) — legacy Puppet 5.x documentation, which is **unencumbered by copyright** and freely available for anyone to use
 - ✅ The official [OpenVox project](https://github.com/openvoxproject) repositories, source code, and community resources
-- ✅ Hands-on experience with real OpenVox infrastructure (verified against `openvox.questy.org`)
+- ✅ Hands-on experience with real OpenVox infrastructure (verified against `openvox.example.com`)
 - ✅ The Puppet language specification itself (which is open-source and part of the OpenVox codebase)
 
 > **⚠️ Important:** This is **NOT** a copy, derivative, or adaptation of Perforce's official Puppet documentation at [puppet.com](https://puppet.com). While we cover similar topics (because it's the same technology), every explanation, example, and turn of phrase is originally written. We describe concepts in our own words, using our own examples from our own infrastructure.

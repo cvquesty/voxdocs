@@ -127,7 +127,7 @@ puppet config print all --section agent
 ```ini
 [main]
 certname = webserver1.example.com
-server = openvox.questy.org
+server = openvox.example.com
 environment = production
 
 [agent]
@@ -140,10 +140,10 @@ usecacheonfailure = true
 
 ### Real-World Primary Server Configuration
 
-Here's the **actual** `puppet.conf` from `openvox.questy.org` — a live production OpenVox server managing a three-node fleet:
+Here's the **actual** `puppet.conf` from `openvox.example.com` — a live production OpenVox server managing a three-node fleet:
 
 ```ini
-# /etc/puppetlabs/puppet/puppet.conf on openvox.questy.org
+# /etc/puppetlabs/puppet/puppet.conf on openvox.example.com
 [server]
 node_terminus = exec
 external_nodes = /opt/openvox-gui/scripts/enc.py
@@ -154,8 +154,8 @@ pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
 codedir = /etc/puppetlabs/code
 
 [agent]
-server = openvox.questy.org
-certname = openvox.questy.org
+server = openvox.example.com
+certname = openvox.example.com
 runinterval = 600
 environment = production
 number_of_facts_soft_limit = 8960
@@ -167,7 +167,7 @@ basemodulepath = $confdir/modules:/opt/puppetlabs/puppet/modules
 logdir = /var/log/puppetlabs/puppet/puppet_agent.log
 rundir = /var/run/puppetlabs
 ssldir = $confdir/ssl
-server = openvox.questy.org
+server = openvox.example.com
 log_level = err
 
 [master]

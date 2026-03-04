@@ -6,9 +6,9 @@
 - Light humor is encouraged (but never at the reader's expense)
 - Use Markdown features extensively: tables, code blocks, admonitions, links, emoji
 - Every CLI example should be copy-pasteable
-- All binary references must include **actual command-line output** from openvox.questy.org
+- All binary references must include **actual command-line output** from openvox.example.com
 
-## Current Verified Versions (from openvox.questy.org)
+## Current Verified Versions (from openvox.example.com)
 - OpenVox Agent: 8.25.0
 - OpenVox Server (PuppetServer): 8.12.1
 - Facter: 5.4.0
