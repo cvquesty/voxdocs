@@ -14,16 +14,19 @@ OpenVox exists because of its community. Born from the [Vox Pupuli](https://voxp
 |----------|-----|---------|
 | **OpenVox GitHub** | [github.com/openvoxproject](https://github.com/openvoxproject) | Source code, issues, PRs |
 | **Vox Pupuli** | [voxpupuli.org](https://voxpupuli.org/) | Community hub, blog, docs |
-| **Puppet Community Slack** | [puppetcommunity.slack.com](https://puppetcommunity.slack.com/) | Real-time chat |
+| **VoxPupuli Community Slack** | [voxpupuli.slack.com](https://voxpupuli.slack.com/) | VoxPupuli & OpenVox real-time chat |
+| **Puppet Community Slack** | [puppetcommunity.slack.com](https://puppetcommunity.slack.com/) | Broader Puppet ecosystem chat |
+| **VoxPupuli Connect** | [voxpupuli.org/connect](https://voxpupuli.org/connect/) | All VoxPupuli & OpenVox community links |
 | **Puppet Forge** | [forge.puppet.com](https://forge.puppet.com/) | Module repository |
 | **Vox Pupuli Blog** | [voxpupuli.org/blog](https://voxpupuli.org/blog/) | Release announcements, articles |
 
 ### Where to Ask Questions
 
-1. **Puppet Community Slack** — Best for quick questions and real-time discussion. The `#openvox` and `#voxpupuli` channels are great places to start.
-2. **GitHub Issues** — For bug reports, feature requests, and technical discussions on specific repos.
-3. **Stack Overflow** — Tag your questions with `puppet` and `openvox`.
-4. **Vox Pupuli Mailing Lists** — For broader community discussions.
+1. **VoxPupuli Community Slack** — The home turf for OpenVox and Vox Pupuli discussion. Join at [voxpupuli.slack.com](https://voxpupuli.slack.com/).
+2. **Puppet Community Slack** — The broader Puppet ecosystem. The `#openvox` and `#voxpupuli` channels are great places to start.
+3. **GitHub Issues** — For bug reports, feature requests, and technical discussions on specific repos.
+4. **Stack Overflow** — Tag your questions with `puppet` and `openvox`.
+5. **VoxPupuli Connect** — A single page with links to all community channels, mailing lists, and social media: [voxpupuli.org/connect](https://voxpupuli.org/connect/).
 
 ---
 
