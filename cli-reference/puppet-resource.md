@@ -110,4 +110,6 @@ user { 'root':
 
 > **Pro tip:** `puppet resource` is incredibly useful for discovering the current state of a system before writing manifests. Want to know what packages are installed? `puppet resource package`. Want to see all services? `puppet resource service`. It's like `grep` for infrastructure.
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

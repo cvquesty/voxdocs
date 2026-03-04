@@ -55,4 +55,6 @@ sudo puppet config set environment production --section agent
 sudo puppet config delete server --section agent
 ```
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

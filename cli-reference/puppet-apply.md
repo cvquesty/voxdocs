@@ -82,4 +82,6 @@ sudo puppet apply --logdest /var/log/puppet-apply.jsonl manifest.pp
 
 > **Pro tip:** `puppet apply` is the best way to learn the Puppet language. Write a `.pp` file, apply it, see what happens. Rinse, repeat. No server required.
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

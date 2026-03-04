@@ -142,4 +142,6 @@ virtual => physical
 
 > **Notice** how Facter 5.x returns structured data with nested hashes. You can query specific sub-keys using dot notation like `os.release.major`. This is exactly how you'll access these values in your Puppet manifests: `$facts['os']['release']['major']`.
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

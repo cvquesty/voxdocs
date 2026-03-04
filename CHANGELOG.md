@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.96.3] - 2026-03-04
+
+### Added
+- Added a "Back to ..." navigation link at the bottom of every subpage
+  (immediately above the AI disclaimer) in both cli-reference/ (16 files)
+  and language/ (14 files) for consistent top-and-bottom navigation
+
 ## [0.96.2] - 2026-03-04
 
 ### Changed

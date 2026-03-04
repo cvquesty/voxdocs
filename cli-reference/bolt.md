@@ -122,4 +122,6 @@ bolt command run 'apt update' --targets all --concurrency 10
 bolt command run 'hostname -f' --targets all --format json
 ```
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

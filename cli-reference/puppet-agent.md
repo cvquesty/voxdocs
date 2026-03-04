@@ -139,4 +139,6 @@ With `--detailed-exitcodes` or `--test`:
 
 > **⚠️ Classic gotcha:** Exit code **2** means "I made changes and they all worked." It is NOT an error! Many CI/CD systems treat any non-zero exit code as failure. See [Troubleshooting](../troubleshooting/README.md) for the fix.
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

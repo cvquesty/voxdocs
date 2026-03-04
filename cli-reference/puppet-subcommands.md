@@ -188,4 +188,6 @@ ACTIONS:
 
 > **Pro tip on `puppet generate types`:** This is often called automatically by r10k via the `--generate-types` flag. It creates `.pp` files from Ruby type definitions so PuppetServer can parse them without loading Ruby — a significant performance improvement.
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

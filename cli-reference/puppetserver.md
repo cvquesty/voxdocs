@@ -117,4 +117,6 @@ Signed Certificates:
 
 > **Pro tip:** Notice the server cert has `alt names` including `puppet` — this is the `dns_alt_names` setting. The `pp_cli_auth: true` extension means this cert can be used for CLI-based CA operations.
 
+[← Back to CLI Reference](README.md)
+
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>
