@@ -73,15 +73,13 @@ The Puppet/OpenVox ecosystem is vast. Here are some projects worth knowing about
 
 | Project | Description | Link |
 |---------|-------------|------|
-| **openvox-gui** | Web-based management GUI for OpenVox | [github.com/cvquesty/openvox-gui](https://github.com/cvquesty/openvox-gui) |
-| **openvox-lint** | Puppet manifest linter (modernized puppet-lint) | [rubygems.org/gems/openvox-lint](https://rubygems.org/gems/openvox-lint) |
 | **Puppet Forge** | Community module repository | [forge.puppet.com](https://forge.puppet.com/) |
-| **PDK** | Puppet Development Kit | [puppet.com/docs/pdk](https://puppet.com/docs/pdk/) |
-| **Onceover** | Testing tool for control repos | [github.com/voxpupuli/onceover](https://github.com/voxpupuli/onceover) |
 | **puppet-lint** | Original Puppet linter | [github.com/puppetlabs/puppet-lint](https://github.com/puppetlabs/puppet-lint) |
 | **rspec-puppet** | Unit testing for Puppet | [github.com/puppetlabs/rspec-puppet](https://github.com/puppetlabs/rspec-puppet) |
 | **Litmus** | Acceptance testing framework | [github.com/puppetlabs/puppet_litmus](https://github.com/puppetlabs/puppet_litmus) |
 | **puppetboard** | PuppetDB web frontend | [github.com/voxpupuli/puppetboard](https://github.com/voxpupuli/puppetboard) |
+| **openvox-gui** | Web-based management GUI for OpenVox | [github.com/cvquesty/openvox-gui](https://github.com/cvquesty/openvox-gui) |
+| **openvox-lint** | Puppet manifest linter (modernized puppet-lint) | [rubygems.org/gems/openvox-lint](https://rubygems.org/gems/openvox-lint) |
 
 ---
 
