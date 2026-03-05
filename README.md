@@ -97,7 +97,7 @@ OpenVox packages are available from the Vox Pupuli repositories:
 | 🐾 | **Vox Pupuli** | [voxpupuli.org](https://voxpupuli.org/) |
 | 📦 | **Puppet Forge** | [forge.puppet.com](https://forge.puppet.com/) — all modules work with OpenVox! |
 | 📚 | **Puppet docs-archive** | [github.com/puppetlabs/docs-archive](https://github.com/puppetlabs/docs-archive) |
-| 💬 | **Community Slack** | [puppetcommunity.slack.com](https://puppetcommunity.slack.com/) |
+| 💬 | **Community Slack** | [voxpupuli.slack.com](https://short.voxpupu.li/puppetcommunity_slack_signup/) |
 | 🛠️ | **OpenVox GUI** | [github.com/cvquesty/openvox-gui](https://github.com/cvquesty/openvox-gui) — web management UI |
 | 🔍 | **OpenVox Lint** | [rubygems.org/gems/openvox-lint](https://rubygems.org/gems/openvox-lint) — Puppet manifest linter |
 
