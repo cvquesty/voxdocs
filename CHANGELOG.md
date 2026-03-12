@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.97.0] - 2026-03-12
+
+### Added
+- getting-started/migration.md — **New comprehensive migration guide** for users
+  moving from Puppet 7 to OpenVox 8, covering:
+  - Strict mode (`strict_variables=true` by default)
+  - Legacy facts removed (with complete conversion table)
+  - Hiera 3 functions removed (`hiera()` → `lookup()`)
+  - Ruby 3.2.x and OpenSSL 3.0 changes
+  - Package migration instructions (RHEL/Debian)
+  - Complete migration checklist
+- module-development/README.md — Added "Linting with openvox-lint" section
+  documenting the community linter for style guide violations, legacy facts,
+  and deprecated Hiera 3 functions
+
+### Changed
+- language/functions.md — **Significantly expanded** from 42 lines to 192 lines:
+  - Added String Functions section (case, whitespace, search/replace)
+  - Added Array Functions section (unique, flatten, sort, slice)
+  - Added Hash Functions section (merge, keys, values, dig)
+  - Expanded Hiera Lookup section with signature table and merge strategies
+  - Added deprecation warning for hiera()/hiera_array()/hiera_hash()
+  - Added Type Checking section
+  - Added Conditional Functions section (pick, lest, then)
+  - Added Utility Functions section (epp, include, contain, fail, debug)
+  - Added See Also cross-references
+- getting-started/README.md — Added "Migrating from Puppet 7?" section with
+  link to the new migration guide
+
+### Technical Context
+- All changes reviewed against official Puppet 8.10.0 documentation (52,477 lines)
+- Content verified against Puppet Best Practices (Chris Barbour) and
+  Puppet 8 for DevOps Engineers (David Sandilands)
+
 ## [0.96.3] - 2026-03-04
 
 ### Added

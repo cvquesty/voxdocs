@@ -337,6 +337,12 @@ Now that you've got OpenVox up and running, here's where to go next:
 3. **[Configuration Reference](../configuration/README.md)** — Master `puppet.conf` and all the knobs you can turn
 4. **[CLI Reference](../cli-reference/README.md)** — The complete guide to every binary and every flag
 
+### Migrating from Puppet 7?
+
+If you're coming from an existing Puppet 7 infrastructure, check out:
+
+5. **[Migrating from Puppet 7](migration.md)** — Breaking changes, legacy fact removal, Hiera 3 deprecation, and a complete migration checklist
+
 ---
 
 *Next up: [Architecture & Concepts →](../architecture/README.md)*

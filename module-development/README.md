@@ -323,6 +323,31 @@ bundle exec rake validate
 bundle exec rake lint
 ```
 
+### Linting with openvox-lint
+
+[openvox-lint](https://rubygems.org/gems/openvox-lint) is the community linter for OpenVox/Puppet code. It checks for:
+
+- Style guide violations (indentation, quoting, arrow alignment)
+- Legacy fact usage (`$osfamily` → `$facts['os']['family']`)
+- Deprecated Hiera 3 functions (`hiera()` → `lookup()`)
+- Common anti-patterns
+
+```bash
+# Install
+gem install openvox-lint
+
+# Lint a single file
+openvox-lint manifests/init.pp
+
+# Lint an entire module
+openvox-lint .
+
+# Auto-fix what can be fixed
+openvox-lint --fix .
+```
+
+> **Pro tip:** Add openvox-lint to your CI/CD pipeline to catch issues before they reach production.
+
 ### Acceptance Tests with Litmus
 
 For integration testing against real systems:
