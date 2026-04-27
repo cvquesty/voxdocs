@@ -5,6 +5,78 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-04-27
+
+### Major release: OpenVox project alignment
+
+VoxDocs 2.0 brings the community documentation into alignment with the
+official OpenVox documentation project ([github.com/OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs))
+and the platform's current state on RHEL 9.7.
+
+This is a **major version bump** because the conceptual framing of the
+project has shifted: the OpenVox team has rebranded several core
+components (Facter -> OpenFact, PuppetDB -> OpenVoxDB, Bolt -> OpenBolt),
+the official origin story now credits Overlook InfraTech and the Puppet
+Standards Steering Committee, and the documented package set has expanded.
+Existing readers will encounter new terminology and a restructured
+introduction. No documentation files were removed; readers can continue
+using v1.x as a snapshot reference if needed.
+
+This release rolls up two passes of alignment work.
+
+### Wave 2 (2026-04-27): lab re-capture, OpenBolt 5.4.0, PostgreSQL recommendation
+
+#### Lab re-capture (against the live lab, sanitized for publication)
+- Verified live package set: `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0` on RHEL 9.7.
+- Confirmed the 8.26.2 cosmetic version-string bug from OpenVoxProject/openvox#415 in the live lab: `puppet --version` reports `8.26.1` even though `rpm -q openvox-agent` reports 8.26.2. The version-string bug we documented in Wave 1 is real and reproducible.
+- cli-reference/puppet.md: refreshed `puppet --help` tail line to `OpenVox v8.26.1`; updated `--version` block to `8.26.1` and added an inline note explaining the cosmetic bug + how to verify the real package version.
+- cli-reference/README.md: rewrote the "All output is real" banner to enumerate the actual package set and explicitly call out the version-string bug. Updated puppet row to `8.26.2 (binary reports 8.26.1)`.
+- getting-started/README.md: changed expected `puppet --version` output from `8.26.2` to `8.26.1` to match what users actually see; added rpm/dpkg verification commands.
+
+#### OpenBolt version bump (5.3.0 -> 5.4.0)
+- README.md (root) versions table, AGENTS.md, cli-reference/README.md, cli-reference/bolt.md, orchestration/README.md: all OpenBolt references bumped from 5.3.0 to 5.4.0.
+
+#### PostgreSQL recommendation
+- server-admin/README.md: changed "PuppetDB requires PostgreSQL 11+" to "OpenVoxDB requires PostgreSQL 11+, recommends PostgreSQL 14+" with PGDG repo links, matching the official OpenVoxDB 8 guidance.
+
+#### vardir resolution
+- The official OpenVox docs page `dirs_vardir.markdown` says agent vardir is `/var/opt/puppetlabs/puppet/cache`. Verified with the OpenVox docs maintainers: the correct value is `/opt/puppetlabs/puppet/cache` (matches what voxdocs has and what the live lab uses). Upstream PR pending against OpenVoxProject/openvox-docs. **No change needed in voxdocs.**
+
+### Wave 1 (2026-04-21): alignment pass against the official OpenVox docs
+
+#### Version bumps
+- README.md / AGENTS.md / cli-reference: openvox-agent 8.25.0 -> 8.26.2 (per OpenVox release notes, 2026-04-18)
+- README.md / AGENTS.md / cli-reference: Facter 5.4.0 -> OpenFact 5.6.0 (per OpenFact release notes, 2026-04-09)
+- README.md footer: "Last updated" date moved to April 2026
+
+#### OpenVox project rebranding
+- AGENTS.md / architecture/README.md / cli-reference/facter.md: noted the official rename of Facter -> OpenFact, PuppetDB -> OpenVoxDB, Bolt -> OpenBolt. Binary names and config files (facter, puppetdb, bolt, facter.conf) are unchanged; only project/package names changed.
+- architecture/README.md: added OpenFact, OpenVoxDB, and OpenBolt entries to the glossary.
+- cli-reference/README.md: added OpenVoxDB row to the Server & Infrastructure table; noted openbolt package name on the bolt row.
+- getting-started/README.md: added a "Full OpenVox Package Set" subsection covering openvox-agent, openvox-server, openvoxdb, openvoxdb-termini, openbolt.
+- orchestration/README.md: documented the new openbolt package name alongside the legacy puppet-bolt name.
+
+#### Origin story precision
+- README.md: rewrote the project history paragraph to credit Overlook InfraTech for stepping in with community packaging when Perforce discontinued public distribution of open-source Puppet in late 2024, before Vox Pupuli adopted the project. Added mention of the Puppet Standards Steering Committee.
+- community/README.md: expanded the acknowledgments list to call out Overlook InfraTech's role and the Standards Steering Committee.
+
+#### Repos and downloads
+- README.md: added Windows (downloads.voxpupuli.org/windows) and macOS (downloads.voxpupuli.org/mac) rows to the Package Repositories table; linked the official Installing OpenVox guide.
+- README.md: added Installing OpenVox, OpenVox Support, and Official OpenVox Docs entries to the Key Links table.
+- getting-started/README.md: added a "Windows and macOS Agents" subsection pointing at the download URLs.
+
+#### Migration page
+- getting-started/migration.md: added a "Two migration paths" callout summarizing the official upgrade routes (Puppet 7 -> OpenVox 7 -> OpenVox 8, or Puppet 7 -> Puppet 8 -> OpenVox 8).
+- getting-started/migration.md: added an "Upgrade Order" subsection (server -> openvoxdb -> openvoxdb-termini -> agent) and a callout warning that Puppet and OpenVox cannot coexist on the same host.
+
+#### Troubleshooting
+- troubleshooting/README.md: added FAQ entry for the known cosmetic bug in OpenVox 8.26.2 where `puppet --version` reports `8.26.1` (OpenVoxProject/openvox#415).
+
+#### Known follow-ups (deferred at Wave 1, all resolved in Wave 2)
+- ~~Re-capture CLI blocks against current lab~~ — done in Wave 2.
+- ~~Verify vardir path~~ — confirmed `/opt/puppetlabs/puppet/cache` is correct in Wave 2; upstream PR pending.
+- ~~Bump PostgreSQL recommendation~~ — done in Wave 2.
+
 ## [1.0.0] - 2026-03-12
 
 ### 🎉 First Stable Release!

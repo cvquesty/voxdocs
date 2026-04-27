@@ -6,7 +6,7 @@
 
 ---
 
-Facter is the cross-platform fact-gathering tool. It discovers everything about your system — hardware, OS, networking, virtualization, cloud metadata — and makes it available to Puppet as variables.
+Facter — rebranded as **OpenFact** in the OpenVox project (5.6.0+) — is the cross-platform fact-gathering tool. The binary is still called `facter` and the config file is still `facter.conf`; only the project name has changed. It discovers everything about your system — hardware, OS, networking, virtualization, cloud metadata — and makes it available to Puppet as variables.
 
 ## `facter --help`
 
@@ -55,7 +55,7 @@ Options
 
 ```
 $ facter --version
-5.4.0
+5.6.0
 ```
 
 ## Common Usage Patterns

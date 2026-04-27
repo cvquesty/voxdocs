@@ -9,12 +9,17 @@
 - All binary references must include **actual command-line output** from a sample OpenVox server
 
 ## Current Verified Versions (from sample infrastructure)
-- OpenVox Agent: 8.25.0
+- OpenVox Agent: 8.26.2 (released 2026-04-18; binary reports 8.26.1 due to openvox#415)
 - OpenVox Server (PuppetServer): 8.12.1
-- Facter: 5.4.0
+- OpenFact (was Facter): 5.6.0 (released 2026-04-09)
 - r10k: 5.0.2
-- OpenBolt: 5.3.0
+- OpenBolt: 5.4.0 (released 2026-03-04)
 - Server OS: RHEL 9.7
+
+> **Branding note:** The OpenVox project is rebranding the platform's components.
+> Facter is now **OpenFact**; PuppetDB is now **OpenVoxDB**; Bolt is now **OpenBolt**.
+> Binary names (`facter`, `puppetdb`, `bolt`) and config file names (`facter.conf`)
+> are unchanged. Only the project/package names have been rebranded.
 
 ## Best Practices to Emphasize Throughout
 - Roles and profiles pattern for code organization at scale

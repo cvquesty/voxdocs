@@ -12,6 +12,12 @@
 
 Think of OpenVox as Puppet's cooler, community-owned sibling who actually shows up to the family reunion.
 
+### A Brief History
+
+When Perforce discontinued public distribution of open-source Puppet in late 2024, the community needed a path forward. **Overlook InfraTech** stepped in first with community packaging so existing Puppet users wouldn't be stranded. The project was then adopted under [Vox Pupuli](https://voxpupuli.org/) stewardship and renamed **OpenVox**. A **Puppet Standards Steering Committee** now guides language and feature evolution, ensuring continued compatibility across the broader Puppet ecosystem.
+
+The result: a fully open, community-governed continuation of the platform, with the same DSL, the same Forge, and the same operational patterns you already know.
+
 ### How Does OpenVox Relate to Puppet?
 
 | | **OpenVox** | **Puppet (Perforce)** |
@@ -31,13 +37,13 @@ These versions are currently shipping from the Vox Pupuli repositories, verified
 
 | Component | Version | Binary Path | Notes |
 |-----------|---------|-------------|-------|
-| **openvox-agent** | `8.25.0` | `/opt/puppetlabs/puppet/bin/puppet` | Ruby-based, all platforms |
+| **openvox-agent** | `8.26.2` | `/opt/puppetlabs/puppet/bin/puppet` | Ruby-based, all platforms |
 | **openvox-server** | `8.12.1` | `/opt/puppetlabs/bin/puppetserver` | JRuby + Jetty, FIPS capable |
-| **Facter** | `5.4.0` | `/opt/puppetlabs/puppet/bin/facter` | C++/Ruby fact discovery |
+| **OpenFact** (was Facter) | `5.6.0` | `/opt/puppetlabs/puppet/bin/facter` | C++/Ruby fact discovery; binary still `facter` |
 | **Hiera** | 5 (integrated) | Built into puppet | Hierarchical data lookup |
-| **OpenBolt** | `5.3.0` | `/usr/local/bin/bolt` | Agentless orchestration |
+| **OpenBolt** (was Bolt) | `5.4.0` | `/usr/local/bin/bolt` | Agentless orchestration; package now `openbolt` |
 | **r10k** | `5.0.2` | `/opt/puppetlabs/puppet/bin/r10k` | Git-to-environment deployer |
-| **PuppetDB** | `8.x` | systemd service | PostgreSQL-backed data warehouse |
+| **OpenVoxDB** (was PuppetDB) | `8.x` | systemd service | PostgreSQL-backed data warehouse; packages `openvoxdb`, `openvoxdb-termini` |
 
 > **📌 Note:** All CLI output in this documentation is **real output** captured from a live OpenVox server running RHEL 9.x with SELinux in enforcing mode. Nothing here is fabricated. Hardware details (CPU count, RAM) are representative of typical production setups.
 
@@ -88,12 +94,20 @@ OpenVox packages are available from the Vox Pupuli repositories:
 | **Fedora** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | 42+ |
 | **Debian** | [apt.voxpupuli.org](https://apt.voxpupuli.org) | 11 (Bullseye), 12 (Bookworm) |
 | **Ubuntu** | [apt.voxpupuli.org](https://apt.voxpupuli.org) | 22.04 (Jammy), 24.04 (Noble) |
+| **Windows** | [downloads.voxpupuli.org/windows](https://downloads.voxpupuli.org/windows) | MSI installers |
+| **macOS** | [downloads.voxpupuli.org/mac](https://downloads.voxpupuli.org/mac) | PKG installers (Intel + Apple Silicon) |
+
+For the canonical, always-up-to-date install instructions across every platform,
+see the official [Installing OpenVox](https://voxpupuli.org/openvox/install/) guide.
 
 ## Key Links
 
 | | Resource | URL |
 |---|----------|-----|
 | 🦊 | **OpenVox Project** | [github.com/openvoxproject](https://github.com/openvoxproject) |
+| 📥 | **Installing OpenVox** | [voxpupuli.org/openvox/install](https://voxpupuli.org/openvox/install/) |
+| 🛟 | **OpenVox Support** | [voxpupuli.org/openvox/support](https://voxpupuli.org/openvox/support/) |
+| 📚 | **Official OpenVox Docs** | [github.com/OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs) |
 | 🐾 | **Vox Pupuli** | [voxpupuli.org](https://voxpupuli.org/) |
 | 📦 | **Puppet Forge** | [forge.puppet.com](https://forge.puppet.com/) — all modules work with OpenVox! |
 | 📚 | **Puppet docs-archive** | [github.com/puppetlabs/docs-archive](https://github.com/puppetlabs/docs-archive) |
@@ -111,6 +125,6 @@ You are free to share and adapt this material, provided you give appropriate cre
 
 ---
 
-*Built with ☕, sudo access, and mild frustration by the community. Last updated: March 2026.*
+*Built with ☕, sudo access, and mild frustration by the community. Last updated: April 2026.*
 
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

@@ -95,7 +95,7 @@ sudo systemctl restart puppetserver
 
 ### Installation
 
-PuppetDB requires PostgreSQL 11+:
+OpenVoxDB (PuppetDB) **requires** PostgreSQL 11 or later, but the official OpenVox project now **recommends PostgreSQL 14 or later** to take advantage of newer query-planner and indexing features. If your distribution doesn't ship a recent enough PostgreSQL, install one from the [PostgreSQL Global Development Group](https://yum.postgresql.org/) (yum) or [apt.postgresql.org](https://apt.postgresql.org/) (apt) repositories.
 
 ```bash
 # Install PostgreSQL

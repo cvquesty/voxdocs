@@ -56,7 +56,7 @@ Global options
 
 ```
 $ bolt --version
-5.3.0
+5.4.0
 ```
 
 > **Note:** The community fork is called **OpenBolt** and identifies itself as such in the `--help` output. It includes additional subcommands like `policy` and `plugin` not present in older Puppet Bolt versions.

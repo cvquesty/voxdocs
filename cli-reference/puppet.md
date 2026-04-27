@@ -44,10 +44,10 @@ Available subcommands:
 
 See 'puppet help <subcommand> <action>' for help on a specific subcommand action.
 See 'puppet help <subcommand>' for help on a specific subcommand.
-OpenVox v8.25.0
+OpenVox v8.26.1
 ```
 
-> **Notice the branding:** OpenVox 8.25.0 identifies itself as "OpenVox" throughout its help output, not "Puppet." The subcommands and behavior are identical — it's the same codebase with community governance.
+> **Notice the branding:** OpenVox 8.26.x identifies itself as "OpenVox" throughout its help output, not "Puppet." The subcommands and behavior are identical — it's the same codebase with community governance.
 
 ## `puppet --version`
 
@@ -58,8 +58,14 @@ $ sudo /opt/puppetlabs/puppet/bin/puppet --version
 Real output from our sample infrastructure:
 
 ```
-8.25.0
+8.26.1
 ```
+
+> **Heads up — known cosmetic bug:** The lab is actually running the
+> `openvox-agent-8.26.2` package (verify with `rpm -q openvox-agent`), but
+> `puppet --version` reports `8.26.1`. This is tracked at
+> [OpenVoxProject/openvox#415](https://github.com/OpenVoxProject/openvox/issues/415).
+> Only the version string is wrong; the agent itself is at 8.26.2.
 
 ---
 

@@ -281,6 +281,10 @@ This means you're trying to manage the same resource from two different places. 
 
 **A:** The default is every 30 minutes, which works well for most environments. For compliance-heavy environments, you might decrease to 15 minutes. For large fleets (1000+ nodes), you might increase to 1 hour with splay enabled to spread the load.
 
+### Q: I installed openvox-agent 8.26.2 but `puppet --version` says `8.26.1`. Did the upgrade fail?
+
+**A:** No — your agent is at the correct version. This is a known cosmetic bug in OpenVox 8.26.2: the version string returned by `--version` is wrong, but the agent itself is at 8.26.2. Tracked at [OpenVoxProject/openvox#415](https://github.com/OpenVoxProject/openvox/issues/415). You can verify with `rpm -q openvox-agent` (RHEL) or `dpkg -l openvox-agent` (Debian) — the package version is reported correctly there.
+
 ### Q: Where do I get help?
 
 **A:** See the [Community & Contributing](../community/README.md) guide! The Puppet community Slack, Vox Pupuli mailing lists, and GitHub issues are all great places to ask questions.

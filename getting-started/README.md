@@ -29,6 +29,17 @@ Before we dive in, you'll need:
 
 > **Note:** OpenVox also supports macOS, Windows, SLES, and Amazon Linux. This guide focuses on the RHEL/Debian families because that's where most of the action is.
 
+### Windows and macOS Agents
+
+Linux is the platform for OpenVox **servers**, but agents run on plenty of other platforms. Windows and macOS installers are distributed as MSI/PKG files instead of through apt/yum:
+
+| Platform | Download Location |
+|----------|-------------------|
+| **Windows** | [downloads.voxpupuli.org/windows](https://downloads.voxpupuli.org/windows) |
+| **macOS** | [downloads.voxpupuli.org/mac](https://downloads.voxpupuli.org/mac) |
+
+After downloading, run the installer. The agent uses the same `puppet.conf` settings, the same SSL workflow, and the same agent-server protocol as Linux nodes; only the install method differs. The official [Installing OpenVox](https://voxpupuli.org/openvox/install/) guide has step-by-step instructions for each platform.
+
 ---
 
 ## Installation
@@ -81,10 +92,20 @@ sudo /opt/puppetlabs/puppet/bin/puppet --version
 Real output from our sample infrastructure:
 
 ```
-8.25.0
+8.26.1
 ```
 
-You can also verify Facter and PuppetServer if installed:
+> **Wait, didn't I install 8.26.2?** Yes — the package is `openvox-agent-8.26.2`,
+> but `puppet --version` reports `8.26.1` because of a cosmetic bug tracked at
+> [OpenVoxProject/openvox#415](https://github.com/OpenVoxProject/openvox/issues/415).
+> The agent itself is at the correct version. Verify the real package version with:
+>
+> ```bash
+> rpm -q openvox-agent       # RHEL family
+> dpkg -l openvox-agent      # Debian family
+> ```
+
+You can also verify OpenFact (the rebranded Facter) and PuppetServer if installed:
 
 ```bash
 sudo /opt/puppetlabs/puppet/bin/facter --version
@@ -94,11 +115,11 @@ sudo /opt/puppetlabs/bin/puppetserver --version
 Real output:
 
 ```
-5.4.0
+5.6.0
 puppetserver version: 8.12.1
 ```
 
-> **Pro tip:** The OpenVox agent installs into `/opt/puppetlabs/`. The binary lives at `/opt/puppetlabs/puppet/bin/puppet`. The installer adds this to your PATH, but if you're in a weird shell, you may need to source your profile or use the full path. We recommend adding `/opt/puppetlabs/puppet/bin` and `/opt/puppetlabs/bin` to your `PATH` in `/etc/profile.d/puppet.sh` for convenience.
+> **Pro tip:** The OpenVox agent installs into `/opt/puppetlabs/`. The binary lives at `/opt/puppetlabs/bin/puppet` (the public binary path; `/opt/puppetlabs/puppet/bin/puppet` is the internal Ruby tree). The installer adds `/opt/puppetlabs/bin` to your `PATH`. If you're in a weird shell, source your profile or use the full path. For convenience, you can also add `/opt/puppetlabs/puppet/bin` to `PATH` in `/etc/profile.d/puppet.sh` so internal tools like `gem`, `bundle`, and `r10k` are available.
 
 ### Step 4: (Optional) Install the OpenVox Server
 
@@ -123,6 +144,30 @@ Verify the server is running:
 ```bash
 sudo systemctl status openvox-server
 ```
+
+#### The Full OpenVox Package Set
+
+The official OpenVox package set is:
+
+| Package | Purpose |
+|---------|---------|
+| `openvox-agent` | Agent nodes and standalone `puppet apply` use |
+| `openvox-server` | Catalog compilation and the built-in CA |
+| `openvoxdb` | Reports, inventory, and exported resources (was `puppetdb`) |
+| `openvoxdb-termini` | Server-side plugins so `openvox-server` can talk to OpenVoxDB |
+| `openbolt` | Agentless orchestration (was `puppet-bolt`) |
+
+For sites that use exported resources, PQL queries, or want a reports backend, install OpenVoxDB on a server (often the same host as openvox-server for small fleets):
+
+```bash
+# RHEL family
+sudo yum install -y openvoxdb openvoxdb-termini
+
+# Debian family
+sudo apt-get install -y openvoxdb openvoxdb-termini
+```
+
+> **Note:** `openvoxdb-termini` belongs on the **OpenVox Server** so it can submit catalogs/reports to OpenVoxDB; you don't need it on agent-only nodes.
 
 ---
 

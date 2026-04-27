@@ -102,9 +102,11 @@ The OpenVox and Vox Pupuli communities are committed to providing a welcoming, i
 This project stands on the shoulders of giants:
 
 - **Puppet Labs** (now Perforce) — for creating the original Puppet platform and open-sourcing it
-- **Vox Pupuli** — for maintaining hundreds of community modules and creating OpenVox
+- **Overlook InfraTech** — for stepping up with community packaging when Perforce discontinued public distribution of open-source Puppet in late 2024, keeping the ecosystem alive while the community organized
+- **Vox Pupuli** — for adopting the project, renaming it OpenVox, and continuing to maintain hundreds of community modules
+- **The Puppet Standards Steering Committee** — for guiding language and feature evolution across the broader Puppet ecosystem
 - The **docs-archive** — for preserving the legacy Puppet documentation
-- **Overlook InfraTech** and **betadots GmbH** — for sponsoring OpenVox development
+- **betadots GmbH** — for sponsoring OpenVox development
 - **The entire Puppet community** — decades of contributions, modules, blog posts, and Stack Overflow answers
 
 And of course, thanks to **you** for reading this far. Now go automate something! 🦊

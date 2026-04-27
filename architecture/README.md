@@ -90,6 +90,8 @@ PuppetDB is the **data warehouse** for your infrastructure. Every time an agent 
 - **Reports** — What happened during each Puppet run
 - **Resources** — Every resource on every node (exportable/collectible)
 
+> **Branding note:** The OpenVox project is rebranding PuppetDB to **OpenVoxDB**. The packages are now `openvoxdb` and `openvoxdb-termini`, but the systemd unit, schema, query API, and PQL are unchanged. You'll see both names during the transition.
+
 PuppetDB uses PostgreSQL as its backend and exposes a powerful query API using **PQL** (Puppet Query Language). Want to find all nodes running CentOS 8 with more than 16GB of RAM? PQL can do that in one line.
 
 ```
@@ -125,6 +127,8 @@ Facter is a **cross-platform system profiling tool**. It discovers facts about t
 - Virtualization status
 
 Facts are available in your Puppet code as variables (e.g., `$facts['os']['name']`), which lets you write conditional logic like "install Apache on RedHat, install apache2 on Debian."
+
+> **Branding note:** Facter has been rebranded to **OpenFact** in the OpenVox ecosystem (5.6.0+). The `facter` binary, `facter.conf` configuration file, and the `facts.d/` directory all keep their existing names — only the project/product name has changed.
 
 ### 📚 Hiera
 
@@ -320,6 +324,9 @@ Here's a complete picture of how data flows through the system:
 | **Module** | A self-contained bundle of Puppet code |
 | **mTLS** | Mutual TLS — both client and server verify each other's certificates |
 | **Node** | A managed system (server, VM, container, etc.) |
+| **OpenBolt** | OpenVox's name for Bolt; package `openbolt`, binary still `bolt` |
+| **OpenFact** | OpenVox's name for Facter; binary still `facter` |
+| **OpenVoxDB** | OpenVox's name for PuppetDB; packages `openvoxdb`, `openvoxdb-termini` |
 | **PQL** | Puppet Query Language — SQL-like language for querying PuppetDB |
 | **Primary Server** | The central PuppetServer that compiles catalogs |
 | **Resource** | A single unit of configuration (file, package, service, etc.) |

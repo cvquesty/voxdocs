@@ -2,7 +2,10 @@
 
 > *Every binary, every subcommand, every flag. Because `--help` is never quite enough.*
 >
-> **All output in these pages is real.** Captured from a live OpenVox server running 8.25.0 on RHEL 9.7.
+> **All output in these pages is real.** Captured from a live OpenVox lab on RHEL 9.7 running the package set
+> `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0`.
+> Note: `puppet --version` reports `8.26.1` because of cosmetic bug
+> [OpenVoxProject/openvox#415](https://github.com/OpenVoxProject/openvox/issues/415); the binary is genuinely 8.26.2.
 
 ---
 
@@ -14,7 +17,7 @@ Each command has its own page with the complete `--help` output and practical us
 
 | # | Command | Version | Description |
 |---|---------|---------|-------------|
-| 1 | [**puppet**](puppet.md) | 8.25.0 | The main OpenVox CLI — overview and subcommand list |
+| 1 | [**puppet**](puppet.md) | 8.26.2 (binary reports 8.26.1) | The main OpenVox CLI — overview and subcommand list |
 | 2 | [**puppet agent**](puppet-agent.md) | | Agent daemon — connects to server, applies catalogs |
 | 3 | [**puppet apply**](puppet-apply.md) | | Apply manifests locally (no server needed) |
 | 4 | [**puppet resource**](puppet-resource.md) | | Inspect and manage system resources directly |
@@ -28,10 +31,11 @@ Each command has its own page with the complete `--help` output and practical us
 
 | # | Command | Version | Description |
 |---|---------|---------|-------------|
-| 10 | [**facter**](facter.md) | 5.4.0 | Cross-platform system fact discovery |
+| 10 | [**facter**](facter.md) | 5.6.0 | Cross-platform system fact discovery (OpenFact) |
 | 11 | [**puppetserver**](puppetserver.md) | 8.12.1 | Server management and Certificate Authority |
 | 12 | [**r10k**](r10k.md) | 5.0.2 | Code deployment from Git to environments |
-| 13 | [**bolt** (OpenBolt)](bolt.md) | 5.3.0 | Agentless orchestration |
+| 13 | [**bolt** (OpenBolt)](bolt.md) | 5.4.0 | Agentless orchestration; package `openbolt` |
+| —  | **OpenVoxDB** (was PuppetDB) | 8.x | systemd service `puppetdb`; query via `puppet query` (row 15) |
 
 ### Additional References
 

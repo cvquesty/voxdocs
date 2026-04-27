@@ -10,6 +10,13 @@ OpenVox 8 is based on **Puppet 8**, which includes several breaking changes from
 
 **The good news:** Most well-written Puppet code will work without modification. The breaking changes primarily affect legacy patterns that were already discouraged.
 
+> **Two migration paths.** Per the official OpenVox release notes, you have two reasonable routes from open-source Puppet 7 to OpenVox 8:
+>
+> 1. **Puppet 7 → OpenVox 7 → OpenVox 8** — switch ecosystems first, then take the language jump. Lower risk because each step changes only one variable.
+> 2. **Puppet 7 → Puppet 8 → OpenVox 8** — take the language jump first on the platform you know, then swap packages. Easier if your team is more comfortable debugging Puppet itself than the package transition.
+>
+> Either way works. Pick whichever your operational team finds less risky.
+
 ---
 
 ## Breaking Changes
@@ -212,6 +219,23 @@ pdk test unit --parallel
 ---
 
 ## Package Migration
+
+> **Important:** You **cannot** install Puppet and OpenVox packages on the same host at the same time — they collide on `/etc/puppetlabs/` and `/opt/puppetlabs/`. Always **back up `/etc/puppetlabs/`** before swapping packages, especially on server nodes (the CA lives there, and losing it forces every agent to re-enroll).
+
+### Upgrade Order (Multi-Host Sites)
+
+When upgrading or migrating a fleet, do it in this order so central services stay ahead of the agents they serve:
+
+1. **`openvox-server`** — upgrade the catalog compiler first
+2. **`openvoxdb`** — upgrade the data warehouse next
+3. **`openvoxdb-termini`** — on each server node so it can talk to the new OpenVoxDB
+4. **`openvox-agent`** — finally, roll out to managed nodes
+
+After each stage:
+- Confirm the affected service is running
+- Run a test agent execution (`puppet agent -t --noop`)
+- Check certificate handling and OpenVoxDB connectivity where applicable
+- Review the [OpenVox release notes](https://github.com/OpenVoxProject/openvox/releases) for the version you're moving to
 
 If you're migrating from Puppet packages to OpenVox packages:
 
