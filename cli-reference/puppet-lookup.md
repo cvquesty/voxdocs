@@ -8,7 +8,7 @@
 
 Perform Hiera data lookups from the command line. This is the modern replacement for the deprecated `hiera` CLI.
 
-```
+```console
 $ puppet help lookup
 
 puppet-lookup(8) -- Interactive Hiera lookup for OpenVox
@@ -87,7 +87,7 @@ puppet lookup myclass::all_settings --render-as json
 
 ## Example Output with `--explain`
 
-```
+```console
 $ puppet lookup ntp::servers --explain
 Searching for "ntp::servers"
   Global Data Provider (hiera configuration version 5)

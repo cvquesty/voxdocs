@@ -8,7 +8,7 @@
 
 The agent daemon — connects to the Primary Server, retrieves a catalog, and applies it.
 
-```
+```console
 $ puppet help agent
 
 puppet-agent(8) -- The puppet agent daemon provided by OpenVox

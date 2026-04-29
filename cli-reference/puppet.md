@@ -10,7 +10,7 @@ The `puppet` command is the primary CLI for OpenVox. It uses a subcommand struct
 
 ## `puppet --help`
 
-```
+```console
 $ puppet --help
 
 Usage: puppet <subcommand> [options] <action> [options]
@@ -52,12 +52,12 @@ OpenVox v8.26.1
 ## `puppet --version`
 
 ```bash
-$ sudo /opt/puppetlabs/puppet/bin/puppet --version
+sudo /opt/puppetlabs/puppet/bin/puppet --version
 ```
 
 Real output from our sample infrastructure:
 
-```
+```text
 8.26.1
 ```
 

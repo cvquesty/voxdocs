@@ -9,6 +9,7 @@
 OpenVox's agent-server model is great for **convergence** (gradually bringing systems into compliance), but sometimes you need **orchestration** — running commands across your fleet right now, deploying code immediately, or executing complex multi-step workflows.
 
 This guide covers:
+
 - [**OpenBolt**](#openbolt-puppet-bolt) — Agentless orchestration
 - [**r10k**](#r10k-code-deployment-v502) — Code deployment from Git
 - [**Tasks and Plans**](#tasks-and-plans) — Reusable automation
@@ -55,7 +56,7 @@ bolt project init myproject
 
 This creates:
 
-```
+```text
 myproject/
 ├── bolt-project.yaml     ← Project configuration
 ├── inventory.yaml         ← Target definitions
@@ -301,7 +302,7 @@ r10k (v5.0.2) is the standard tool for deploying Puppet code from Git. It maps *
 
 ### How It Works
 
-```
+```text
 Git Repository                          Puppet Server
 ─────────────                           ──────────────
 main branch    ─────r10k deploy────►    production/ environment

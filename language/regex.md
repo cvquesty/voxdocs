@@ -4,7 +4,6 @@
 
 ---
 
-
 Puppet uses Ruby-style regular expressions:
 
 ```puppet

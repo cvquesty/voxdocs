@@ -8,7 +8,7 @@
 
 Compile and apply a manifest locally — no server needed. Perfect for standalone work, testing, and learning.
 
-```
+```console
 $ puppet help apply
 
 puppet-apply(8) -- Apply Puppet manifests locally via OpenVox

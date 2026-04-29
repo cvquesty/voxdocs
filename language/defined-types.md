@@ -4,7 +4,6 @@
 
 ---
 
-
 Defined types are like **reusable resource templates**. Unlike classes (which can only be declared once), defined types can be instantiated multiple times with different parameters:
 
 ```puppet

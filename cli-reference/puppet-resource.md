@@ -8,7 +8,7 @@
 
 Inspect and manage resources directly from the command line.
 
-```
+```console
 $ puppet help resource
 
 puppet-resource(8) -- The OpenVox resource abstraction layer shell
@@ -91,7 +91,7 @@ sudo puppet resource user root --to_yaml
 
 From `openvox.example.com`:
 
-```
+```console
 $ sudo puppet resource user root
 user { 'root':
   ensure             => 'present',

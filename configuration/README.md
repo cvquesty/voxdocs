@@ -9,6 +9,7 @@
 OpenVox uses several configuration files to control the behavior of the agent, server, and related services. This guide covers all of them, with practical examples and explanations of the settings you'll actually use.
 
 **Configuration files covered:**
+
 - [`puppet.conf`](#puppetconf) — The main configuration file
 - [`hiera.yaml`](#hierayaml) — Hiera hierarchy configuration
 - [`r10k.yaml`](#r10kyaml) — Code deployment configuration
@@ -23,7 +24,7 @@ OpenVox uses several configuration files to control the behavior of the agent, s
 
 The main configuration file for both the agent and server. Located at:
 
-```
+```text
 /etc/puppetlabs/puppet/puppet.conf
 ```
 
@@ -177,6 +178,7 @@ reports = store, puppetdb
 ```
 
 > **Things to notice:**
+>
 > - The `[server]` section uses an **External Node Classifier** (`node_terminus = exec` + `external_nodes`) via the [OpenVox GUI](https://github.com/cvquesty/openvox-gui)
 > - `runinterval = 600` means agents check in every 10 minutes (600 seconds)
 > - `number_of_facts_soft_limit = 8960` — a tuning parameter for large fact sets
@@ -239,7 +241,7 @@ You can interpolate these variables in hierarchy paths:
 
 Controls how r10k deploys code from Git. Located at:
 
-```
+```text
 /etc/puppetlabs/r10k/r10k.yaml
 ```
 
@@ -275,7 +277,7 @@ git:
 
 r10k expects your control repo to have this structure:
 
-```
+```text
 control-repo/
 ├── Puppetfile           ← Module dependencies (like a Gemfile for Puppet)
 ├── environment.conf     ← Environment-specific settings
@@ -320,7 +322,7 @@ mod 'internal_profiles',
 
 Tells the Puppet agent where to find PuppetDB. Located at:
 
-```
+```text
 /etc/puppetlabs/puppet/puppetdb.conf
 ```
 
@@ -333,7 +335,7 @@ server_urls = https://openvox.example.com:8081
 
 For the server's PuppetDB route configuration:
 
-```
+```text
 /etc/puppetlabs/puppet/routes.yaml
 ```
 
@@ -349,7 +351,7 @@ server:
 
 PuppetDB's own configuration lives in:
 
-```
+```text
 /etc/puppetlabs/puppetdb/conf.d/
 ```
 
@@ -389,7 +391,7 @@ ssl-ca-cert = /etc/puppetlabs/puppet/ssl/certs/ca.pem
 
 Configure custom file server mount points for serving files to agents. Located at:
 
-```
+```text
 /etc/puppetlabs/puppet/fileserver.conf
 ```
 
@@ -420,7 +422,7 @@ file { '/etc/app.conf':
 
 Each environment can have its own `environment.conf`:
 
-```
+```text
 /etc/puppetlabs/code/environments/production/environment.conf
 ```
 
@@ -448,7 +450,7 @@ environment_timeout = unlimited
 
 Here's a map of where everything lives on disk:
 
-```
+```text
 /etc/puppetlabs/
 ├── puppet/
 │   ├── puppet.conf              ← Main config

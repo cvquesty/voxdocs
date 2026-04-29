@@ -8,7 +8,7 @@
 
 Validate and interact with Puppet manifests.
 
-```
+```console
 $ puppet help parser
 
 USAGE: puppet parser <action>

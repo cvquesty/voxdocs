@@ -10,7 +10,7 @@ Facter — rebranded as **OpenFact** in the OpenVox project (5.6.0+) — is the 
 
 ## `facter --help`
 
-```
+```console
 $ facter --help
 
 Usage
@@ -53,7 +53,7 @@ Options
 
 ## `facter --version`
 
-```
+```console
 $ facter --version
 5.6.0
 ```
@@ -98,7 +98,7 @@ facter -y os
 
 From `openvox.example.com`:
 
-```
+```console
 $ facter os
 {
   architecture => "x86_64",
@@ -131,7 +131,7 @@ $ facter os
 }
 ```
 
-```
+```console
 $ facter networking.fqdn networking.ip memory.system.total processors.count virtual
 memory.system.total => 16.00 GiB
 networking.fqdn => puppet.example.com

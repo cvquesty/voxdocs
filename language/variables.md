@@ -4,7 +4,6 @@
 
 ---
 
-
 Variables in Puppet start with `$` and are **immutable** once assigned (no reassignment within the same scope):
 
 ```puppet
@@ -19,7 +18,7 @@ file { '/etc/motd':
 }
 ```
 
-### Facts as Variables
+## Facts as Variables
 
 System facts are available via the `$facts` hash:
 
@@ -33,7 +32,7 @@ if $facts['os']['architecture'] == 'x86_64' {
 }
 ```
 
-### Variable Scope
+## Variable Scope
 
 Variables are scoped to the class or defined type they're declared in:
 
@@ -68,7 +67,7 @@ Puppet has a rich type system. Here are the types you'll use most:
 | `Regexp` | `/^web\d+/` | Regular expression |
 | `Sensitive` | `Sensitive('s3cret')` | Redacted in logs |
 
-### Type Validation in Parameters
+## Type Validation in Parameters
 
 ```puppet
 class myapp (

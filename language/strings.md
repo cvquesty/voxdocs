@@ -4,7 +4,6 @@
 
 ---
 
-
 Puppet has two kinds of strings:
 
 ```puppet
@@ -16,7 +15,7 @@ $name = 'OpenVox'
 $interpolated = "Welcome to ${name}!\n"  # → "Welcome to OpenVox!\n"
 ```
 
-### Heredocs
+## Heredocs
 
 For multi-line strings, use heredocs:
 

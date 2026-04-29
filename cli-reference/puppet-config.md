@@ -8,7 +8,7 @@
 
 Read and modify Puppet configuration settings.
 
-```
+```console
 $ puppet help config
 
 USAGE: puppet config <action> [--section SECTION_NAME]

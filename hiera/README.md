@@ -9,6 +9,7 @@
 Hiera (from "hierarchy") is Puppet's built-in **hierarchical data lookup system**. It lets you store configuration data — ports, passwords, hostnames, feature flags, anything — in YAML files, organized in a priority hierarchy. Your Puppet code then **looks up** these values at compile time, keeping your manifests clean and your data organized.
 
 Think of it this way:
+
 - **Puppet code** (manifests, modules) = **logic** ("install Apache, configure it, start the service")
 - **Hiera data** (YAML files) = **values** ("the port is 8080, the SSL cert is here, use these modules")
 
@@ -20,7 +21,7 @@ This separation means the same code can work across different nodes, environment
 
 Hiera has three layers of configuration, which combine into a single ordered "super-hierarchy":
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │  1. Global Layer                                │
 │     /etc/puppetlabs/puppet/hiera.yaml           │
@@ -393,7 +394,7 @@ puppet lookup myapp::all_settings --render-as json
 
 ### Example `--explain` Output
 
-```
+```text
 $ puppet lookup ntp::servers --explain --environment production
 
 Searching for "ntp::servers"
@@ -437,6 +438,7 @@ Searching for "ntp::servers"
 8. **Name data files by their interpolation** — if the path is `os/%{facts.os.family}.yaml`, create files named `RedHat.yaml`, `Debian.yaml`, etc.
 
 9. **Use `puppet lookup` from the CLI** — quickly test lookups without running a full Puppet apply:
+
    ```bash
    sudo /opt/puppetlabs/puppet/bin/puppet lookup ntp::servers --environment production
    ```

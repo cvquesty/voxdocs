@@ -10,7 +10,7 @@ These specialized subcommands cover operations you'll use less frequently but ar
 
 ## `puppet facts`
 
-```
+```console
 $ puppet help facts
 
 USAGE: puppet facts <action> [--terminus _TERMINUS]
@@ -31,7 +31,7 @@ TERMINI: facter, json, memory, network_device, puppetdb, puppetdb_apply, rest, s
 
 ## `puppet catalog`
 
-```
+```console
 $ puppet help catalog
 
 USAGE: puppet catalog <action> [--terminus _TERMINUS]
@@ -54,7 +54,7 @@ TERMINI: compiler, json, msgpack, puppetdb, rest, store_configs, yaml
 
 ## `puppet epp`
 
-```
+```console
 $ puppet help epp
 
 USAGE: puppet epp <action>
@@ -69,7 +69,7 @@ ACTIONS:
 
 ## `puppet node`
 
-```
+```console
 $ puppet help node
 
 USAGE: puppet node <action> [--terminus _TERMINUS]
@@ -88,7 +88,7 @@ TERMINI: exec, json, memory, msgpack, plain, puppetdb, rest, store_configs, yaml
 
 ## `puppet describe`
 
-```
+```console
 $ puppet help describe
 
 puppet-describe(8) -- Display help about resource types available to OpenVox
@@ -109,7 +109,7 @@ OPTIONS
 
 ## `puppet filebucket`
 
-```
+```console
 $ puppet help filebucket
 
 puppet-filebucket(8) -- Store and retrieve files in an OpenVox filebucket
@@ -133,7 +133,7 @@ OPTIONS
 
 ## `puppet device`
 
-```
+```console
 $ puppet help device
 
 puppet-device(8) -- Manage remote network devices via OpenVox
@@ -155,7 +155,7 @@ retrieve and apply catalogs, and store reports. Configured in device.conf.
 
 ## `puppet script`
 
-```
+```console
 $ puppet help script
 
 puppet-script(8) -- Run a puppet manifests as a script without compiling a catalog
@@ -175,7 +175,7 @@ can load functions, types, tasks and plans from modules.
 
 ## `puppet generate`
 
-```
+```console
 $ puppet help generate
 
 USAGE: puppet generate <action>

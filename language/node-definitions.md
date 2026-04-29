@@ -4,7 +4,6 @@
 
 ---
 
-
 Node definitions let you assign code to specific nodes in your `site.pp`:
 
 ```puppet

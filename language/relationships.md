@@ -4,10 +4,9 @@
 
 ---
 
-
 By default, Puppet applies resources in a **non-deterministic order**. To enforce ordering, use relationships:
 
-### Arrow Notation
+## Arrow Notation
 
 ```puppet
 # Ordering: install package BEFORE starting service
@@ -24,7 +23,7 @@ File['/etc/httpd/conf/httpd.conf'] ~> Service['httpd']
 | `<-` | "require" (reverse ordering) |
 | `<~` | "subscribe" (reverse notify) |
 
-### Metaparameters
+## Metaparameters
 
 ```puppet
 service { 'httpd':
@@ -44,7 +43,7 @@ package { 'httpd':
 }
 ```
 
-### Chaining
+## Chaining
 
 ```puppet
 # Common pattern: install → configure → service

@@ -8,7 +8,7 @@
 
 OpenVox (like Puppet before it) follows a **client-server** architecture with a declarative model. Instead of writing scripts that say *"do this, then do that"*, you describe the **desired state** of your systems and let OpenVox figure out how to get there. Here's the 30,000-foot view:
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
 │                  OpenVox Primary Server             │
 │                                                     │
@@ -54,6 +54,7 @@ The agent is the software that runs on **every managed node** (server, workstati
 The agent runs as a background service (typically via systemd) and checks in every **30 minutes** by default. You can also trigger it manually with `puppet agent -t`.
 
 **Key paths:**
+
 | Path | Purpose |
 |------|---------|
 | `/opt/puppetlabs/bin/puppet` | The puppet binary |
@@ -74,6 +75,7 @@ PuppetServer is the **brains of the operation**. It's a JVM-based (Clojure + JRu
 PuppetServer runs inside a Jetty web server and uses JRuby to execute Puppet's Ruby-based compiler. Yes, it's Java wrapping Ruby. No, we don't talk about that at parties.
 
 **Key paths:**
+
 | Path | Purpose |
 |------|---------|
 | `/opt/puppetlabs/bin/puppetserver` | The server binary |
@@ -94,11 +96,12 @@ PuppetDB is the **data warehouse** for your infrastructure. Every time an agent 
 
 PuppetDB uses PostgreSQL as its backend and exposes a powerful query API using **PQL** (Puppet Query Language). Want to find all nodes running CentOS 8 with more than 16GB of RAM? PQL can do that in one line.
 
-```
+```text
 nodes[certname] { facts.os.name = "CentOS" and facts.memory.system.total_bytes > 17179869184 }
 ```
 
 **Key paths:**
+
 | Path | Purpose |
 |------|---------|
 | `/etc/puppetlabs/puppetdb/` | PuppetDB configuration |
@@ -134,7 +137,7 @@ Facts are available in your Puppet code as variables (e.g., `$facts['os']['name'
 
 Hiera is the **hierarchical data lookup system** built into Puppet. It lets you separate your **data** (parameters, configuration values) from your **code** (classes, modules). Instead of hardcoding values in your manifests, you put them in YAML files organized in a hierarchy:
 
-```
+```text
 data/
 ├── nodes/
 │   └── webserver1.example.com.yaml    ← Most specific
@@ -155,7 +158,7 @@ Hiera searches from most-specific to least-specific, returning the first match. 
 
 Here's what happens during a typical agent run, from start to finish:
 
-```
+```text
 Agent Node                                    Primary Server
 ──────────                                    ──────────────
 1. Agent wakes up (timer or manual)
@@ -180,7 +183,7 @@ Agent Node                                    Primary Server
                                                  in PuppetDB
 ```
 
-### Exit Codes Matter!
+### Exit Codes Matter
 
 When the agent finishes, it returns an exit code:
 
@@ -204,7 +207,7 @@ OpenVox ships with a single default environment: **`production`**. That's it —
 
 When using **r10k** for code deployment (which most teams do), environments map **directly to Git branches** in your control repository. Create a branch, deploy with r10k, and a matching environment appears on the server. This means your environments are as dynamic as your Git workflow:
 
-```
+```text
 Git Branch                              Puppet Environment
 ──────────                              ──────────────────
 main               ─── r10k deploy ──►  production/
@@ -215,6 +218,7 @@ hotfix/ssl-cert    ─── r10k deploy ──►  hotfix_ssl_cert/
 > **Note:** Puppet converts characters that aren't valid in environment names (like `/` and `-`) to underscores. The Git branch `feature/add-nginx` becomes the environment `feature_add_nginx`.
 
 Each environment has its own:
+
 - **Manifests** (`manifests/site.pp`)
 - **Modules** (`modules/`)
 - **Hiera data** (`data/`)
@@ -223,7 +227,7 @@ Each environment has its own:
 
 The directory structure looks like this:
 
-```
+```text
 /etc/puppetlabs/code/environments/
 ├── production/              ← The default (and often only permanent) environment
 │   ├── manifests/
@@ -254,7 +258,7 @@ Agents are assigned to environments in one of three ways:
 
 Modules are how you **organize and share Puppet code**. A module is a directory with a specific structure:
 
-```
+```text
 mymodule/
 ├── manifests/
 │   ├── init.pp          ← Main class (class mymodule)
@@ -282,7 +286,7 @@ The [Puppet Forge](https://forge.puppet.com/) hosts thousands of community modul
 
 Here's a complete picture of how data flows through the system:
 
-```
+```text
 ┌─────────────┐          ┌──────────────┐
 │  Git Repo   │──r10k───►│  Code Dir    │
 │  (control   │  deploy  │  /etc/puppet │

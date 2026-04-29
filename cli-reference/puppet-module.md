@@ -8,7 +8,7 @@
 
 Install, search, and manage Puppet modules from the Forge.
 
-```
+```console
 $ puppet help module
 
 USAGE: puppet module <action> [--environment production ] [--modulepath  ]

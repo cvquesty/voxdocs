@@ -16,7 +16,7 @@ Modules are the primary way to organize Puppet code. They're shareable (via the 
 
 Every module follows a standard directory layout:
 
-```
+```text
 mymodule/
 ├── manifests/
 │   ├── init.pp              ← Main class (class mymodule { ... })

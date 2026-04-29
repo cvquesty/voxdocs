@@ -1,6 +1,7 @@
 # VoxDocs Project Instructions
 
 ## Writing Style
+
 - Conversational, helpful tone — like explaining to a smart friend
 - Target audience: college senior level
 - Light humor is encouraged (but never at the reader's expense)
@@ -9,6 +10,7 @@
 - All binary references must include **actual command-line output** from a sample OpenVox server
 
 ## Current Verified Versions (from sample infrastructure)
+
 - OpenVox Agent: 8.26.2 (released 2026-04-18; binary reports 8.26.1 due to openvox#415)
 - OpenVox Server (PuppetServer): 8.12.1
 - OpenFact (was Facter): 5.6.0 (released 2026-04-09)
@@ -22,6 +24,7 @@
 > are unchanged. Only the project/package names have been rebranded.
 
 ## Best Practices to Emphasize Throughout
+
 - Roles and profiles pattern for code organization at scale
 - Class containment (`contain`, `require`) to manage dependencies properly
 - Idempotent execs with `creates`, `onlyif`, `unless`, `refreshonly`
@@ -34,6 +37,7 @@
 - Always document your modules with README.md and examples/
 
 ## Structure
+
 - Each major section has its own directory with a `README.md`
 - Cross-reference between docs using relative links
 - Code blocks must specify the language for syntax highlighting
@@ -41,6 +45,7 @@
 - Emoji section headers for visual scanning
 
 ## Copyright Policy
+
 - NEVER copy text from Perforce/Puppet's official documentation at puppet.com
 - Reference the docs-archive (Puppet 5.x, unencumbered) for structure inspiration only
 - All content must be originally written
@@ -48,5 +53,6 @@
 - All CLI output must be captured from our own infrastructure
 
 ## Conventional Commits
+
 - Use conventional commits for all changes
 - Default branch: `development`

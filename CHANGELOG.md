@@ -27,6 +27,7 @@ This release rolls up two passes of alignment work.
 ### Wave 2 (2026-04-27): lab re-capture, OpenBolt 5.4.0, PostgreSQL recommendation
 
 #### Lab re-capture (against the live lab, sanitized for publication)
+
 - Verified live package set: `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0` on RHEL 9.7.
 - Confirmed the 8.26.2 cosmetic version-string bug from OpenVoxProject/openvox#415 in the live lab: `puppet --version` reports `8.26.1` even though `rpm -q openvox-agent` reports 8.26.2. The version-string bug we documented in Wave 1 is real and reproducible.
 - cli-reference/puppet.md: refreshed `puppet --help` tail line to `OpenVox v8.26.1`; updated `--version` block to `8.26.1` and added an inline note explaining the cosmetic bug + how to verify the real package version.
@@ -34,22 +35,27 @@ This release rolls up two passes of alignment work.
 - getting-started/README.md: changed expected `puppet --version` output from `8.26.2` to `8.26.1` to match what users actually see; added rpm/dpkg verification commands.
 
 #### OpenBolt version bump (5.3.0 -> 5.4.0)
+
 - README.md (root) versions table, AGENTS.md, cli-reference/README.md, cli-reference/bolt.md, orchestration/README.md: all OpenBolt references bumped from 5.3.0 to 5.4.0.
 
 #### PostgreSQL recommendation
+
 - server-admin/README.md: changed "PuppetDB requires PostgreSQL 11+" to "OpenVoxDB requires PostgreSQL 11+, recommends PostgreSQL 14+" with PGDG repo links, matching the official OpenVoxDB 8 guidance.
 
 #### vardir resolution
+
 - The official OpenVox docs page `dirs_vardir.markdown` says agent vardir is `/var/opt/puppetlabs/puppet/cache`. Verified with the OpenVox docs maintainers: the correct value is `/opt/puppetlabs/puppet/cache` (matches what voxdocs has and what the live lab uses). Upstream PR pending against OpenVoxProject/openvox-docs. **No change needed in voxdocs.**
 
 ### Wave 1 (2026-04-21): alignment pass against the official OpenVox docs
 
 #### Version bumps
+
 - README.md / AGENTS.md / cli-reference: openvox-agent 8.25.0 -> 8.26.2 (per OpenVox release notes, 2026-04-18)
 - README.md / AGENTS.md / cli-reference: Facter 5.4.0 -> OpenFact 5.6.0 (per OpenFact release notes, 2026-04-09)
 - README.md footer: "Last updated" date moved to April 2026
 
 #### OpenVox project rebranding
+
 - AGENTS.md / architecture/README.md / cli-reference/facter.md: noted the official rename of Facter -> OpenFact, PuppetDB -> OpenVoxDB, Bolt -> OpenBolt. Binary names and config files (facter, puppetdb, bolt, facter.conf) are unchanged; only project/package names changed.
 - architecture/README.md: added OpenFact, OpenVoxDB, and OpenBolt entries to the glossary.
 - cli-reference/README.md: added OpenVoxDB row to the Server & Infrastructure table; noted openbolt package name on the bolt row.
@@ -57,29 +63,34 @@ This release rolls up two passes of alignment work.
 - orchestration/README.md: documented the new openbolt package name alongside the legacy puppet-bolt name.
 
 #### Origin story precision
+
 - README.md: rewrote the project history paragraph to credit Overlook InfraTech for stepping in with community packaging when Perforce discontinued public distribution of open-source Puppet in late 2024, before Vox Pupuli adopted the project. Added mention of the Puppet Standards Steering Committee.
 - community/README.md: expanded the acknowledgments list to call out Overlook InfraTech's role and the Standards Steering Committee.
 
 #### Repos and downloads
+
 - README.md: added Windows (downloads.voxpupuli.org/windows) and macOS (downloads.voxpupuli.org/mac) rows to the Package Repositories table; linked the official Installing OpenVox guide.
 - README.md: added Installing OpenVox, OpenVox Support, and Official OpenVox Docs entries to the Key Links table.
 - getting-started/README.md: added a "Windows and macOS Agents" subsection pointing at the download URLs.
 
 #### Migration page
+
 - getting-started/migration.md: added a "Two migration paths" callout summarizing the official upgrade routes (Puppet 7 -> OpenVox 7 -> OpenVox 8, or Puppet 7 -> Puppet 8 -> OpenVox 8).
 - getting-started/migration.md: added an "Upgrade Order" subsection (server -> openvoxdb -> openvoxdb-termini -> agent) and a callout warning that Puppet and OpenVox cannot coexist on the same host.
 
 #### Troubleshooting
+
 - troubleshooting/README.md: added FAQ entry for the known cosmetic bug in OpenVox 8.26.2 where `puppet --version` reports `8.26.1` (OpenVoxProject/openvox#415).
 
 #### Known follow-ups (deferred at Wave 1, all resolved in Wave 2)
+
 - ~~Re-capture CLI blocks against current lab~~ — done in Wave 2.
 - ~~Verify vardir path~~ — confirmed `/opt/puppetlabs/puppet/cache` is correct in Wave 2; upstream PR pending.
 - ~~Bump PostgreSQL recommendation~~ — done in Wave 2.
 
 ## [1.0.0] - 2026-03-12
 
-### 🎉 First Stable Release!
+### 🎉 First Stable Release
 
 VoxDocs reaches 1.0 — the OpenVox community documentation is now considered
 production-ready. All major sections are complete, technically verified against
@@ -90,6 +101,7 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
 ## [0.97.0] - 2026-03-12
 
 ### Added
+
 - getting-started/migration.md — **New comprehensive migration guide** for users
   moving from Puppet 7 to OpenVox 8, covering:
   - Strict mode (`strict_variables=true` by default)
@@ -103,6 +115,7 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
   and deprecated Hiera 3 functions
 
 ### Changed
+
 - language/functions.md — **Significantly expanded** from 42 lines to 192 lines:
   - Added String Functions section (case, whitespace, search/replace)
   - Added Array Functions section (unique, flatten, sort, slice)
@@ -117,6 +130,7 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
   link to the new migration guide
 
 ### Technical Context
+
 - All changes reviewed against official Puppet 8.10.0 documentation (52,477 lines)
 - Content verified against Puppet Best Practices (Chris Barbour) and
   Puppet 8 for DevOps Engineers (David Sandilands)
@@ -124,6 +138,7 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
 ## [0.96.3] - 2026-03-04
 
 ### Added
+
 - Added a "Back to ..." navigation link at the bottom of every subpage
   (immediately above the AI disclaimer) in both cli-reference/ (16 files)
   and language/ (14 files) for consistent top-and-bottom navigation
@@ -131,12 +146,14 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
 ## [0.96.2] - 2026-03-04
 
 ### Changed
+
 - language: Split the 926-line README.md into 14 individual topic pages
   following the existing Table of Contents structure
 - language/README.md: Rewritten as intro + TOC index with three sections
   (Language Basics, Control Flow & Structure, Advanced Topics)
 
 ### Added
+
 - language/resources.md — Resources, titles, and namevars
 - language/resource-types.md — file, package, service, user, group, cron, exec
 - language/variables.md — Variables, data types, facts, scope
@@ -155,12 +172,14 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
 ## [0.96.1] - 2026-03-04
 
 ### Changed
+
 - cli-reference: Split the monolithic 1,556-line README.md into 16 individual
   command pages, each with its own .md file
 - cli-reference/README.md: Rewritten as a table-of-contents index page with
   three sections (Core Commands, Server & Infrastructure, Additional References)
 
 ### Added
+
 - cli-reference/puppet.md — puppet overview (--help, --version)
 - cli-reference/puppet-agent.md — puppet agent
 - cli-reference/puppet-apply.md — puppet apply
@@ -182,12 +201,14 @@ the official Puppet 8.10.0 documentation, and suitable for production use.
 ## [0.96.0] - 2026-03-04
 
 ### Summary
+
 Second tagged release. Consolidates all corrections, content improvements,
 and diagram fixes since the initial v0.92 tag. Documentation is now
 genericized for public use (no site-specific references), includes full AI
 disclosure on every page, and all ASCII diagrams render correctly.
 
 ### Highlights since v0.92
+
 - All domain references use `example.com` (no personal domains)
 - Internal IP addresses and personal usernames genericized
 - AI disclosure footer added to all 12 documentation pages
@@ -201,6 +222,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.8] - 2026-03-04
 
 ### Fixed
+
 - architecture/README.md: Realigned all boxes in the "How Data Flows" diagram;
   the gaps between boxes were 9 characters but the arrow labels were 10, causing
   Code Dir, PuppetServer, and PuppetDB boxes to shift right on content lines;
@@ -209,6 +231,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.7] - 2026-03-04
 
 ### Fixed
+
 - architecture/README.md: Aligned the Agent connector ┐, │, and ┴ characters
   vertically so the line from the main diagram connects properly to the
   Agent N box below it
@@ -216,12 +239,14 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.6] - 2026-03-04
 
 ### Fixed
+
 - architecture/README.md: Shifted the right-side ┐ of the connector line
   above the three Agent boxes one space right to align with the Agent N box
 
 ## [0.95.5] - 2026-03-04
 
 ### Fixed
+
 - architecture/README.md: Realigned the right-side outer box border on lines
   15–22 of the Big Picture diagram; the Certificate box content fix in v0.95.4
   shortened those lines by one character, causing the outer │ to misalign
@@ -229,6 +254,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.4] - 2026-03-04
 
 ### Fixed
+
 - architecture/README.md: Fixed spacing in "The Big Picture" ASCII diagram
   - Removed extra trailing space on the "OpenVox Primary Server" title line
   - Removed extra space after "Certificate", "Authority", and "(SSL/TLS)"
@@ -238,6 +264,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.3] - 2026-03-04
 
 ### Fixed
+
 - hiera/README.md: Removed extra trailing space on three lines in the
   "The Three Layers" ASCII diagram (Global Layer, Environment Layer,
   Module Layer) so the box characters align correctly
@@ -245,6 +272,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.2] - 2026-03-04
 
 ### Changed
+
 - getting-started/README.md: Expanded the Resources section under
   "Understanding the Magic" with a new "A Word About Titles" subsection
   explaining that titles often serve as the resource identity (file path,
@@ -260,6 +288,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95.1] - 2026-03-04
 
 ### Changed
+
 - community/README.md: Moved openvox-gui and openvox-lint to the bottom of
   the Related Projects table
 - community/README.md: Removed PDK and Onceover from Related Projects
@@ -267,6 +296,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.95] - 2026-03-04
 
 ### Changed
+
 - architecture/README.md: Rewrote the Environments section to match standard
   Puppet/OpenVox documentation conventions rather than a site-specific setup
 - Removed prescriptive "most common setup" table (production/staging/development)
@@ -282,6 +312,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.94] - 2026-03-04
 
 ### Fixed
+
 - architecture/README.md: Corrected PuppetServer description item #3 from
   "Serves file content from modules" to "Serves configuration elements from
   modules"
@@ -289,12 +320,14 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.93] - 2026-03-04
 
 ### Added
+
 - AI disclosure footer on all 12 documentation pages for full transparency
 - Each page now includes: "This document was created with the assistance of
   AI (Grok, xAI). All technical content has been reviewed and verified by
   human contributors." rendered in small type (`<sub>`) at the bottom
 
 ### Files updated
+
 - README.md, getting-started, architecture, language, cli-reference,
   configuration, server-admin, hiera, module-development, orchestration,
   troubleshooting, community
@@ -302,6 +335,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.92] - 2026-03-04
 
 ### Added
+
 - community/README.md: Added VoxPupuli Community Slack (voxpupuli.slack.com)
   to Key Community Resources table
 - community/README.md: Added VoxPupuli Connect (voxpupuli.org/connect) as a
@@ -311,12 +345,14 @@ disclosure on every page, and all ASCII diagrams render correctly.
   directory of all community channels
 
 ### Changed
+
 - community/README.md: Clarified Puppet Community Slack as the broader
   ecosystem channel, distinct from the VoxPupuli-specific Slack
 
 ## [0.91] - 2026-03-04
 
 ### Changed
+
 - Replaced all domain references with `example.com` across
   all documentation files (README.md, AGENTS.md, cli-reference, configuration)
 - Replaced internal IP address `10.0.100.225` with generic `192.168.1.100`
@@ -327,6 +363,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
   OpenBolt and versioned r10k section headings)
 
 ### Fixed
+
 - AGENTS.md: Updated domain references to use generic `example.com`
 - cli-reference/README.md: Genericized 13 domain references, 1 IP address,
   and 1 username across example output and usage patterns
@@ -337,6 +374,7 @@ disclosure on every page, and all ASCII diagrams render correctly.
 ## [0.90] - 2026-03-04
 
 ### Added
+
 - Initial documentation release with 11 sections
 - Complete CLI reference with real command output from a live OpenVox server
 - Covers OpenVox Agent 8.25.0, Server 8.12.1, Facter 5.4.0, OpenBolt 5.3.0,

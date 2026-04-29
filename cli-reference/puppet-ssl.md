@@ -8,7 +8,7 @@
 
 Manage SSL certificates and keys for agent-server authentication.
 
-```
+```console
 $ puppet help ssl
 
 puppet-ssl(8) -- Manage SSL keys and certificates for OpenVox SSL clients

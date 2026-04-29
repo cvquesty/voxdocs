@@ -10,7 +10,7 @@ Bolt — now **OpenBolt** in the OpenVox ecosystem — is an agentless orchestra
 
 ## `bolt --help`
 
-```
+```console
 $ bolt --help
 
 Name
@@ -54,7 +54,7 @@ Global options
 
 ## `bolt --version`
 
-```
+```console
 $ bolt --version
 5.4.0
 ```

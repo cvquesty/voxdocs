@@ -40,26 +40,31 @@ chronyc tracking        # Check NTP status
 **Checklist:**
 
 1. **Is the module installed?**
+
    ```bash
    puppet module list | grep mymodule
    ```
 
 2. **Is the file in the right place?** Class `mymodule::config` must be in `manifests/config.pp`:
+
    ```bash
    ls /etc/puppetlabs/code/environments/production/modules/mymodule/manifests/
    ```
 
 3. **Has r10k been deployed recently?**
+
    ```bash
    sudo r10k deploy environment production --modules --verbose
    ```
 
 4. **Is the environment correct?**
+
    ```bash
    puppet config print environment
    ```
 
 5. **Is the environment cache stale?**
+
    ```bash
    sudo systemctl restart puppetserver  # Nuclear option
    ```
@@ -114,6 +119,7 @@ sudo puppet catalog compile your-node.example.com --environment production
 ```
 
 **Common causes:**
+
 - Syntax error in a manifest (run `puppet parser validate` on your `.pp` files)
 - Missing module dependency
 - Hiera data error (YAML syntax)
@@ -210,6 +216,7 @@ sudo puppet agent -t 2>&1 | grep -i "exec\|executed"
 ```
 
 **Common speed-ups:**
+
 - Remove unnecessary `exec` resources
 - Use `facter --no-ruby` to skip slow Ruby facts
 - Set `environment_timeout = unlimited` on the server
@@ -225,6 +232,7 @@ sudo puppet agent -t 2>&1 | grep -i "exec\|executed"
 This means you're trying to manage the same resource from two different places. Solutions:
 
 1. **Use `ensure_packages()` from stdlib** instead of raw `package` declarations:
+
    ```puppet
    # Instead of:
    package { 'vim': ensure => installed }  # Fails if declared elsewhere
@@ -234,6 +242,7 @@ This means you're trying to manage the same resource from two different places. 
    ```
 
 2. **Use virtual resources** for shared packages:
+
    ```puppet
    @package { 'common_packages':
      name   => ['vim', 'curl', 'wget'],
@@ -271,6 +280,7 @@ This means you're trying to manage the same resource from two different places. 
 ### Q: What's the best way to test changes before production?
 
 **A:** Use a **multi-environment workflow**:
+
 1. Create a feature branch in your control repo
 2. Deploy with r10k (creates a matching Puppet environment)
 3. Test on a staging node: `puppet agent -t --environment your_branch`

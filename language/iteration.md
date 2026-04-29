@@ -4,10 +4,9 @@
 
 ---
 
-
 Puppet supports several iteration methods (added in Puppet 4+):
 
-### `each`
+## `each`
 
 ```puppet
 ['httpd', 'php', 'mysql'].each |$pkg| {
@@ -22,7 +21,7 @@ Puppet supports several iteration methods (added in Puppet 4+):
 }
 ```
 
-### `map`
+## `map`
 
 ```puppet
 $ports = [80, 443, 8080]
@@ -32,7 +31,7 @@ $firewall_rules = $ports.map |$port| {
 # Result: ['allow_80', 'allow_443', 'allow_8080']
 ```
 
-### `filter`
+## `filter`
 
 ```puppet
 $all_packages = ['httpd', 'telnet', 'php', 'ftp']
@@ -42,7 +41,7 @@ $secure_packages = $all_packages.filter |$pkg| {
 # Result: ['httpd', 'php']
 ```
 
-### `reduce`
+## `reduce`
 
 ```puppet
 $numbers = [1, 2, 3, 4, 5]

@@ -4,10 +4,9 @@
 
 ---
 
-
 Classes are **named blocks of Puppet code** that can be declared (included) on a node. They're the primary way to organize your Puppet code.
 
-### Defining a Class
+## Defining a Class
 
 ```puppet
 # modules/webserver/manifests/init.pp
@@ -37,7 +36,7 @@ class webserver (
 }
 ```
 
-### Declaring (Using) a Class
+## Declaring (Using) a Class
 
 ```puppet
 # Method 1: include (uses Hiera for parameters)
@@ -52,7 +51,7 @@ class { 'webserver':
 
 > **Best practice:** Use `include` with Hiera data for parameters. Resource-like declarations (`class { ... }`) can only be used once per class and are less flexible.
 
-### The `contain` and `require` Functions
+## The `contain` and `require` Functions
 
 ```puppet
 class myapp {

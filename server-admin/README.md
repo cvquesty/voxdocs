@@ -37,7 +37,7 @@ sudo puppetserver foreground
 
 PuppetServer runs on the JVM, and memory is the #1 performance knob. Edit:
 
-```
+```text
 /etc/puppetlabs/puppetserver/conf.d/puppetserver.conf
 ```
 
@@ -62,6 +62,7 @@ JAVA_ARGS="-Xms4g -Xmx4g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.S
 ```
 
 **Rules of thumb:**
+
 | Fleet Size | JRuby Instances | JVM Heap |
 |-----------|-----------------|----------|
 | < 100 nodes | 1-2 | 2-3 GB |
@@ -188,17 +189,20 @@ sudo puppetserver ca clean --certname oldnode.example.com
 If a node needs to be re-registered (new hardware, rebuilt, etc.):
 
 **On the server:**
+
 ```bash
 sudo puppetserver ca clean --certname node.example.com
 ```
 
 **On the node:**
+
 ```bash
 sudo puppet ssl clean
 sudo puppet agent -t  # This will generate a new CSR
 ```
 
 **Back on the server:**
+
 ```bash
 sudo puppetserver ca sign --certname node.example.com
 ```
@@ -216,7 +220,7 @@ autosign = true
 
 #### Allowlist-based Autosign
 
-```
+```text
 # /etc/puppetlabs/puppet/autosign.conf
 *.dev.example.com
 staging-*.example.com

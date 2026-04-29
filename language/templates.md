@@ -4,10 +4,9 @@
 
 ---
 
-
 Templates let you generate file content dynamically. Puppet supports two template languages:
 
-### EPP (Embedded Puppet) — Preferred
+## EPP (Embedded Puppet) — Preferred
 
 ```puppet
 # In your manifest:
@@ -34,7 +33,7 @@ thread_pool_size = <%= $workers * 2 %>
 <%- } -%>
 ```
 
-### ERB (Embedded Ruby) — Legacy
+## ERB (Embedded Ruby) — Legacy
 
 ```erb
 <%# myapp/templates/config.erb %>

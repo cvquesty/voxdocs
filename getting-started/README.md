@@ -5,11 +5,12 @@
 
 ---
 
-## Welcome!
+## Welcome
 
 So you want to manage infrastructure with code? Excellent life choice. Whether you're setting up 3 servers or 3,000, OpenVox has your back. This guide will take you from zero to "Hey, it actually works!" in about 30 minutes.
 
 **What you'll learn:**
+
 - [Installing OpenVox](#installation)
 - [Your first manifest](#your-first-manifest)
 - [Understanding what just happened](#understanding-the-magic)
@@ -91,7 +92,7 @@ sudo /opt/puppetlabs/puppet/bin/puppet --version
 
 Real output from our sample infrastructure:
 
-```
+```text
 8.26.1
 ```
 
@@ -114,7 +115,7 @@ sudo /opt/puppetlabs/bin/puppetserver --version
 
 Real output:
 
-```
+```text
 5.6.0
 puppetserver version: 8.12.1
 ```
@@ -175,7 +176,7 @@ sudo apt-get install -y openvoxdb openvoxdb-termini
 
 Let's write some infrastructure-as-code! A **manifest** is a file (ending in `.pp`) that describes the desired state of your system using the Puppet language.
 
-### Hello, OpenVox!
+### Hello, OpenVox
 
 Create a file called `hello.pp`:
 
@@ -200,7 +201,7 @@ notify { 'welcome_message':
 }
 ```
 
-### Apply It!
+### Apply It
 
 ```bash
 sudo puppet apply hello.pp
@@ -208,7 +209,7 @@ sudo puppet apply hello.pp
 
 Real output from our sample infrastructure:
 
-```
+```text
 Notice: Compiled catalog for example.com in environment production in 0.18 seconds
 Notice: /Stage[main]/Main/File[/tmp/hello-openvox.txt]/ensure: defined content as '{sha256}7a8b9c...'
 Notice: /Stage[main]/Main/Package[tree]/ensure: created
@@ -224,7 +225,7 @@ Notice: Applied catalog in 2.55 seconds
 cat /tmp/hello-openvox.txt
 ```
 
-```
+```text
 Hello from OpenVox! 🦊
 Managed by Puppet DSL.
 ```
@@ -233,7 +234,7 @@ Managed by Puppet DSL.
 which tree
 ```
 
-```
+```text
 /usr/bin/tree
 ```
 
@@ -315,7 +316,7 @@ Using `puppet apply` is great for standalone work, but the real power of OpenVox
 sudo puppet config set server your-openvox-server.example.com --section agent
 ```
 
-3. Run the agent once to request a certificate:
+1. Run the agent once to request a certificate:
 
 ```bash
 sudo puppet agent -t
@@ -323,7 +324,7 @@ sudo puppet agent -t
 
 You'll see something like:
 
-```
+```text
 Info: Creating a new RSA SSL key for agent1.example.com
 Info: csr_attributes file loading from /etc/puppetlabs/puppet/csr_attributes.yaml
 Info: Creating a new SSL certificate request for agent1.example.com
@@ -355,7 +356,7 @@ sudo /opt/puppetlabs/puppet/bin/puppet agent -t
 
 Real output from our sample infrastructure (agent already enrolled):
 
-```
+```text
 Info: Refreshing CA certificate
 Info: CA certificate is unmodified, using existing CA certificate
 Info: Refreshing CRL
@@ -383,6 +384,7 @@ sudo systemctl enable --now puppet
 ```
 
 > **Pro tip:** You can change the run interval in `puppet.conf`:
+>
 > ```ini
 > [agent]
 > runinterval = 1h
@@ -422,7 +424,7 @@ Now that you've got OpenVox up and running, here's where to go next:
 
 If you're coming from an existing Puppet 7 infrastructure, check out:
 
-5. **[Migrating from Puppet 7](migration.md)** — Breaking changes, legacy fact removal, Hiera 3 deprecation, and a complete migration checklist
+1. **[Migrating from Puppet 7](migration.md)** — Breaking changes, legacy fact removal, Hiera 3 deprecation, and a complete migration checklist
 
 ---
 

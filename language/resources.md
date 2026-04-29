@@ -4,7 +4,6 @@
 
 ---
 
-
 Resources are the **fundamental building blocks** of Puppet. Every resource declaration follows this pattern:
 
 ```puppet
@@ -18,7 +17,7 @@ type { 'title':
 - **Title**: A unique identifier within that type (must be unique per type in a catalog)
 - **Attributes**: Key-value pairs describing the desired state
 
-### Resource Titles vs. Namevar
+## Resource Titles vs. Namevar
 
 Most resource types have a **namevar** — a special attribute that identifies the real-world thing being managed. For `file` the namevar is `path`, for `package` and `service` it's `name`, for `user` it's also `name`. When you don't set the namevar explicitly, **Puppet uses the title as its value**.
 

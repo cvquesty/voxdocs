@@ -4,10 +4,9 @@
 
 ---
 
-
 Here are the most commonly used built-in resource types. Think of these as your infrastructure vocabulary.
 
-### `file` — Managing Files and Directories
+## `file` — Managing Files and Directories
 
 ```puppet
 # Create a file with specific content
@@ -70,7 +69,7 @@ file { '/opt/myapp/conf.d':
 | `purge` | Remove unmanaged files in directory | `true`, `false` |
 | `target` | Symlink target | Path |
 
-### `package` — Installing Software
+## `package` — Installing Software
 
 ```puppet
 # Ensure a package is installed (latest available at install time)
@@ -103,7 +102,7 @@ package { $web_packages:
 
 > **Warning:** Using `ensure => latest` means Puppet will upgrade the package on *every* run if a newer version is available. This can be dangerous in production! Prefer `installed` or a pinned version.
 
-### `service` — Managing Services
+## `service` — Managing Services
 
 ```puppet
 # Ensure a service is running and enabled at boot
@@ -126,7 +125,7 @@ service { 'nginx':
 }
 ```
 
-### `user` — Managing User Accounts
+## `user` — Managing User Accounts
 
 ```puppet
 # Create a user with full details
@@ -146,7 +145,7 @@ user { 'oldemployee':
 }
 ```
 
-### `group` — Managing Groups
+## `group` — Managing Groups
 
 ```puppet
 group { 'deploy':
@@ -155,7 +154,7 @@ group { 'deploy':
 }
 ```
 
-### `cron` — Managing Cron Jobs
+## `cron` — Managing Cron Jobs
 
 ```puppet
 cron { 'db_backup':
@@ -166,7 +165,7 @@ cron { 'db_backup':
 }
 ```
 
-### `exec` — Running Commands (Use Sparingly!)
+## `exec` — Running Commands (Use Sparingly!)
 
 ```puppet
 # Only run if the target file doesn't exist

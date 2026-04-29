@@ -232,6 +232,7 @@ When upgrading or migrating a fleet, do it in this order so central services sta
 4. **`openvox-agent`** — finally, roll out to managed nodes
 
 After each stage:
+
 - Confirm the affected service is running
 - Run a test agent execution (`puppet agent -t --noop`)
 - Check certificate handling and OpenVoxDB connectivity where applicable

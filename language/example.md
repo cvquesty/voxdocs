@@ -4,7 +4,6 @@
 
 ---
 
-
 Here's a realistic module that installs and configures NTP:
 
 ```puppet
@@ -54,7 +53,6 @@ class ntp (
   }
 }
 ```
-
 
 [← Back to Language Reference](README.md)
 

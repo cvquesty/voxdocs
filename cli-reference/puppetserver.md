@@ -10,7 +10,7 @@ The PuppetServer binary manages the JVM-based server process and the built-in Ce
 
 ## `puppetserver --help`
 
-```
+```console
 $ puppetserver --help
 
 usage: puppetserver ([--help] | [--version]) <command> [<args>]
@@ -31,7 +31,7 @@ See 'puppetserver <command> -h' for more information on a specific command.
 
 ## `puppetserver version`
 
-```
+```console
 $ puppetserver version
 puppetserver version: 8.12.1
 ```
@@ -40,7 +40,7 @@ puppetserver version: 8.12.1
 
 The built-in Certificate Authority management tool. This is how you manage the PKI infrastructure that secures all agent↔server communication.
 
-```
+```console
 $ puppetserver ca --help
 
 Usage: puppetserver ca <action> [options]
@@ -102,7 +102,7 @@ sudo puppetserver ca generate --certname new-service.example.com
 
 From `openvox.example.com`:
 
-```
+```console
 $ sudo puppetserver ca list --all
 
 Signed Certificates:

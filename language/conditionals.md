@@ -4,8 +4,7 @@
 
 ---
 
-
-### `if` / `elsif` / `else`
+## `if` / `elsif` / `else`
 
 ```puppet
 if $facts['os']['family'] == 'RedHat' {
@@ -22,7 +21,7 @@ package { $web_package: ensure => installed }
 service { $web_service: ensure => running }
 ```
 
-### `case`
+## `case`
 
 ```puppet
 case $facts['os']['name'] {
@@ -41,7 +40,7 @@ case $facts['os']['name'] {
 }
 ```
 
-### Selector (Ternary-style)
+## Selector (Ternary-style)
 
 ```puppet
 $web_package = $facts['os']['family'] ? {
