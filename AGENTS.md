@@ -16,6 +16,7 @@
 - OpenFact (was Facter): 5.6.0 (released 2026-04-09)
 - r10k: 5.0.2
 - OpenBolt: 5.4.0 (released 2026-03-04)
+- OpenVoxDB: 8.8.1
 - Server OS: RHEL 9.7
 
 > **Branding note:** The OpenVox project is rebranding the platform's components.
@@ -48,7 +49,8 @@
 
 - NEVER copy text from Perforce/Puppet's official documentation at puppet.com
 - Reference the docs-archive (Puppet 5.x, unencumbered) for structure inspiration only
-- All content must be originally written
+- The official OpenVox docs (github.com/OpenVoxProject/openvox-docs, CC BY-SA 3.0, copyright Puppet, Inc.) may be referenced for factual data: version numbers, platform support, component names, release dates, and known issues
+- All explanatory text, examples, and prose must be originally written
 - When describing Puppet language features, use our own examples and explanations
 - All CLI output must be captured from our own infrastructure
 

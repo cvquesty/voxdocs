@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.5] - 2026-05-04
+
+### Alignment pass against the official OpenVox documentation project
+
+Reviewed and synthesized content from the official OpenVox documentation
+([github.com/OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs))
+into the community docs.
+
+#### Version updates
+- README.md: OpenVoxDB version updated from "8.x" to 8.8.1 (per openvox-docs release notes)
+- README.md: Added Ruby 3.2.11 / OpenSSL 3.0.20 component details for openvox-agent 8.26.2
+- AGENTS.md: Added OpenVoxDB 8.8.1 to verified versions list
+
+#### Platform support
+- README.md: Added full Supported Platforms table sourced from openvox-docs system requirements (RHEL 7-10, SLES 15-16, Debian 10-13, Ubuntu 18.04-26.04, Fedora 36-43, Windows, macOS, plus unofficial platforms)
+
+#### PDK alternatives
+- module-development/README.md: Replaced bare PDK section with "PDK and Open-Source Alternatives" noting PDK 3.4.0 was the last OSS version; documented VoxBox (Vox Pupuli container image for CI/testing) and jig (Go-based PDK reimplementation)
+
+#### Copyright and licensing
+- README.md: Updated "A Note on Copyright & Originality" to reference openvox-docs as a source (CC BY-SA 3.0, copyright Puppet, Inc.) and clarify voxdocs is a community companion, not a fork
+- README.md: Added Attribution subsection to License section with proper credit to openvox-docs and Puppet docs-archive
+- AGENTS.md: Updated Copyright Policy to permit referencing openvox-docs for factual data (version numbers, platform support, component names, release dates, known issues)
+
 ## [2.0.0] - 2026-04-27
 
 ### Major release: OpenVox project alignment

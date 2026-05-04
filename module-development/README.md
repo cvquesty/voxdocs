@@ -381,24 +381,24 @@ puppet module build
 # Upload it to https://forge.puppet.com/upload
 ```
 
-Or use the [PDK](https://puppet.com/docs/pdk/latest/pdk.html) (Puppet Development Kit):
+### PDK and Open-Source Alternatives
+
+The **Puppet Development Kit (PDK)** automates module scaffolding, validation, and testing. Puppet (Perforce) ceased open-source maintenance at PDK **3.4.0**; newer versions require a commercial Puppet Forge API key or PE license.
+
+PDK 3.4.0 remains compatible with OpenVox for module development. If you have it installed:
 
 ```bash
-# Create a new module from templates
 pdk new module myorg-newmodule
-
-# Create a new class
 pdk new class install
-
-# Validate the module
 pdk validate
-
-# Run unit tests
 pdk test unit
-
-# Build for publishing
 pdk build
 ```
+
+The community maintains two open-source alternatives that do not require a Puppet account:
+
+- **[VoxBox](https://github.com/voxpupuli/container-voxbox)** -- A container image maintained by Vox Pupuli that includes rspec-puppet, Litmus, RuboCop, and other testing gems. It is the recommended way to run unit and acceptance tests for OpenVox modules in CI and local development.
+- **[jig](https://github.com/avitacco/jig)** -- A Go-based reimplementation of PDK. Ships as a single static binary with no Ruby runtime dependency and supports module scaffolding, building, and releasing.
 
 ---
 

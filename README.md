@@ -43,7 +43,25 @@ These versions are currently shipping from the Vox Pupuli repositories, verified
 | **Hiera** | 5 (integrated) | Built into puppet | Hierarchical data lookup |
 | **OpenBolt** (was Bolt) | `5.4.0` | `/usr/local/bin/bolt` | Agentless orchestration; package now `openbolt` |
 | **r10k** | `5.0.2` | `/opt/puppetlabs/puppet/bin/r10k` | Git-to-environment deployer |
-| **OpenVoxDB** (was PuppetDB) | `8.x` | systemd service | PostgreSQL-backed data warehouse; packages `openvoxdb`, `openvoxdb-termini` |
+| **OpenVoxDB** (was PuppetDB) | `8.8.1` | systemd service | PostgreSQL-backed data warehouse; packages `openvoxdb`, `openvoxdb-termini` |
+
+The `openvox-agent` 8.26.2 package bundles **Ruby 3.2.11** and **OpenSSL 3.0.20**.
+
+### Supported Platforms
+
+OpenVox publishes official `openvox-agent` packages for these platforms (per the [official OpenVox docs](https://github.com/OpenVoxProject/openvox-docs)):
+
+| Platform | Supported Versions |
+|----------|-------------------|
+| **RHEL / CentOS / Rocky / AlmaLinux** | 7, 8, 9, 10 |
+| **SLES** | 15, 16 |
+| **Debian** | 10 (Buster), 11 (Bullseye), 12 (Bookworm), 13 |
+| **Ubuntu** | 18.04, 20.04, 22.04, 24.04, 25.04, 26.04 |
+| **Fedora** | 36, 40, 41, 42, 43 |
+| **Windows** | Server 2008R2, 2012R2, 2016; Desktop 10 Enterprise |
+| **macOS** | 10.12+, Intel and Apple Silicon |
+
+Ruby 3.2.x is the only tested interpreter. OpenVox also runs (without official packages) on Gentoo, Arch, Solaris 10+, AIX 6.1+, FreeBSD 4.7+, and HP-UX.
 
 > **📌 Note:** All CLI output in this documentation is **real output** captured from a live OpenVox server running RHEL 9.x with SELinux in enforcing mode. Nothing here is fabricated. Hardware details (CPU count, RAM) are representative of typical production setups.
 
@@ -75,14 +93,15 @@ This documentation is organized into focused guides. Read them in order for a le
 
 ## A Note on Copyright & Originality
 
-This documentation is an **original work**, written specifically for the OpenVox project by community contributors. Our sources:
+This documentation is an **original work**, written specifically for the OpenVox project by community contributors. It is a **community companion** to the official [OpenVox documentation](https://github.com/OpenVoxProject/openvox-docs), not a fork or copy of it. Our sources:
 
-- ✅ The [Puppet docs-archive](https://github.com/puppetlabs/docs-archive) — legacy Puppet 5.x documentation, which is **unencumbered by copyright** and freely available for anyone to use
+- ✅ The [official OpenVox documentation](https://github.com/OpenVoxProject/openvox-docs) (CC BY-SA 3.0, copyright Puppet, Inc.) -- referenced for version numbers, platform support tables, component naming, and project-level facts such as release dates and known issues
+- ✅ The [Puppet docs-archive](https://github.com/puppetlabs/docs-archive) -- legacy Puppet 5.x documentation, which is **unencumbered by copyright** and freely available for anyone to use
 - ✅ The official [OpenVox project](https://github.com/openvoxproject) repositories, source code, and community resources
 - ✅ Hands-on experience with real OpenVox infrastructure (verified against `openvox.example.com`)
 - ✅ The Puppet language specification itself (which is open-source and part of the OpenVox codebase)
 
-> **⚠️ Important:** This is **NOT** a copy, derivative, or adaptation of Perforce's official Puppet documentation at [puppet.com](https://puppet.com). While we cover similar topics (because it's the same technology), every explanation, example, and turn of phrase is originally written. We describe concepts in our own words, using our own examples from our own infrastructure.
+> **⚠️ Important:** This is **NOT** a copy, derivative, or adaptation of Perforce's official Puppet documentation at [puppet.com](https://puppet.com), nor is it a fork of the official OpenVox documentation project. While we cover similar topics (because it's the same technology) and reference the official docs for factual accuracy, every explanation, example, and turn of phrase is originally written. We describe concepts in our own words, using our own examples from our own infrastructure.
 
 ## Package Repositories
 
@@ -123,8 +142,17 @@ This documentation is released under the [Creative Commons Attribution-ShareAlik
 
 You are free to share and adapt this material, provided you give appropriate credit and distribute your contributions under the same license.
 
+### Attribution
+
+This project references the following works:
+
+- **[OpenVox Documentation](https://github.com/OpenVoxProject/openvox-docs)** -- Copyright (c) Puppet, Inc. Licensed under the [Creative Commons Attribution-ShareAlike 3.0 International License](https://creativecommons.org/licenses/by-sa/3.0/) (CC BY-SA 3.0). Version numbers, platform support tables, component naming conventions, release dates, and known issues are sourced from this project.
+- **[Puppet docs-archive](https://github.com/puppetlabs/docs-archive)** -- Legacy Puppet 5.x documentation, unencumbered by copyright and freely available for public use. Referenced for historical context and foundational concepts.
+
+All original text, examples, and explanations in this repository are the work of the VoxDocs community contributors and are licensed under CC BY-SA 4.0 as stated above.
+
 ---
 
-*Built with ☕, sudo access, and mild frustration by the community. Last updated: April 2026.*
+*Built with coffee, sudo access, and mild frustration by the community. Last updated: May 2026.*
 
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>
