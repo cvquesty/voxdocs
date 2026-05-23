@@ -59,7 +59,7 @@ $ bolt --version
 5.4.0
 ```
 
-> **Note:** The community fork is called **OpenBolt** and identifies itself as such in the `--help` output. It includes additional subcommands like `policy` and `plugin` not present in older Puppet Bolt versions.
+> **Note:** Latest upstream OpenBolt release is 5.5.0 (as of late April 2026). The lab is captured at 5.4.0. The community fork identifies itself as **OpenBolt** in `--help`. It includes additional subcommands like `policy` and `plugin` not present in older Puppet Bolt versions. All output here is from the running lab.
 
 ## Common Usage Patterns
 

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.7] - 2026-05-23
+
+### Daily currency pass — versions, releases, and lab verification
+
+OpenVoxProject ships updates frequently. This pass ensures every "current shipping" claim, version table, and descriptive reference matches the absolute latest GitHub release tags + the exact running state of the primary lab infrastructure.
+
+- Fresh SSH capture from `openvox.questy.org` (RHEL 9.7, 2026-05-23): confirmed package set `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`+termini, `openbolt-5.4.0`; all services (`puppetserver`, `puppetdb`, `puppet`) active; binaries and paths unchanged.
+- Upstream GitHub latest (as of tool run): `openvox-server` 8.13.0, `openvoxdb` 8.13.0, `openbolt` 5.5.0 (agent still 8.26.2 in this cycle).
+- Updated "Current Shipping Versions" table in README.md to show **Latest Shipping** vs **Lab Verified (2026-05-23)** with explicit footnote and capture date.
+- Synced AGENTS.md "Current Verified Versions" section with the same latest-vs-lab distinction.
+- Updated version references in cli-reference/README.md table, cli-reference/bolt.md, and orchestration/README.md to reflect 8.13.0 / 5.5.0 latest while preserving exact captured output (8.12.1 / 5.4.0) for all `--version` and `--help` blocks.
+- Confirmed `puppetserver` and `puppetdb` remain the correct systemd unit names even with `openvox-*` packages (our prior service-name fixes in getting-started/server-admin/troubleshooting remain accurate).
+- No new core packages, paths, or breaking changes detected in the capture.
+
+All documentation output blocks continue to be 100% real lab captures. "Current" claims now explicitly separate "what the repos ship today" from "what this repo's examples were captured against."
+
 ## [2.0.5] - 2026-05-04
 
 ### Alignment pass against the official OpenVox documentation project

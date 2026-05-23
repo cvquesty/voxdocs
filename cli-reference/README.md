@@ -32,10 +32,10 @@ Each command has its own page with the complete `--help` output and practical us
 | # | Command | Version | Description |
 |---|---------|---------|-------------|
 | 10 | [**facter**](facter.md) | 5.6.0 | Cross-platform system fact discovery (OpenFact) |
-| 11 | [**puppetserver**](puppetserver.md) | 8.12.1 | Server management and Certificate Authority |
+| 11 | [**puppetserver**](puppetserver.md) | 8.13.0 (lab: 8.12.1) | Server management and Certificate Authority |
 | 12 | [**r10k**](r10k.md) | 5.0.2 | Code deployment from Git to environments |
-| 13 | [**bolt** (OpenBolt)](bolt.md) | 5.4.0 | Agentless orchestration; package `openbolt` |
-| —  | **OpenVoxDB** (was PuppetDB) | 8.x | systemd service `puppetdb`; query via `puppet query` (row 15) |
+| 13 | [**bolt** (OpenBolt)](bolt.md) | 5.5.0 (lab: 5.4.0) | Agentless orchestration; package `openbolt` |
+| —  | **OpenVoxDB** (was PuppetDB) | 8.13.0 (lab: 8.12.1) | systemd service `puppetdb`; query via `puppet query` (row 15) |
 
 ### Additional References
 

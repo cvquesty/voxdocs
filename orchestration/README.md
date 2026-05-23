@@ -18,7 +18,7 @@ This guide covers:
 
 ## OpenBolt (Puppet Bolt)
 
-Bolt — now **OpenBolt** (v5.4.0) in the OpenVox ecosystem — is an **agentless** orchestration tool. It connects to remote nodes via SSH (or WinRM for Windows) and runs commands, scripts, tasks, and plans — without requiring a Puppet agent on the target. Think of it as the "do it now" complement to Puppet's "keep it this way forever" model.
+Bolt — now **OpenBolt** (latest 5.5.0; lab captured at 5.4.0 as of 2026-05-23) in the OpenVox ecosystem — is an **agentless** orchestration tool. It connects to remote nodes via SSH (or WinRM for Windows) and runs commands, scripts, tasks, and plans — without requiring a Puppet agent on the target. Think of it as the "do it now" complement to Puppet's "keep it this way forever" model.
 
 ### Installation
 

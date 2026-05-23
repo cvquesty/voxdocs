@@ -33,19 +33,21 @@ The result: a fully open, community-governed continuation of the platform, with 
 
 ## Current Shipping Versions
 
-These versions are currently shipping from the Vox Pupuli repositories, verified against a live OpenVox infrastructure on **RHEL 9.7**:
+These versions reflect the **latest upstream releases** from the Vox Pupuli / OpenVoxProject repositories (as of May 2026). All documentation CLI output and examples are **real captures** from a live lab on **RHEL 9.7** running the package set listed below.
 
-| Component | Version | Binary Path | Notes |
-|-----------|---------|-------------|-------|
-| **openvox-agent** | `8.26.2` | `/opt/puppetlabs/puppet/bin/puppet` | Ruby-based, all platforms |
-| **openvox-server** | `8.12.1` | `/opt/puppetlabs/bin/puppetserver` | JRuby + Jetty, FIPS capable |
-| **OpenFact** (was Facter) | `5.6.0` | `/opt/puppetlabs/puppet/bin/facter` | C++/Ruby fact discovery; binary still `facter` |
-| **Hiera** | 5 (integrated) | Built into puppet | Hierarchical data lookup |
-| **OpenBolt** (was Bolt) | `5.4.0` | `/usr/local/bin/bolt` | Agentless orchestration; package now `openbolt` |
-| **r10k** | `5.0.2` | `/opt/puppetlabs/puppet/bin/r10k` | Git-to-environment deployer |
-| **OpenVoxDB** (was PuppetDB) | `8.8.1` | systemd service | PostgreSQL-backed data warehouse; packages `openvoxdb`, `openvoxdb-termini` |
+| Component | Latest Shipping | Lab Verified (2026-05-23) | Binary Path | Notes |
+|-----------|-----------------|-----------------------------|-------------|-------|
+| **openvox-agent** | `8.26.2` | 8.26.2 (puppet reports 8.26.1) | `/opt/puppetlabs/puppet/bin/puppet` | Ruby-based, all platforms; known cosmetic version bug [#415](https://github.com/OpenVoxProject/openvox/issues/415) |
+| **openvox-server** | `8.13.0` | 8.12.1 | `/opt/puppetlabs/bin/puppetserver` | JRuby + Jetty, FIPS capable |
+| **OpenFact** (was Facter) | `5.6.0` | 5.6.0 | `/opt/puppetlabs/puppet/bin/facter` | C++/Ruby fact discovery; binary still `facter` |
+| **Hiera** | 5 (integrated) | 5 | Built into puppet | Hierarchical data lookup |
+| **OpenBolt** (was Bolt) | `5.5.0` | 5.4.0 | `/usr/local/bin/bolt` | Agentless orchestration; package `openbolt` |
+| **r10k** | `5.0.2` | 5.0.2 | `/opt/puppetlabs/puppet/bin/r10k` | Git-to-environment deployer |
+| **OpenVoxDB** (was PuppetDB) | `8.13.0` | 8.12.1 (+ termini) | systemd service `puppetdb` | PostgreSQL-backed data warehouse; packages `openvoxdb`, `openvoxdb-termini` |
 
-The `openvox-agent` 8.26.2 package bundles **Ruby 3.2.11** and **OpenSSL 3.0.20**.
+**Lab package set on capture date (2026-05-23):** `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0` on RHEL 9.7 (SELinux enforcing). All `--version` / `--help` output blocks in the CLI Reference are taken directly from this running system.
+
+The `openvox-agent` 8.26.2 package bundles **Ruby 3.2.11** and **OpenSSL 3.0.20**. Latest server/db point releases (8.13.0) and OpenBolt 5.5.0 are available in the repos; lab upgrade pending.
 
 ### Supported Platforms
 

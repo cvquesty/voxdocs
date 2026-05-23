@@ -11,13 +11,24 @@
 
 ## Current Verified Versions (from sample infrastructure)
 
-- OpenVox Agent: 8.26.2 (released 2026-04-18; binary reports 8.26.1 due to openvox#415)
-- OpenVox Server (PuppetServer): 8.12.1
-- OpenFact (was Facter): 5.6.0 (released 2026-04-09)
+**Latest upstream shipping (GitHub tags as of May 2026):**
+- openvox-server: 8.13.0
+- openvoxdb / openvoxdb-termini: 8.13.0
+- openbolt: 5.5.0
+- openvox-agent: 8.26.2
+- OpenFact: 5.6.0
 - r10k: 5.0.2
-- OpenBolt: 5.4.0 (released 2026-03-04)
-- OpenVoxDB: 8.8.1
-- Server OS: RHEL 9.7
+
+**Lab capture (2026-05-23, RHEL 9.7 — source of all real CLI output in this repo):**
+- OpenVox Agent: 8.26.2 (package; `puppet --version` reports 8.26.1 due to openvox#415)
+- OpenVox Server (PuppetServer): 8.12.1
+- OpenFact (was Facter): 5.6.0
+- r10k: 5.0.2
+- OpenBolt: 5.4.0 (package `openbolt`)
+- OpenVoxDB: 8.12.1 (+ termini)
+- Server OS: RHEL 9.7 (SELinux enforcing)
+
+> **Note:** Lab lags the absolute latest point releases by a few days. All version numbers, `--version` blocks, and example output are taken from the live lab unless explicitly noted otherwise.
 
 > **Branding note:** The OpenVox project is rebranding the platform's components.
 > Facter is now **OpenFact**; PuppetDB is now **OpenVoxDB**; Bolt is now **OpenBolt**.
