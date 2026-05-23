@@ -130,20 +130,20 @@ If you want a central server to manage multiple nodes (and you probably do), ins
 
 ```bash
 sudo yum install -y openvox-server
-sudo systemctl enable --now openvox-server
+sudo systemctl enable --now puppetserver
 ```
 
 #### Debian Family
 
 ```bash
 sudo apt-get install -y openvox-server
-sudo systemctl enable --now openvox-server
+sudo systemctl enable --now puppetserver
 ```
 
 Verify the server is running:
 
 ```bash
-sudo systemctl status openvox-server
+sudo systemctl status puppetserver
 ```
 
 #### The Full OpenVox Package Set

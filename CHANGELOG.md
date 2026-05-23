@@ -29,6 +29,18 @@ into the community docs.
 - README.md: Added Attribution subsection to License section with proper credit to openvox-docs and Puppet docs-archive
 - AGENTS.md: Updated Copyright Policy to permit referencing openvox-docs for factual data (version numbers, platform support, component names, release dates, known issues)
 
+## [2.0.6] - 2026-05-23
+
+### Fixed — Service and package consistency with current OpenVox packaging
+
+- **getting-started/README.md**: Corrected all `systemctl` references for the server from the incorrect `openvox-server` unit name to the actual `puppetserver` service name (the `openvox-server` package installs the `puppetserver` systemd unit for compatibility; confirmed via live lab and official install guide).
+- **server-admin/README.md**: Updated the OpenVoxDB installation example to recommend the current packages `openvoxdb openvoxdb-termini` (was still showing legacy `puppetdb puppetdb-termini`); expanded the section header and installation text with branding and compatibility notes.
+- **server-admin/README.md**: Rewrote the top-level overview to accurately describe the current package set (`openvox-server`, `openvoxdb`/`openvoxdb-termini`) while noting that service names (`puppetserver`, `puppetdb`) and paths remain unchanged.
+- **troubleshooting/README.md**: Updated the PuppetDB troubleshooting section header and added a compatibility note explaining that `openvoxdb` is the package but `puppetdb` remains the service/unit name.
+- **community/README.md**: Clarified that voxdocs is referenced by / included in the official OpenVox documentation project at OpenVoxProject/openvox-docs.
+
+All changes verified against live lab infrastructure (openvox-agent 8.26.2 / server 8.12.1 / openvoxdb 8.12.1 / openbolt 5.4.0 on RHEL 9.7) and official Vox Pupuli installation documentation.
+
 ## [2.0.0] - 2026-04-27
 
 ### Major release: OpenVox project alignment

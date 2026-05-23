@@ -63,7 +63,7 @@ The Puppet Forge welcomes modules from anyone! If you've built something useful:
 
 ### Contributing to These Docs
 
-This documentation lives at [github.com/cvquesty/voxdocs](https://github.com/cvquesty/voxdocs) (if published). Contributions are welcome! Fix a typo, improve an explanation, add an example — every bit helps.
+This documentation lives at [github.com/cvquesty/voxdocs](https://github.com/cvquesty/voxdocs) and is referenced by the official OpenVox documentation project at [github.com/OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs). Contributions are welcome! Fix a typo, improve an explanation, add an example — every bit helps.
 
 ---
 

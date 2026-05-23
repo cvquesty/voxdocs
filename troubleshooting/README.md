@@ -154,9 +154,11 @@ sudo systemctl restart puppetserver
 
 ---
 
-### 🔴 PuppetDB Connection Issues
+### 🔴 OpenVoxDB (PuppetDB) Connection Issues
 
-**Symptoms:** `Error: Could not retrieve facts` or PuppetDB queries fail.
+**Symptoms:** `Error: Could not retrieve facts` or OpenVoxDB / PuppetDB queries fail.
+
+> **Note:** The package is now `openvoxdb`, but the systemd service, logs, and config paths remain `puppetdb` for backward compatibility. All the commands below continue to work unchanged.
 
 ```bash
 # Check PuppetDB service

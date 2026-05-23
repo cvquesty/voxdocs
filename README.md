@@ -153,6 +153,6 @@ All original text, examples, and explanations in this repository are the work of
 
 ---
 
-*Built with coffee, sudo access, and mild frustration by the community. Last updated: May 2026.*
+*Built with ☕, sudo access, and mild frustration by the community. Last updated: May 2026.*
 
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

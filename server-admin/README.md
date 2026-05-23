@@ -6,7 +6,7 @@
 
 ## Overview
 
-Running an OpenVox infrastructure involves managing three main server-side services: **PuppetServer** (the catalog compiler), **PuppetDB** (the data warehouse), and the **Certificate Authority** (the trust backbone). This guide covers day-to-day administration, performance tuning, backup, and maintenance.
+Running an OpenVox infrastructure involves managing three main server-side services: **PuppetServer** (the catalog compiler, package `openvox-server`), **OpenVoxDB** (the data warehouse, packages `openvoxdb` / `openvoxdb-termini`), and the **Certificate Authority** (built into PuppetServer). This guide covers day-to-day administration, performance tuning, backup, and maintenance. Note that while project names have been rebranded (PuppetDB → OpenVoxDB), the systemd service units, config paths, and binary names remain `puppetserver` and `puppetdb` for compatibility.
 
 ---
 
@@ -92,11 +92,11 @@ sudo systemctl restart puppetserver
 
 ---
 
-## PuppetDB Administration
+## OpenVoxDB (PuppetDB) Administration
 
 ### Installation
 
-OpenVoxDB (PuppetDB) **requires** PostgreSQL 11 or later, but the official OpenVox project now **recommends PostgreSQL 14 or later** to take advantage of newer query-planner and indexing features. If your distribution doesn't ship a recent enough PostgreSQL, install one from the [PostgreSQL Global Development Group](https://yum.postgresql.org/) (yum) or [apt.postgresql.org](https://apt.postgresql.org/) (apt) repositories.
+**OpenVoxDB** (the rebranded PuppetDB) **requires** PostgreSQL 11 or later, but the official OpenVox project now **recommends PostgreSQL 14 or later** to take advantage of newer query-planner and indexing features. The packages are `openvoxdb` and `openvoxdb-termini`, which provide the `puppetdb` systemd service and binaries for compatibility. If your distribution doesn't ship a recent enough PostgreSQL, install one from the [PostgreSQL Global Development Group](https://yum.postgresql.org/) (yum) or [apt.postgresql.org](https://apt.postgresql.org/) (apt) repositories.
 
 ```bash
 # Install PostgreSQL
@@ -108,8 +108,8 @@ sudo systemctl enable --now postgresql
 sudo -u postgres createuser -DRSP puppetdb
 sudo -u postgres createdb -O puppetdb puppetdb
 
-# Install PuppetDB
-sudo yum install -y puppetdb puppetdb-termini
+# Install OpenVoxDB (package provides puppetdb service for compatibility)
+sudo yum install -y openvoxdb openvoxdb-termini
 
 # Configure SSL
 sudo puppetdb ssl-setup
