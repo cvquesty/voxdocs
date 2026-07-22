@@ -18,7 +18,7 @@ This guide covers:
 
 ## OpenBolt (Puppet Bolt)
 
-Bolt — now **OpenBolt** (latest 5.5.0; lab captured at 5.4.0 as of 2026-05-23) in the OpenVox ecosystem — is an **agentless** orchestration tool. It connects to remote nodes via SSH (or WinRM for Windows) and runs commands, scripts, tasks, and plans — without requiring a Puppet agent on the target. Think of it as the "do it now" complement to Puppet's "keep it this way forever" model.
+Bolt — now **OpenBolt** (latest **5.6.0**; lab captured at 5.4.0 as of 2026-05-23) in the OpenVox ecosystem — is an **agentless** orchestration tool. It connects to remote nodes via SSH (or WinRM for Windows) and runs commands, scripts, tasks, and plans — without requiring a Puppet agent on the target. Think of it as the "do it now" complement to Puppet's "keep it this way forever" model.
 
 ### Installation
 
@@ -296,9 +296,11 @@ bolt plan run myproject::update_packages \
 
 ---
 
-## r10k Code Deployment (v5.0.2)
+## r10k Code Deployment
 
-r10k (v5.0.2) is the standard tool for deploying Puppet code from Git. It maps **Git branches to Puppet environments** and installs Forge modules declared in a `Puppetfile`. The name references Star Wars' assassin droids — because this tool is killer at deployment.
+r10k is the standard tool for deploying Puppet code from Git. It maps **Git branches to Puppet environments** and installs Forge modules declared in a `Puppetfile`. The name references Star Wars' assassin droids — because this tool is killer at deployment.
+
+> **Official fact:** r10k is **not** shipped inside `openvox-server` or `openvox-agent`. **OpenBolt** is the only OpenVox package that bundles r10k (OpenBolt 5.6.0 ships r10k 5.0.3). On a server you typically install r10k separately (for example `puppet/r10k` or `gem install r10k`). Lab CLI captures below remain at r10k **5.0.2**.
 
 ### How It Works
 

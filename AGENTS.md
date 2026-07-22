@@ -1,71 +1,56 @@
 # VoxDocs Project Instructions
 
 ## Writing Style
-
 - Conversational, helpful tone — like explaining to a smart friend
 - Target audience: college senior level
 - Light humor is encouraged (but never at the reader's expense)
 - Use Markdown features extensively: tables, code blocks, admonitions, links, emoji
 - Every CLI example should be copy-pasteable
-- All binary references must include **actual command-line output** from a sample OpenVox server
+- Prefer **“a live lab”** / `*.example.com` — never publish real lab FQDNs (e.g. personal `*.questy.org` hosts)
 
-## Current Verified Versions (from sample infrastructure)
+## Canonical facts vs this site
+- **[docs.openvoxproject.org](https://docs.openvoxproject.org/)** (OpenVoxProject/openvox-docs) is **canonical for product facts**: component versions, platform support, naming, install prerequisites
+- This repo keeps its **own design, Docsify shell, structure, and voice**
+- When facts diverge, **update this repo to match official** — do not overwrite our design with their site
+- Weekly job should be a **content audit**, not a full-site mirror
 
-**Latest upstream shipping (GitHub tags as of May 2026):**
-- openvox-server: 8.13.0
-- openvoxdb / openvoxdb-termini: 8.13.0
-- openbolt: 5.5.0
-- openvox-agent: 8.26.2
-- OpenFact: 5.6.0
-- r10k: 5.0.2
+## Current Latest Shipping (canonical check 2026-07-22)
+Cross-checked with official docs SBOM tables + GitHub releases:
 
-**Lab capture (2026-05-23, RHEL 9.7 — source of all real CLI output in this repo):**
+- openvox-agent / OpenVox agent line: **8.28.1**
+- openvox-server: **8.15.0**
+- openvoxdb / openvoxdb-termini: **8.15.0**
+- openbolt: **5.6.0** (bundles r10k **5.0.3**)
+- OpenFact: **5.7.0** standalone; recent agents bundle **5.6.1+**
+- r10k: **not** in openvox-server/agent packages — OpenBolt is the only OpenVox package that bundles it
+
+## Lab Verified Snapshot (2026-05-23) — CLI capture source
 - OpenVox Agent: 8.26.2 (package; `puppet --version` reports 8.26.1 due to openvox#415)
-- OpenVox Server (PuppetServer): 8.12.1
-- OpenFact (was Facter): 5.6.0
+- OpenVox Server: 8.12.1
+- OpenFact: 5.6.0
 - r10k: 5.0.2
 - OpenBolt: 5.4.0 (package `openbolt`)
 - OpenVoxDB: 8.12.1 (+ termini)
-- Server OS: RHEL 9.7 (SELinux enforcing)
+- Server OS: RHEL 9.7
 
-> **Note:** Lab lags the absolute latest point releases by a few days. All version numbers, `--version` blocks, and example output are taken from the live lab unless explicitly noted otherwise.
-
-> **Branding note:** The OpenVox project is rebranding the platform's components.
-> Facter is now **OpenFact**; PuppetDB is now **OpenVoxDB**; Bolt is now **OpenBolt**.
-> Binary names (`facter`, `puppetdb`, `bolt`) and config file names (`facter.conf`)
-> are unchanged. Only the project/package names have been rebranded.
-
-## Best Practices to Emphasize Throughout
-
-- Roles and profiles pattern for code organization at scale
-- Class containment (`contain`, `require`) to manage dependencies properly
-- Idempotent execs with `creates`, `onlyif`, `unless`, `refreshonly`
-- Trailing commas in resource attributes (cleaner Git diffs, fewer syntax errors)
-- Use `include` with Hiera over resource-like class declarations when possible
-- Proper use of facts: `$facts['os']['family']` not legacy `$operatingsystem`
-- Node definitions only for small sites; use ENC or Hiera for larger deployments
-- Use EPP templates over ERB when possible (better performance, cleaner syntax)
-- Keep manifests under 50 lines; refactor into classes/defined types
-- Always document your modules with README.md and examples/
+> **Note:** Lab CLI captures lag absolute latest on purpose so pasted output stays real. Always show **Latest Shipping** vs **Lab Verified** when both matter.
 
 ## Structure
-
 - Each major section has its own directory with a `README.md`
+- Docsify shell: `index.html`, `_sidebar.md`, `_navbar.md`
 - Cross-reference between docs using relative links
 - Code blocks must specify the language for syntax highlighting
 - Use `> **Note:**` and `> **Warning:**` for callouts
 - Emoji section headers for visual scanning
 
 ## Copyright Policy
-
 - NEVER copy text from Perforce/Puppet's official documentation at puppet.com
+- The official OpenVox docs (github.com/OpenVoxProject/openvox-docs, CC BY-SA 3.0) may be referenced for factual data: version numbers, platform support, component names, release dates, and known issues
 - Reference the docs-archive (Puppet 5.x, unencumbered) for structure inspiration only
-- The official OpenVox docs (github.com/OpenVoxProject/openvox-docs, CC BY-SA 3.0, copyright Puppet, Inc.) may be referenced for factual data: version numbers, platform support, component names, release dates, and known issues
-- All explanatory text, examples, and prose must be originally written
+- All narrative content must be originally written
 - When describing Puppet language features, use our own examples and explanations
-- All CLI output must be captured from our own infrastructure
+- All CLI output must be captured from our own lab infrastructure (genericized hostnames)
 
 ## Conventional Commits
-
 - Use conventional commits for all changes
 - Default branch: `development`

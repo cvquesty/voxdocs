@@ -33,21 +33,27 @@ The result: a fully open, community-governed continuation of the platform, with 
 
 ## Current Shipping Versions
 
-These versions reflect the **latest upstream releases** from the Vox Pupuli / OpenVoxProject repositories (as of May 2026). All documentation CLI output and examples are **real captures** from a live lab on **RHEL 9.7** running the package set listed below.
+These versions reflect the **latest stable upstream releases** from OpenVoxProject
+(cross-checked against [docs.openvoxproject.org](https://docs.openvoxproject.org/)
+and GitHub release tags as of **2026-07-22**). Official docs are **canonical for facts**;
+this community site keeps its own design and voice.
+
+CLI examples and many `--version` blocks remain **real lab captures** from a dated lab
+snapshot — they intentionally lag “latest shipping” so the pasted output stays honest.
 
 | Component | Latest Shipping | Lab Verified (2026-05-23) | Binary Path | Notes |
 |-----------|-----------------|-----------------------------|-------------|-------|
-| **openvox-agent** | `8.26.2` | 8.26.2 (puppet reports 8.26.1) | `/opt/puppetlabs/puppet/bin/puppet` | Ruby-based, all platforms; known cosmetic version bug [#415](https://github.com/OpenVoxProject/openvox/issues/415) |
-| **openvox-server** | `8.13.0` | 8.12.1 | `/opt/puppetlabs/bin/puppetserver` | JRuby + Jetty, FIPS capable |
-| **OpenFact** (was Facter) | `5.6.0` | 5.6.0 | `/opt/puppetlabs/puppet/bin/facter` | C++/Ruby fact discovery; binary still `facter` |
+| **openvox-agent** | `8.28.1` | 8.26.2 (puppet reports 8.26.1) | `/opt/puppetlabs/puppet/bin/puppet` | Independent release line; agent packages ship OpenVox + OpenFact + Ruby/OpenSSL |
+| **openvox-server** | `8.15.0` | 8.12.1 | `/opt/puppetlabs/bin/puppetserver` | Independent line; requires external JDK 17/21 (not bundled) |
+| **OpenFact** (was Facter) | `5.7.0` | 5.6.0 | `/opt/puppetlabs/puppet/bin/facter` | Product rename; binary stays `facter`. Agent 8.28.x bundles OpenFact 5.6.1+ |
 | **Hiera** | 5 (integrated) | 5 | Built into puppet | Hierarchical data lookup |
-| **OpenBolt** (was Bolt) | `5.5.0` | 5.4.0 | `/usr/local/bin/bolt` | Agentless orchestration; package `openbolt` |
-| **r10k** | `5.0.2` | 5.0.2 | `/opt/puppetlabs/puppet/bin/r10k` | Git-to-environment deployer |
-| **OpenVoxDB** (was PuppetDB) | `8.13.0` | 8.12.1 (+ termini) | systemd service `puppetdb` | PostgreSQL-backed data warehouse; packages `openvoxdb`, `openvoxdb-termini` |
+| **OpenBolt** (was Bolt) | `5.6.0` | 5.4.0 | `/usr/local/bin/bolt` | Own 5.x line; package `openbolt`. **Only OpenVox package that bundles r10k** |
+| **r10k** | `5.0.3` (via OpenBolt) | 5.0.2 | gem / OpenBolt bundle | **Not** shipped in `openvox-server` or `openvox-agent` — install separately or use OpenBolt’s bundle |
+| **OpenVoxDB** (was PuppetDB) | `8.15.0` | 8.12.1 (+ termini) | systemd service `puppetdb` | Independent line; termini version matches OpenVoxDB; needs external PostgreSQL 11+ (14+ recommended) |
 
-**Lab package set on capture date (2026-05-23):** `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0` on RHEL 9.7 (SELinux enforcing). All `--version` / `--help` output blocks in the CLI Reference are taken directly from this running system.
+**Lab package set on capture date (2026-05-23):** `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0` on RHEL 9.7 (SELinux enforcing). CLI Reference `--version` / `--help` blocks are from this snapshot unless noted otherwise.
 
-The `openvox-agent` 8.26.2 package bundles **Ruby 3.2.11** and **OpenSSL 3.0.20**. Latest server/db point releases (8.13.0) and OpenBolt 5.5.0 are available in the repos; lab upgrade pending.
+**Bundled runtimes (from official component tables):** recent agents ship **Ruby 3.2.11** and **OpenSSL 3.0.2x**. Server/DB require a supported JDK you install yourself — Java is not inside the package.
 
 ### Supported Platforms
 

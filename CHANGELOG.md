@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-07-22
+
+### Fixed
+- **Restored community Docsify edition** as production voxdocs.questy.org
+  (full-site mirror of docs.openvoxproject.org was incorrect for our intent)
+
+### Changed
+- “Sync” now means **fact alignment** with official docs, not design/site takeover
+- Updated **Latest Shipping** versions to canonical OpenVoxProject releases
+  (agent 8.28.1, server/db 8.15.0, OpenBolt 5.6.0, OpenFact 5.7.0, r10k via OpenBolt 5.0.3)
+- Clarified official fact: r10k is **not** bundled in openvox-server/agent
+- Lab CLI captures remain dated **2026-05-23** historical truth
+- Weekly job is **content audit only** (no overwrite of our Markdown/Docsify shell)
+
 ## [2.1.2] - 2026-07-22
 
 ### Removed

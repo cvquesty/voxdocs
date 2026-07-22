@@ -131,7 +131,7 @@ Facter is a **cross-platform system profiling tool**. It discovers facts about t
 
 Facts are available in your Puppet code as variables (e.g., `$facts['os']['name']`), which lets you write conditional logic like "install Apache on RedHat, install apache2 on Debian."
 
-> **Branding note:** Facter has been rebranded to **OpenFact** in the OpenVox ecosystem (5.6.0+). The `facter` binary, `facter.conf` configuration file, and the `facts.d/` directory all keep their existing names — only the project/product name has changed.
+> **Branding note:** Facter has been rebranded to **OpenFact** in the OpenVox ecosystem. The `facter` binary, `facter.conf` configuration file, and the `facts.d/` directory all keep their existing names — only the project/product name has changed. Standalone OpenFact is at **5.7.0+**; recent agents bundle OpenFact **5.6.1+**.
 
 ### 📚 Hiera
 

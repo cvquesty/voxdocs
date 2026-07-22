@@ -1,71 +1,56 @@
-# Keeping voxdocs.questy.org in sync with official OpenVox docs
+# Keeping community VoxDocs factually aligned with official OpenVox docs
 
-Production **voxdocs.questy.org** is a **mirror** of the published site:
+**This repository** (`cvquesty/voxdocs`) is a **community companion** to the official
+OpenVox documentation. It has its own:
 
-**https://docs.openvoxproject.org/**
+- Docsify shell and branding
+- Section structure and navigation
+- Conversational writing style
 
-Source project: [OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs)
+The official site is **canonical for product facts**:
 
-## How automation works
+**https://docs.openvoxproject.org/**  
+Source: [OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs)
 
-On **server.questy.org**:
+## What “sync” means here
+
+| Do | Don’t |
+|----|--------|
+| Cross-check versions, platforms, package names, prerequisites | Overwrite this site with their HTML/VitePress design |
+| Update **our** Markdown when official facts change | Mirror the entire official website into production |
+| Keep lab CLI captures dated and honest | Pretend lab output is always “latest” |
+
+## Production hosting
+
+| Item | Value |
+|------|--------|
+| Site | https://voxdocs.questy.org |
+| Host | server.questy.org |
+| Docroot | `/var/www/html/voxdocs` |
+| Deploy | rsync/git publish of **this** repo (Docsify + Markdown) |
+
+## Weekly content audit (Saturday 02:00 America/New_York)
+
+On the server:
 
 | Piece | Location |
 |-------|----------|
-| Sync script | `/usr/local/sbin/voxdocs-sync-openvox.sh` |
-| systemd service | `voxdocs-sync.service` (oneshot) |
-| systemd timer | `voxdocs-sync.timer` |
-| Live web root | `/var/www/html/voxdocs` |
-| Staging cache | `/var/cache/voxdocs-sync/` |
-| Previous tree | `/var/www/html/voxdocs.prev` (last successful live) |
+| Audit script | `/usr/local/sbin/voxdocs-content-audit.sh` |
+| Timer | `voxdocs-content-audit.timer` |
+| Report | `/var/log/voxdocs-content-audit.log` |
 
-### Schedule
-
-**Every Saturday at 02:00 America/New_York** (Eastern — “Saturday night / early morning”).
+The audit **does not rewrite the live site**. It reports when GitHub latest tags for
+OpenVox components drift from versions claimed in this repo’s `README.md` /
+`AGENTS.md`, so a human (or a follow-up PR) can update **our** Markdown.
 
 ```bash
-systemctl list-timers voxdocs-sync.timer
+# Manual audit
+sudo /usr/local/sbin/voxdocs-content-audit.sh
+
+# Status
+systemctl list-timers voxdocs-content-audit.timer
 ```
 
-### Manual sync
+## Privacy
 
-```bash
-sudo systemctl start voxdocs-sync.service
-# or
-sudo /usr/local/sbin/voxdocs-sync-openvox.sh
-```
-
-### What the script does
-
-1. `wget` recursive mirror of `https://docs.openvoxproject.org/`
-2. Sanity-check (`index.html`, `assets/`, minimum file count)
-3. Preserve `/.well-known` for Let’s Encrypt
-4. Atomic publish into `/var/www/html/voxdocs`
-5. Keep previous tree as `voxdocs.prev` for quick rollback
-
-```bash
-# Rollback to previous publish
-sudo rm -rf /var/www/html/voxdocs
-sudo mv /var/www/html/voxdocs.prev /var/www/html/voxdocs
-```
-
-## This Git repository
-
-The Markdown guides in **this** repo (`cvquesty/voxdocs`) are the older **community-written** documentation set. Production no longer serves them by default after the official mirror was enabled (2026-07-22).
-
-Community content may still exist in an archive on the server under `/var/www/html/_archive/`.
-
-## Privacy / hostname redaction
-
-Every sync run **redacts private lab identifiers** from the mirrored tree before
-publish, so the public site never advertises internal hosts:
-
-| Original pattern | Replacement |
-|------------------|-------------|
-| `openvox.questy.org` (and similar private FQDNs in content) | `a live lab` |
-| `agent1.questy.org` / `agent2.questy.org` | `agent1.example.com` / `agent2.example.com` |
-| `10.0.100.x` lab IPs | `192.168.1.x` examples |
-
-Community Markdown in this repository should also use **“a live lab”** or
-`*.example.com` — never real production/lab FQDNs.
-
+Never publish real lab FQDNs. Use **“a live lab”** or `*.example.com`.
