@@ -54,3 +54,18 @@ sudo mv /var/www/html/voxdocs.prev /var/www/html/voxdocs
 The Markdown guides in **this** repo (`cvquesty/voxdocs`) are the older **community-written** documentation set. Production no longer serves them by default after the official mirror was enabled (2026-07-22).
 
 Community content may still exist in an archive on the server under `/var/www/html/_archive/`.
+
+## Privacy / hostname redaction
+
+Every sync run **redacts private lab identifiers** from the mirrored tree before
+publish, so the public site never advertises internal hosts:
+
+| Original pattern | Replacement |
+|------------------|-------------|
+| `openvox.questy.org` (and similar private FQDNs in content) | `a live lab` |
+| `agent1.questy.org` / `agent2.questy.org` | `agent1.example.com` / `agent2.example.com` |
+| `10.0.100.x` lab IPs | `192.168.1.x` examples |
+
+Community Markdown in this repository should also use **“a live lab”** or
+`*.example.com` — never real production/lab FQDNs.
+
