@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-07-22
+
+### Changed
+- **Production (voxdocs.questy.org)** now mirrors the official OpenVox docs site
+  at [docs.openvoxproject.org](https://docs.openvoxproject.org/) (VitePress
+  published HTML), instead of only the community Docsify Markdown set
+
+### Added
+- `SYNC.md` — how weekly automation works on server.questy.org
+- Weekly systemd timer: **Saturday 02:00 America/New_York**
+  (`voxdocs-sync.timer` → `voxdocs-sync-openvox.sh`)
+
 ## [2.0.8] - 2026-07-22
 
 ### Added
