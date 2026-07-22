@@ -217,6 +217,26 @@
               '</div>';
             return html + footer;
           });
+          // Browser tab: "VoxDocs" on home; "Page · VoxDocs" elsewhere
+          // (Docsify default uses sidebar "Home" as the title.)
+          hook.doneEach(function () {
+            var path = (vm.route && vm.route.path) ? vm.route.path : '';
+            var isHome =
+              !path ||
+              path === '/' ||
+              path === '/README' ||
+              path === '/README.md' ||
+              path === 'README.md';
+            if (isHome) {
+              document.title = 'VoxDocs';
+              return;
+            }
+            var h1 = document.querySelector('.markdown-section h1');
+            var page = h1 ? h1.textContent.trim() : '';
+            // Strip leading emoji / decoration for a cleaner tab title
+            page = page.replace(/^[\s\S]*?([A-Za-z])/, '$1').trim();
+            document.title = page ? page + ' · VoxDocs' : 'VoxDocs';
+          });
         },
       ],
     };

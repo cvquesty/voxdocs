@@ -1,5 +1,5 @@
 * **Start here**
-  * [Home](/)
+  * [VoxDocs](/)
   * [Getting Started](getting-started/README.md)
   * [Architecture & Concepts](architecture/README.md)
 
