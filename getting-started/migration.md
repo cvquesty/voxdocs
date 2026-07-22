@@ -4,6 +4,11 @@
 
 ---
 
+> **Sources:** Migration paths and breaking changes should match official OpenVox
+> release notes. Lab checklists remain community color — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Overview
 
 OpenVox 8 is based on **Puppet 8**, which includes several breaking changes from Puppet 7. If you're running Puppet 7 (or earlier) and planning to migrate to OpenVox, this guide covers what you need to know.
@@ -93,11 +98,11 @@ $safe_var = pick($myvar, 'default_value')
 grep -rE '\$(osfamily|operatingsystem|fqdn|hostname|ipaddress|memorysize|processorcount)' modules/
 ```
 
-**Tool:** Use [openvox-lint](https://rubygems.org/gems/openvox-lint) to automatically detect legacy fact usage:
+**Tool:** Use [puppet-lint](https://rubygems.org/gems/puppet-lint) to automatically detect legacy fact usage:
 
 ```bash
-gem install openvox-lint
-openvox-lint manifests/
+gem install puppet-lint
+puppet-lint manifests/
 ```
 
 ---
@@ -168,7 +173,7 @@ Use this checklist when migrating from Puppet 7 to OpenVox 8:
 - [ ] **Replace with structured facts** — Use `$facts['os']['family']`, etc.
 - [ ] **Audit Hiera 3 functions** — Search for `hiera(`, `hiera_array(`, `hiera_hash(`
 - [ ] **Replace with lookup()** — See conversion table above
-- [ ] **Run openvox-lint** — `gem install openvox-lint && openvox-lint .`
+- [ ] **Run puppet-lint** — `gem install puppet-lint && puppet-lint .`
 - [ ] **Run puppet parser validate** — Check for undefined variable references
 - [ ] **Test custom Ruby code** — Facts, functions, types, providers
 - [ ] **Update module dependencies** — Ensure all Forge modules support Puppet 8
@@ -178,7 +183,7 @@ Use this checklist when migrating from Puppet 7 to OpenVox 8:
 
 ## Tools for Migration
 
-### openvox-lint
+### puppet-lint
 
 The community linter for OpenVox/Puppet code. It detects:
 
@@ -189,13 +194,13 @@ The community linter for OpenVox/Puppet code. It detects:
 
 ```bash
 # Install
-gem install openvox-lint
+gem install puppet-lint
 
 # Run on a module
-openvox-lint modules/mymodule/
+puppet-lint modules/mymodule/
 
 # Run on entire codebase
-openvox-lint .
+puppet-lint .
 ```
 
 ### puppet parser validate

@@ -4,9 +4,21 @@
 
 ---
 
+> **Sources:** File locations and setting names track official OpenVox configuration
+> docs ([puppet.conf](https://docs.openvoxproject.org/openvox/latest/config_file_main.html),
+> server conf.d, etc.). Annotated lab `puppet.conf` examples and “settings you’ll
+> actually touch” commentary are community-written — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Overview
 
 OpenVox uses several configuration files to control the behavior of the agent, server, and related services. This guide covers all of them, with practical examples and explanations of the settings you'll actually use.
+
+**Official mental model:** most node settings live in **`puppet.conf`** sections
+(`[main]`, `[agent]`, `[server]` / `[master]` legacy). OpenVox **server** has
+additional HOCON under `/etc/puppetlabs/puppetserver/conf.d/`. OpenVoxDB has its
+own conf.d tree. Don’t confuse the three.
 
 **Configuration files covered:**
 

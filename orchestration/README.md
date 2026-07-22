@@ -4,6 +4,13 @@
 
 ---
 
+> **Sources:** OpenBolt packaging and behavior track
+> [OpenBolt docs](https://docs.openvoxproject.org/openbolt/latest/). Official fact:
+> **r10k is not bundled in openvox-server/agent** — OpenBolt is the OpenVox package
+> that ships r10k. Lab CLI paste remains historical — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Overview
 
 OpenVox's agent-server model is great for **convergence** (gradually bringing systems into compliance), but sometimes you need **orchestration** — running commands across your fleet right now, deploying code immediately, or executing complex multi-step workflows.

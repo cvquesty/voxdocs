@@ -4,9 +4,15 @@
 
 ---
 
+> **Sources:** Language semantics follow official OpenVox language docs
+> ([lang summary](https://docs.openvoxproject.org/openvox/latest/lang_summary.html) and related pages).
+> Examples, analogies, and lab-flavored samples are ours — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Overview
 
-The Puppet language (also called the Puppet DSL) is a **declarative, domain-specific language** designed for one thing: describing the desired state of your infrastructure. You don't tell Puppet *how* to do something — you tell it *what you want*, and it figures out the rest.
+The Puppet language (also called the Puppet DSL — OpenVox’s configuration language) is a **declarative, domain-specific language** designed for one thing: describing the desired state of your infrastructure. You don't tell Puppet *how* to do something — you tell it *what you want*, and it figures out the rest.
 
 If you're coming from shell scripting or Python, this requires a small shift in thinking. Instead of writing:
 

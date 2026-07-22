@@ -4,6 +4,12 @@
 
 ---
 
+> **Sources:** Module layout, metadata.json, and Forge publish expectations align with
+> official OpenVox module docs and [cheatsheet_module](https://docs.openvoxproject.org/openvox/latest/cheatsheet_module.html).
+> Roles/profiles opinions and lab habits are community color — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## What's a Module?
 
 A module is a **self-contained bundle of Puppet code** that manages a specific piece of infrastructure. Want to manage Apache? There's a module for that. NTP? Module. Your company's custom monitoring stack? You should write a module for that too.
@@ -325,30 +331,22 @@ bundle exec rake validate
 bundle exec rake lint
 ```
 
-### Linting with openvox-lint
+### Linting
 
-[openvox-lint](https://rubygems.org/gems/openvox-lint) is the community linter for OpenVox/Puppet code. It checks for:
+Use the ecosystem linters that match your toolchain:
 
-- Style guide violations (indentation, quoting, arrow alignment)
-- Legacy fact usage (`$osfamily` → `$facts['os']['family']`)
-- Deprecated Hiera 3 functions (`hiera()` → `lookup()`)
-- Common anti-patterns
+- **[puppet-lint](https://github.com/puppetlabs/puppet-lint)** (and its Vox Pupuli plugins) for style and common anti-patterns
+- Module **PDK / [jig](https://github.com/voxpupuli/jig)** validate targets when you build with those tools
+- Prefer structured facts (`$facts['os']['family']`) over legacy top-level facts — official OpenVox/Puppet style
 
 ```bash
-# Install
-gem install openvox-lint
-
-# Lint a single file
-openvox-lint manifests/init.pp
-
-# Lint an entire module
-openvox-lint .
-
-# Auto-fix what can be fixed
-openvox-lint --fix .
+# Typical gem-based lint in a module
+bundle exec rake lint
+# or
+puppet-lint manifests/
 ```
 
-> **Pro tip:** Add openvox-lint to your CI/CD pipeline to catch issues before they reach production.
+> **Pro tip:** Run lint in CI so arrow-alignment crimes never reach production.
 
 ### Acceptance Tests with Litmus
 

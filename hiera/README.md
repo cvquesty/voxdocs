@@ -4,9 +4,16 @@
 
 ---
 
+> **Sources:** Hierarchy layers, `lookup()`, and Hiera 5 concepts track official
+> OpenVox Hiera material under [docs.openvoxproject.org](https://docs.openvoxproject.org/).
+> Layer diagrams and “how we organize YAML in anger” examples are community color —
+> [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## What Is Hiera?
 
-Hiera (from "hierarchy") is Puppet's built-in **hierarchical data lookup system**. It lets you store configuration data — ports, passwords, hostnames, feature flags, anything — in YAML files, organized in a priority hierarchy. Your Puppet code then **looks up** these values at compile time, keeping your manifests clean and your data organized.
+Hiera (from "hierarchy") is OpenVox/Puppet’s built-in **hierarchical data lookup system**. It lets you store configuration data — ports, passwords, hostnames, feature flags, anything — in YAML files, organized in a priority hierarchy. Your Puppet code then **looks up** these values at compile time, keeping your manifests clean and your data organized.
 
 Think of it this way:
 

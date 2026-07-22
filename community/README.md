@@ -12,12 +12,14 @@ OpenVox exists because of its community. Born from the [Vox Pupuli](https://voxp
 
 | Resource | URL | Purpose |
 |----------|-----|---------|
-| **OpenVox GitHub** | [github.com/openvoxproject](https://github.com/openvoxproject) | Source code, issues, PRs |
-| **Vox Pupuli** | [voxpupuli.org](https://voxpupuli.org/) | Community hub, blog, docs |
+| **Official OpenVox docs** | [docs.openvoxproject.org](https://docs.openvoxproject.org/) | **Canonical** product documentation |
+| **OpenVox GitHub** | [github.com/OpenVoxProject](https://github.com/OpenVoxProject) | Source code, issues, PRs |
+| **Vox Pupuli** | [voxpupuli.org](https://voxpupuli.org/) | Community hub, blog, install guides |
 | **VoxPupuli Community Slack** | [voxpupuli.slack.com](https://voxpupuli.slack.com/) | VoxPupuli & OpenVox real-time chat |
 | **Puppet Community Slack** | [puppetcommunity.slack.com](https://puppetcommunity.slack.com/) | Broader Puppet ecosystem chat |
 | **VoxPupuli Connect** | [voxpupuli.org/connect](https://voxpupuli.org/connect/) | All VoxPupuli & OpenVox community links |
-| **Puppet Forge** | [forge.puppet.com](https://forge.puppet.com/) | Module repository |
+| **Puppet Forge** | [forge.puppet.com](https://forge.puppet.com/) | Module repository (works with OpenVox) |
+| **This community docs set** | [github.com/cvquesty/voxdocs](https://github.com/cvquesty/voxdocs) | Companion guides (this site) |
 | **Vox Pupuli Blog** | [voxpupuli.org/blog](https://voxpupuli.org/blog/) | Release announcements, articles |
 
 ### Where to Ask Questions
@@ -77,9 +79,9 @@ The Puppet/OpenVox ecosystem is vast. Here are some projects worth knowing about
 | **puppet-lint** | Original Puppet linter | [github.com/puppetlabs/puppet-lint](https://github.com/puppetlabs/puppet-lint) |
 | **rspec-puppet** | Unit testing for Puppet | [github.com/puppetlabs/rspec-puppet](https://github.com/puppetlabs/rspec-puppet) |
 | **Litmus** | Acceptance testing framework | [github.com/puppetlabs/puppet_litmus](https://github.com/puppetlabs/puppet_litmus) |
-| **puppetboard** | PuppetDB web frontend | [github.com/voxpupuli/puppetboard](https://github.com/voxpupuli/puppetboard) |
+| **puppetboard** | PuppetDB / OpenVoxDB web frontend | [github.com/voxpupuli/puppetboard](https://github.com/voxpupuli/puppetboard) |
 | **openvox-gui** | Web-based management GUI for OpenVox | [github.com/cvquesty/openvox-gui](https://github.com/cvquesty/openvox-gui) |
-| **openvox-lint** | Puppet manifest linter (modernized puppet-lint) | [rubygems.org/gems/openvox-lint](https://rubygems.org/gems/openvox-lint) |
+| **jig** | OpenVox-oriented module build tooling | [github.com/voxpupuli/jig](https://github.com/voxpupuli/jig) |
 
 ---
 

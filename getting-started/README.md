@@ -5,9 +5,22 @@
 
 ---
 
+> **Sources:** Install commands and package names align with
+> [Installing OpenVox](https://voxpupuli.org/openvox/install/) and the official
+> [getting started material](https://docs.openvoxproject.org/ecosystem/latest/getting_started/).
+> Lab CLI paste is from a dated capture (see version table on the home page). Voice and
+> walkthrough structure are community-written — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Welcome
 
 So you want to manage infrastructure with code? Excellent life choice. Whether you're setting up 3 servers or 3,000, OpenVox has your back. This guide will take you from zero to "Hey, it actually works!" in about 30 minutes.
+
+**Official vs this guide:** The canonical multi-platform installers always live at
+[voxpupuli.org/openvox/install](https://voxpupuli.org/openvox/install/). Below we
+optimize for Linux agent + optional server so you can *feel* the agent conversation
+quickly — then graduate to the full official docs.
 
 **What you'll learn:**
 
@@ -120,7 +133,16 @@ Real output:
 puppetserver version: 8.12.1
 ```
 
-> **Pro tip:** The OpenVox agent installs into `/opt/puppetlabs/`. The binary lives at `/opt/puppetlabs/bin/puppet` (the public binary path; `/opt/puppetlabs/puppet/bin/puppet` is the internal Ruby tree). The installer adds `/opt/puppetlabs/bin` to your `PATH`. If you're in a weird shell, source your profile or use the full path. For convenience, you can also add `/opt/puppetlabs/puppet/bin` to `PATH` in `/etc/profile.d/puppet.sh` so internal tools like `gem`, `bundle`, and `r10k` are available.
+> **Pro tip (official + lab):** The agent installs under `/opt/puppetlabs/`. Public
+> CLI: `/opt/puppetlabs/bin/puppet`. Internal Ruby tree: `/opt/puppetlabs/puppet/bin/`
+> (`facter`, gems, optional tools). The installer normally adds `/opt/puppetlabs/bin`
+> to `PATH`. If your shell is weird, source your profile or use full paths. Many of us
+> also put `/opt/puppetlabs/puppet/bin` in `/etc/profile.d/puppet.sh` so `gem` /
+> `bundle` / a separately installed `r10k` behave.
+>
+> **Version note:** Output blocks below show the **lab capture** (`8.26.x` / `5.6.0` /
+> server `8.12.1`). **Latest shipping** agent/server/db/bolt numbers live on the
+> [home page](../README.md#current-shipping-versions) and track official releases.
 
 ### Step 4: (Optional) Install the OpenVox Server
 

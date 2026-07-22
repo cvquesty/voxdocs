@@ -4,6 +4,12 @@
 
 ---
 
+> **Sources:** SSL/CA flows and known packaging quirks (e.g. version-string bugs) are
+> checked against official docs and OpenVoxProject issues. Playbooks and “try this
+> next” ordering are community war stories — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Common Issues
 
 ### 🔴 "Could not request certificate" / SSL Errors

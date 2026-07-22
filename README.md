@@ -31,6 +31,15 @@ The result: a fully open, community-governed continuation of the platform, with 
 
 > **Key takeaway:** If you're running open-source Puppet today, OpenVox is a seamless replacement. Your manifests, modules, Hiera data, and `puppet.conf` don't need to change. Swap the packages and you're running OpenVox.
 
+## How this site relates to official docs
+
+| | |
+|--|--|
+| **Official** [docs.openvoxproject.org](https://docs.openvoxproject.org/) | Canonical product facts |
+| **This community companion** | Our design, Docsify shell, voice, lab captures, and extra “color” |
+
+Where both cover a topic: **their facts win**; we keep **our narrative and unique material**, woven into one guide. Policy: [EDITORIAL.md](EDITORIAL.md).
+
 ## Current Shipping Versions
 
 These versions reflect the **latest stable upstream releases** from OpenVoxProject

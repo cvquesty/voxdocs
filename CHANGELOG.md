@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-07-22
+
+### Changed — Juxtaposed content model
+- **EDITORIAL.md**: official docs are canonical for facts; community design/voice/color stay;
+  integrate both into continuous guides (not a site mirror)
+- Architecture, getting-started, server-admin, configuration, hiera, language, modules,
+  orchestration, troubleshooting, community: source callouts + official product naming/facts
+- Removed abandoned openvox-lint promotion; point at puppet-lint / jig instead
+- Clarified OpenVox agent/server/DB naming vs on-disk `puppet*` compatibility names
+
 ## [2.2.0] - 2026-07-22
 
 ### Fixed

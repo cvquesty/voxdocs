@@ -12,6 +12,8 @@ The official site is **canonical for product facts**:
 **https://docs.openvoxproject.org/**  
 Source: [OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs)
 
+See also **[EDITORIAL.md](EDITORIAL.md)** for how we merge official facts with community color.
+
 ## What “sync” means here
 
 | Do | Don’t |

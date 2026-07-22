@@ -4,9 +4,30 @@
 
 ---
 
+> **Sources:** Service names, package names, and prerequisites (JDK, PostgreSQL)
+> align with [docs.openvoxproject.org](https://docs.openvoxproject.org/)
+> (OpenVox server + OpenVoxDB sections). Tuning tables and lab procedures are
+> community color — [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## Overview
 
-Running an OpenVox infrastructure involves managing three main server-side services: **PuppetServer** (the catalog compiler, package `openvox-server`), **OpenVoxDB** (the data warehouse, packages `openvoxdb` / `openvoxdb-termini`), and the **Certificate Authority** (built into PuppetServer). This guide covers day-to-day administration, performance tuning, backup, and maintenance. Note that while project names have been rebranded (PuppetDB → OpenVoxDB), the systemd service units, config paths, and binary names remain `puppetserver` and `puppetdb` for compatibility.
+Running an OpenVox infrastructure involves three server-side roles:
+
+| Role (official name) | Package | systemd unit / binary | Notes |
+|----------------------|---------|------------------------|--------|
+| **OpenVox server** | `openvox-server` | `puppetserver` | Catalog compiler; usually hosts the CA |
+| **OpenVoxDB** | `openvoxdb` + `openvoxdb-termini` | `puppetdb` | Facts, catalogs, reports, exports |
+| **CA** | (inside OpenVox server by default) | `puppetserver ca …` | Can be split in advanced topologies |
+
+**Official facts that bite people in production:**
+
+- OpenVox server needs a supported **JDK 17 or 21** installed **separately** (not inside the RPM/DEB).
+- OpenVoxDB needs **PostgreSQL 11+** (project recommends **14+**), also external.
+- **r10k is not** shipped with `openvox-server` — install it yourself or use **OpenBolt**’s bundled r10k for orchestration workflows.
+
+This guide is day-to-day admin, tuning, backup, and “why is the heap on fire?”
 
 ---
 

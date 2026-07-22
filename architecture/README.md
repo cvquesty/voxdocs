@@ -4,9 +4,20 @@
 
 ---
 
+> **Sources:** Product facts (catalog stages, agent–server vs apply, component roles)
+> follow the official [OpenVox architecture overview](https://docs.openvoxproject.org/openvox/latest/architecture.html).
+> Diagrams, lab war stories, and snark remain community-written. See [EDITORIAL.md](../EDITORIAL.md).
+
+---
+
 ## The Big Picture
 
-OpenVox (like Puppet before it) follows a **client-server** architecture with a declarative model. Instead of writing scripts that say *"do this, then do that"*, you describe the **desired state** of your systems and let OpenVox figure out how to get there. Here's the 30,000-foot view:
+OpenVox can configure systems in two ways (official model):
+
+1. **Agent–server** — managed nodes run the **OpenVox agent**; one or more hosts run **OpenVox server** (catalog compiler + CA). Agents check in over HTTPS (port **8140**, mTLS).
+2. **Stand-alone apply** — `puppet apply` compiles and applies a catalog on the same machine (great for labs and golden images; less ideal for large fleets).
+
+In either case, OpenVox is **declarative**: you describe the **desired state**, not a shell script of verbs. The platform compiles a **catalog** (the blueprint for one node), then **applies** it. Here's the 30,000-foot view of the agent–server layout:
 
 ```text
 ┌─────────────────────────────────────────────────────┐
@@ -41,38 +52,45 @@ OpenVox (like Puppet before it) follows a **client-server** architecture with a 
 
 ## Core Components
 
-### 🦊 The Puppet Agent (`puppet`)
+> **Naming:** Official docs say **OpenVox agent**, **OpenVox server**, and **OpenVoxDB**.
+> Packages are `openvox-agent`, `openvox-server`, `openvoxdb`. For compatibility the
+> binaries and systemd units often still say `puppet`, `puppetserver`, and `puppetdb`.
+> Both vocabularies appear below on purpose.
 
-The agent is the software that runs on **every managed node** (server, workstation, container — anything you want to manage). Its job is simple but important:
+### 🦊 OpenVox agent (`puppet` / package `openvox-agent`)
 
-1. **Gather facts** about the system (OS, IP address, memory, disk, etc.) using Facter
-2. **Send those facts** to the Primary Server
-3. **Receive a compiled catalog** (the "blueprint" of desired state)
-4. **Apply the catalog** — make the system match the desired state
-5. **Send a report** back to the server
+The agent runs on **every managed node**. Officially it:
 
-The agent runs as a background service (typically via systemd) and checks in every **30 minutes** by default. You can also trigger it manually with `puppet agent -t`.
+1. **Gathers facts** (via **OpenFact**, binary still `facter`)
+2. **Sends facts** and requests a catalog from OpenVox server
+3. **Applies the catalog** — converges the node to desired state (or reports would-be changes in no-op)
+4. **Sends a report** back to the server
+
+Default check-in is every **30 minutes** (`runinterval`). Manual run: `puppet agent -t`.
 
 **Key paths:**
 
 | Path | Purpose |
 |------|---------|
-| `/opt/puppetlabs/bin/puppet` | The puppet binary |
+| `/opt/puppetlabs/bin/puppet` | Public CLI entrypoint |
+| `/opt/puppetlabs/puppet/bin/` | Internal tools (`facter`, bundled Ruby gems) |
 | `/etc/puppetlabs/puppet/puppet.conf` | Agent configuration |
 | `/opt/puppetlabs/puppet/cache/` | Cached catalogs, facts, reports |
 | `/etc/puppetlabs/puppet/ssl/` | SSL certificates |
 
-### 🖥️ PuppetServer (`puppetserver`)
+### 🖥️ OpenVox server (`puppetserver` / package `openvox-server`)
 
-PuppetServer is the **brains of the operation**. It's a JVM-based (Clojure + JRuby) application that:
+OpenVox server is the **catalog compiler** and usually the **CA**. It's a JVM app (Clojure + JRuby on Jetty) that:
 
 1. **Receives agent requests** over HTTPS (port 8140)
-2. **Compiles catalogs** — takes your Puppet code + the node's facts and produces a catalog
-3. **Serves configuration elements** from modules
-4. **Manages the Certificate Authority** (CA)
-5. **Connects to PuppetDB** for stored data
+2. **Compiles catalogs** from code + facts
+3. **Serves files** and plugins from modules
+4. **Manages certificates** (unless you split the CA)
+5. **Talks to OpenVoxDB** when termini are configured
 
-PuppetServer runs inside a Jetty web server and uses JRuby to execute Puppet's Ruby-based compiler. Yes, it's Java wrapping Ruby. No, we don't talk about that at parties.
+**Official fact:** a supported **JDK (17 or 21)** is **not** bundled — you install Java yourself before or with the server.
+
+Yes, it's Java wrapping Ruby. No, we don't lead with that at parties.
 
 **Key paths:**
 
@@ -83,18 +101,20 @@ PuppetServer runs inside a Jetty web server and uses JRuby to execute Puppet's R
 | `/etc/puppetlabs/puppetserver/conf.d/` | Server config fragments |
 | `/var/log/puppetlabs/puppetserver/` | Server logs |
 
-### 📊 PuppetDB
+### 📊 OpenVoxDB (package `openvoxdb`, unit `puppetdb`)
 
-PuppetDB is the **data warehouse** for your infrastructure. Every time an agent runs, PuppetDB stores:
+**OpenVoxDB** is the data warehouse. On each successful run it stores:
 
-- **Facts** — What each node looks like (OS, hardware, network, custom facts)
-- **Catalogs** — What each node *should* look like
-- **Reports** — What happened during each Puppet run
-- **Resources** — Every resource on every node (exportable/collectible)
+- **Facts** — inventory of each node
+- **Catalogs** — desired state
+- **Reports** — what changed
+- **Resources** — including exported/collected resources
 
-> **Branding note:** The OpenVox project is rebranding PuppetDB to **OpenVoxDB**. The packages are now `openvoxdb` and `openvoxdb-termini`, but the systemd unit, schema, query API, and PQL are unchanged. You'll see both names during the transition.
+Packages: `openvoxdb` + `openvoxdb-termini` (termini version matches OpenVoxDB). The systemd unit remains `puppetdb`.
 
-PuppetDB uses PostgreSQL as its backend and exposes a powerful query API using **PQL** (Puppet Query Language). Want to find all nodes running CentOS 8 with more than 16GB of RAM? PQL can do that in one line.
+**Official fact:** OpenVoxDB needs **PostgreSQL 11+** (project recommends **14+**). PostgreSQL is **not** inside the OpenVoxDB package.
+
+Want every CentOS node with >16 GB RAM? **PQL** can do that in one line:
 
 ```text
 nodes[certname] { facts.os.name = "CentOS" and facts.memory.system.total_bytes > 17179869184 }

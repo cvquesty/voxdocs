@@ -9,6 +9,8 @@
 - Prefer **“a live lab”** / `*.example.com` — never publish real lab FQDNs (e.g. personal `*.questy.org` hosts)
 
 ## Canonical facts vs this site
+
+Full merge rules: **[EDITORIAL.md](EDITORIAL.md)**.
 - **[docs.openvoxproject.org](https://docs.openvoxproject.org/)** (OpenVoxProject/openvox-docs) is **canonical for product facts**: component versions, platform support, naming, install prerequisites
 - This repo keeps its **own design, Docsify shell, structure, and voice**
 - When facts diverge, **update this repo to match official** — do not overwrite our design with their site
