@@ -134,7 +134,6 @@ see the official [Installing OpenVox](https://voxpupuli.org/openvox/install/) gu
 | 📚 | **Puppet docs-archive** | [github.com/puppetlabs/docs-archive](https://github.com/puppetlabs/docs-archive) |
 | 💬 | **Community Slack** | [puppetcommunity.slack.com](https://puppetcommunity.slack.com/) |
 | 🛠️ | **OpenVox GUI** | [github.com/cvquesty/openvox-gui](https://github.com/cvquesty/openvox-gui) — web management UI |
-| 🔍 | **OpenVox Lint** | [rubygems.org/gems/openvox-lint](https://rubygems.org/gems/openvox-lint) — Puppet manifest linter |
 
 ---
 
