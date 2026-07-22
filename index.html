@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OpenVox community documentation — guides for installation, language, Hiera, Bolt, r10k, and server administration." />
+  <meta name="theme-color" content="#0D6EFD" />
+  <title>VoxDocs — OpenVox Documentation</title>
+
+  <!-- Docsify theme: Vue (clean, readable) + custom brand overrides -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" title="docsify-darklight-theme" type="text/css" />
+
+  <style>
+    :root {
+      --theme-color: #0D6EFD;
+      --vox-blue: #0D6EFD;
+      --vox-orange: #EC8622;
+      --sidebar-width: 280px;
+    }
+
+    /* Brand header strip */
+    .app-name-link {
+      font-weight: 700 !important;
+      letter-spacing: -0.02em;
+    }
+    .app-name-link span.vox {
+      color: var(--vox-blue);
+    }
+    .app-name-link span.docs {
+      color: var(--vox-orange);
+    }
+
+    /* Content readability */
+    .markdown-section {
+      max-width: 860px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .markdown-section h1 {
+      border-bottom: 2px solid rgba(13, 110, 253, 0.2);
+      padding-bottom: 0.35em;
+    }
+    .markdown-section h2 {
+      margin-top: 1.6em;
+    }
+    .markdown-section blockquote {
+      border-left: 4px solid var(--vox-orange);
+      background: rgba(236, 134, 34, 0.06);
+      padding: 0.75em 1em;
+      border-radius: 0 6px 6px 0;
+    }
+    .markdown-section table {
+      display: block;
+      overflow-x: auto;
+      border-collapse: collapse;
+    }
+    .markdown-section th {
+      background: rgba(13, 110, 253, 0.08);
+    }
+    .markdown-section code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+    .markdown-section pre {
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    /* Sidebar polish */
+    .sidebar {
+      padding-top: 0.5rem;
+    }
+    .sidebar-nav > ul > li > p {
+      font-weight: 600;
+      color: var(--vox-blue);
+      margin: 0.75em 0 0.25em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sidebar-nav a {
+      font-size: 0.95rem;
+    }
+    .sidebar-nav li.active > a {
+      border-right: 3px solid var(--vox-orange);
+      font-weight: 600;
+    }
+
+    /* Search box */
+    .search {
+      margin-bottom: 0.5rem !important;
+    }
+    .search input {
+      border-radius: 8px !important;
+    }
+
+    /* Cover-like home hero when on root */
+    .markdown-section > h1:first-child {
+      font-size: 2rem;
+    }
+
+    /* Footer */
+    .voxdocs-footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 0.85rem;
+      color: #6c757d;
+      text-align: center;
+    }
+    .voxdocs-footer a {
+      color: var(--vox-blue);
+      text-decoration: none;
+    }
+    .voxdocs-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Copy button on code blocks (docsify-copy-code) */
+    .docsify-copy-code-button {
+      border-radius: 6px !important;
+    }
+
+    /* Mobile tweaks */
+    @media screen and (max-width: 768px) {
+      .markdown-section {
+        font-size: 15px;
+        padding: 1.25rem 1.25rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">Loading VoxDocs…</div>
+
+  <script>
+    window.$docsify = {
+      name: '<span class="vox">Vox</span><span class="docs">Docs</span>',
+      nameLink: '/#/',
+      repo: 'https://github.com/openvoxproject',
+      homepage: 'README.md',
+      loadSidebar: true,
+      loadNavbar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      relativePath: true,
+      maxLevel: 4,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search docs…',
+        noData: 'No results',
+        depth: 4,
+        hideOtherSidebarContent: false,
+      },
+      copyCode: {
+        buttonText: 'Copy',
+        errorText: 'Error',
+        successText: 'Copied!',
+      },
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+      darklightTheme: {
+        defaultTheme: 'light',
+        siteFont: 'Source Sans Pro, system-ui, sans-serif',
+        codeFontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+        bodyFontSize: '16px',
+        dark: {
+          accent: '#4d9fff',
+          toogleBackground: '#ffffff',
+          background: '#0f1419',
+          textColor: '#e6edf3',
+          codeTextColor: '#e6edf3',
+          codeBackgroundColor: '#161b22',
+          borderColor: '#30363d',
+          blockQuoteColor: '#EC8622',
+          highlightColor: '#4d9fff',
+          sidebarSublink: '#adbac7',
+          codeTypeColor: '#8b949e',
+          coverBackground: '#0f1419',
+          toogleImage: 'url(https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/icons/sun.svg)',
+        },
+        light: {
+          accent: '#0D6EFD',
+          toogleBackground: '#091a28',
+          background: '#ffffff',
+          textColor: '#24292f',
+          codeTextColor: '#24292f',
+          codeBackgroundColor: '#f6f8fa',
+          borderColor: '#d0d7de',
+          blockQuoteColor: '#EC8622',
+          highlightColor: '#0D6EFD',
+          sidebarSublink: '#57606a',
+          codeTypeColor: '#57606a',
+          coverBackground: '#ffffff',
+          toogleImage: 'url(https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/icons/moon.svg)',
+        },
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            // Keep relative .md links working inside Docsify hash routes
+            return html;
+          });
+          hook.afterEach(function (html) {
+            var footer =
+              '<div class="voxdocs-footer">' +
+              'Community-written docs for <a href="https://github.com/openvoxproject" target="_blank" rel="noopener">OpenVox</a>' +
+              ' · Maintained with ☕ and mild humor · ' +
+              '<a href="https://voxpupuli.org/" target="_blank" rel="noopener">Vox Pupuli</a>' +
+              ' · <a href="https://voxforge.questy.org/" target="_blank" rel="noopener">VoxForge</a>' +
+              '</div>';
+            return html + footer;
+          });
+        },
+      ],
+    };
+  </script>
+
+  <!-- Docsify core + plugins (pinned major via jsDelivr npm) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js" type="text/javascript"></script>
+
+  <!-- Syntax highlighting: bash, ruby/puppet-ish, yaml, json, ini, python -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-ruby.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markup.min.js"></script>
+  <script>
+    // Map puppet language tags → ruby highlighting (Puppet DSL is close enough for Prism)
+    if (window.Prism && Prism.languages.ruby) {
+      Prism.languages.puppet = Prism.languages.ruby;
+      Prism.languages.pp = Prism.languages.ruby;
+    }
+  </script>
+</body>
+</html>

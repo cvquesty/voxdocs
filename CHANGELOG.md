@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.8] - 2026-07-22
+
+### Added
+- **Docsify** documentation shell for interactive Markdown rendering on
+  [voxdocs.questy.org](https://voxdocs.questy.org):
+  - `index.html` — SPA shell with search, dark/light toggle, code copy,
+    pagination, syntax highlighting (bash/ruby/puppet/yaml/json)
+  - `_sidebar.md` — full guide navigation (11 sections)
+  - `_navbar.md` — top nav + links to VoxForge and OpenVox
+- Vox branding (VoxPupuli Blue `#0D6EFD`, Orange `#EC8622`)
+
+### Changed
+- Site hosting moved to `server.questy.org` (Apache static + Docsify)
+- Root serves rendered docs hub instead of raw Markdown files
+
 ## [2.0.7] - 2026-05-23
 
 ### Daily currency pass — versions, releases, and lab verification
