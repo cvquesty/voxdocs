@@ -109,6 +109,41 @@ fi
 
 ---
 
+### 🔴 OpenVox 9: "does not default to server=puppet"
+
+**The situation:** A fresh 9.x agent, or one whose `puppet.conf` never set `server` because "it always found the host named puppet," fails immediately.
+
+**The explanation:** That fallback is gone. The error tells you to set a server. `server_list`, DNS SRV records (`use_srv_records`), or an explicit `server` on the command line also satisfy the check. `ca_server` and `report_server` only cover those two jobs.
+
+```bash
+sudo puppet config set server openvox.example.com --section main
+```
+
+Same family of surprise: a server you upgraded to 9.x stops writing YAML reports, because `reports` now defaults to `none`. Put `reports = store` (or `puppetdb`) back in the `[server]` section if you still want them.
+
+---
+
+### 🔴 Agent daemon stops checking in (OpenVox 9, small VMs)
+
+**The situation:** On a small single-vCPU Linux VM, the `puppet` service looks idle, but a child `puppet agent: applying configuration` never exits. It showed up every few days for a few people on 9.0.0. OpenVox 8 (Ruby 3.2) does not do this.
+
+**The explanation:** Ruby 3.3+ does DNS lookups on background threads. If the agent forks at the wrong moment, the child inherits a locked glibc resolver lock and every name lookup blocks. Tracked as [openvox#485](https://github.com/OpenVoxProject/openvox/issues/485). Later 9.x builds make it much less likely and kill a run that outlives `runtimeout`.
+
+If you still see it:
+
+```bash
+sudo systemctl edit puppet
+```
+
+```ini
+[Service]
+Environment=RUBY_TCP_NO_FAST_FALLBACK=1
+```
+
+Restarting the service does **not** reap a child that is already stuck. `SIGKILL` that process. A normal `SIGTERM` will sit there with it.
+
+---
+
 ### 🔴 "Could not retrieve catalog" / Server Communication Failures
 
 **Symptoms:** Agent can connect but can't get a catalog.

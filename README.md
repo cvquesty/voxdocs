@@ -72,6 +72,8 @@ That lab is an **OpenVox 8** host. Do not read those numbers as current.
 **Bundled runtimes (from the official 9.x component table):** agent **9.2.1** ships **Ruby 4.0.9**, **OpenSSL 3.5.9**, and **OpenFact 6.2.1**. Server and OpenVoxDB bundle JRuby and Jetty; you install Java and PostgreSQL yourself.
 
 > **Note:** OpenVox 9 changes a few defaults that 8.x installs still have. Agents no longer fall back to a host named `puppet` — set `server` explicitly. The server `reports` setting defaults to `none` (set `reports = store` if you still want YAML reports). `preprocess_deferred` defaults to `true`. The full checklist is [Upgrading from OpenVox 8 to 9](https://docs.openvoxproject.org/openvox/latest/upgrade_major.html).
+>
+> Facts in these tables come from the official docs (CC BY-SA 3.0, Puppet, Inc. and Vox Pupuli). We rewrote them in this site’s voice. Credit and the contributor list: [A Note on Copyright & Originality](#a-note-on-copyright--originality).
 
 ### Supported Platforms
 
@@ -101,6 +103,8 @@ list, the same one the build system uses). A check in the server column means
 OpenVox 9 packages bundle and test **Ruby 4.0.x**. The `openvox` gem requires at least Ruby 3.2. Without official packages, OpenVox is known to run on Gentoo, Arch, Mandriva, Solaris 10+, AIX 6.1+, FreeBSD 4.7+, OpenBSD 4.1+, and HP-UX.
 
 **Server hardware (official minimums):** two cores and 1 GB RAM; about 2–4 cores and 4 GB RAM to serve ~1,000 nodes. The server package defaults to a **2 GB** JVM heap. Linux and other Unix-like systems are the supported **server** platforms.
+
+**FIPS:** OpenVox 9 publishes a separate `redhatfips` build for Enterprise Linux 8, 9, and 10 on x86-64 (`openvox-agent`, `openvox-server`, `openvoxdb`, `openvoxdb-termini`). OpenBolt has no FIPS package. OpenVox itself is not FIPS 140 validated — the packages use OpenSSL’s FIPS provider and Bouncy Castle’s FIPS libraries, and you decide whether that meets your audit. The walkthrough, including the eyaml and Ed25519 gotchas, is in [Server Administration](server-admin/README.md#running-openvox-in-fips-mode). Source: [Running OpenVox in FIPS mode](https://docs.openvoxproject.org/openvox/latest/fips.html).
 
 > **📌 Note:** All CLI output in this documentation is **real output** captured from a live OpenVox server running RHEL 9.x with SELinux in enforcing mode. Nothing here is fabricated. Hardware details (CPU count, RAM) are representative of typical production setups.
 
@@ -134,7 +138,7 @@ This documentation is organized into focused guides. Read them in order for a le
 
 This documentation is an **original work**, written specifically for the OpenVox project by community contributors. It is a **community companion** to the official [OpenVox documentation](https://github.com/OpenVoxProject/openvox-docs), not a fork or copy of it. Our sources:
 
-- ✅ The [official OpenVox documentation](https://github.com/OpenVoxProject/openvox-docs) (CC BY-SA 3.0, copyright Puppet, Inc.) -- referenced for version numbers, platform support tables, component naming, and project-level facts such as release dates and known issues
+- ✅ The [official OpenVox documentation](https://github.com/OpenVoxProject/openvox-docs) (CC BY-SA 3.0, copyright Puppet, Inc. and Vox Pupuli) — the source of version numbers, platform tables, component names, release dates, and known issues. We paraphrase; we do not paste their pages.
 - ✅ The [Puppet docs-archive](https://github.com/puppetlabs/docs-archive) -- legacy Puppet 5.x documentation, which is **unencumbered by copyright** and freely available for anyone to use
 - ✅ The official [OpenVox project](https://github.com/openvoxproject) repositories, source code, and community resources
 - ✅ Hands-on experience with real OpenVox infrastructure (verified against `openvox.example.com`)
@@ -188,13 +192,15 @@ You are free to share and adapt this material, provided you give appropriate cre
 
 This project references the following works:
 
-- **[OpenVox Documentation](https://github.com/OpenVoxProject/openvox-docs)** -- Copyright (c) Puppet, Inc. Licensed under the [Creative Commons Attribution-ShareAlike 3.0 International License](https://creativecommons.org/licenses/by-sa/3.0/) (CC BY-SA 3.0). Version numbers, platform support tables, component naming conventions, release dates, and known issues are sourced from this project.
-- **[Puppet docs-archive](https://github.com/puppetlabs/docs-archive)** -- Legacy Puppet 5.x documentation, unencumbered by copyright and freely available for public use. Referenced for historical context and foundational concepts.
+- **[OpenVox Documentation](https://docs.openvoxproject.org/)** ([OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs)) — Copyright (c) Puppet, Inc. and Copyright (c) Vox Pupuli. Licensed under the [Creative Commons Attribution-ShareAlike 3.0 International License](https://creativecommons.org/licenses/by-sa/3.0/) (CC BY-SA 3.0). Product facts on this site (versions, platforms, prerequisites, FIPS behavior, legacy-fact defaults) are drawn from that work and rewritten here. A fact that disagrees with their site is a bug in ours.
+- **[Puppet docs-archive](https://github.com/puppetlabs/docs-archive)** — Legacy Puppet 5.x documentation, unencumbered by copyright and freely available for public use. Referenced for historical context and foundational concepts.
 
-All original text, examples, and explanations in this repository are the work of the VoxDocs community contributors and are licensed under CC BY-SA 4.0 as stated above.
+The OpenVox docs project is a long community effort. The heaviest GitHub contributors, as of this writing, include Nick Fagerlund (`nfagerlund`), Jeffery Tappa (`jtappa`), Isaac Eldridge (`ipeldridge`), Greg Guillotte (`gguillotte`), Melissa Fredette (`MFredette`), Larissa Lane (`LarissaLane`), Michael Harp (`miharp`), Claire Cadman (`clairecadman`), and Martin Alfke (`tuxmea`), plus many others on [the contributors graph](https://github.com/OpenVoxProject/openvox-docs/graphs/contributors). Recent OpenVox 9, OpenFact 6, FIPS, and OpenBolt pages were landed by Michael Harp with review from the docs SIG. Thank you. This companion does not replace that work.
+
+All original text, examples, and explanations in this repository are the work of the VoxDocs community contributors and are licensed under CC BY-SA 4.0 as stated above. Where we adapt a fact from the official docs, the CC BY-SA 3.0 terms travel with that fact.
 
 ---
 
-*Built with ☕, sudo access, and mild frustration by the community. Last updated: May 2026.*
+*Built with ☕, sudo access, and mild frustration by the community. Facts last checked against docs.openvoxproject.org: 27 October 2026.*
 
 <sub>This document was created with the assistance of AI (Grok, xAI). All technical content has been reviewed and verified by human contributors.</sub>

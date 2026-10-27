@@ -125,6 +125,50 @@ sudo systemctl restart puppetserver
 
 > **Warning:** If you upgrade OpenVoxDB from **8.14.0 or earlier** and you edited `/etc/puppetlabs/puppetdb/bootstrap.cfg`, the package keeps your copy. The service then fails because that file still loads `jetty10-service`. Replace that line with `puppetlabs.trapperkeeper.services.webserver.jetty-service/jetty-service`. See the [OpenVoxDB 9 release notes](https://docs.openvoxproject.org/openvoxdb/latest/release_notes.html).
 
+Enterprise Linux can lock the kernel and the crypto policy to FIPS 140 algorithms. OpenVox ships a second set of packages for that, and only for that. The walkthrough below is our summary of the official [FIPS page](https://docs.openvoxproject.org/openvox/latest/fips.html) (Michael Harp and the OpenVox docs contributors, CC BY-SA 3.0). Read that page before you put a compiler in FIPS mode. The short version is full of sharp edges.
+
+OpenVox is **not** FIPS 140 validated. The agent build uses OpenSSL’s FIPS provider. The server and OpenVoxDB builds swap in the Bouncy Castle FIPS libraries. Whether that satisfies your auditor is your call.
+
+| Package | FIPS build? |
+|---------|-------------|
+| `openvox-agent` | Yes. Ruby, OpenFact, and the bundled `openssl` stick to FIPS algorithms. |
+| `openvox-server` | Yes. **Java 21 only.** An installed Java 25 is ignored. |
+| `openvoxdb` | Same as the server. |
+| `openvoxdb-termini` | Yes, matched to the FIPS server. |
+| `openbolt` | **No.** Install OpenBolt somewhere that is not in FIPS mode. |
+
+Builds exist for Enterprise Linux **8, 9, and 10**, **x86-64 only**. EL 10 FIPS packages for the server and OpenVoxDB start at **9.1.0**. The release RPM is `openvox9-release-redhatfips-<el>.noarch.rpm`, and the package release tag says `redhatfips` (`openvox-agent-9.2.1-1.redhatfips9`) instead of `el`.
+
+```bash
+# Confirm the kernel is actually in FIPS mode first.
+cat /proc/sys/crypto/fips_enabled    # expect 1
+
+# EL 9 shown. Use 8 or 10 to match the host.
+sudo dnf install -y \
+  https://yum.voxpupuli.org/openvox9-release-redhatfips-9.noarch.rpm
+sudo dnf install -y openvox-agent
+# Server pulls jre-21-headless with it:
+sudo dnf install -y openvox-server
+```
+
+A FIPS agent is happy talking to a normal server, and the other way around. Do **not** compile catalogs from eyaml on a FIPS server. JRuby’s openssl extension will not load once Bouncy Castle FIPS owns the JVM, so `hiera-eyaml` dies with `cannot load (ext) org.jruby.ext.openssl.OpenSSL`. Keep every compiler that touches eyaml on a normal build. The agent’s own Ruby decrypts eyaml just fine.
+
+A few more things that bite:
+
+- **Ed25519 is dead** on a FIPS host. `sshd` will not offer it, and `ssh-keygen -t ed25519` refuses. Give OpenBolt (and r10k deploy keys) an ECDSA or RSA key. Write a new ECDSA key as PEM: `ssh-keygen -t ecdsa -m PEM`.
+- **`java_ks` cannot import a private key** on a FIPS agent (`mac generation error`). Build the keystore somewhere else, or use `keytool`.
+- **`openssl md5` fails.** Puppet’s `md5()` function and `checksum => md5` still work, because they use Ruby’s digest, not the FIPS provider. If your policy forbids MD5, grep your modules yourself. `digest_algorithm` no longer accepts `md5` at all.
+- Switching an already-installed `el` agent onto the FIPS build can **delete** `/opt/puppetlabs/puppet/ssl/openssl.cnf`. The agent then quietly runs without the FIPS provider. Restore it and check:
+
+```bash
+cd /opt/puppetlabs/puppet/ssl
+sudo cp --preserve openssl-fips.cnf openssl.cnf
+/opt/puppetlabs/puppet/bin/ruby -ropenssl -e 'puts OpenSSL.fips_mode'
+# expect: true
+```
+
+The `fips_enabled` fact tells your manifests which world a node lives in. A package resource that only ensures `openvox9-release` is present will **not** swap an `el` repo for `redhatfips` — same package name, different build. Check the release tag.
+
 ```bash
 # Install PostgreSQL
 sudo yum install -y postgresql-server postgresql-contrib
@@ -184,6 +228,54 @@ sudo -u postgres psql puppetdb -c "SELECT pg_size_pretty(pg_database_size('puppe
 # node-purge-ttl = 14d     # Purge node data after 14 days
 # report-ttl = 30d         # Keep reports for 30 days
 ```
+
+---
+
+## Running OpenVox in FIPS mode
+
+Enterprise Linux can lock the kernel and the crypto policy to FIPS 140 algorithms. OpenVox ships a second set of packages for that, and only for that. The walkthrough below is our summary of the official [FIPS page](https://docs.openvoxproject.org/openvox/latest/fips.html) (Michael Harp and the OpenVox docs contributors, CC BY-SA 3.0). Read that page before you put a compiler in FIPS mode. The short version is full of sharp edges.
+
+OpenVox is **not** FIPS 140 validated. The agent build uses OpenSSL’s FIPS provider. The server and OpenVoxDB builds swap in the Bouncy Castle FIPS libraries. Whether that satisfies your auditor is your call.
+
+| Package | FIPS build? |
+|---------|-------------|
+| `openvox-agent` | Yes. Ruby, OpenFact, and the bundled `openssl` stick to FIPS algorithms. |
+| `openvox-server` | Yes. **Java 21 only.** An installed Java 25 is ignored. |
+| `openvoxdb` | Same as the server. |
+| `openvoxdb-termini` | Yes, matched to the FIPS server. |
+| `openbolt` | **No.** Install OpenBolt somewhere that is not in FIPS mode. |
+
+Builds exist for Enterprise Linux **8, 9, and 10**, **x86-64 only**. EL 10 FIPS packages for the server and OpenVoxDB start at **9.1.0**. The release RPM is `openvox9-release-redhatfips-<el>.noarch.rpm`, and the package release tag says `redhatfips` (`openvox-agent-9.2.1-1.redhatfips9`) instead of `el`.
+
+```bash
+# Confirm the kernel is actually in FIPS mode first.
+cat /proc/sys/crypto/fips_enabled    # expect 1
+
+# EL 9 shown. Use 8 or 10 to match the host.
+sudo dnf install -y \
+  https://yum.voxpupuli.org/openvox9-release-redhatfips-9.noarch.rpm
+sudo dnf install -y openvox-agent
+# Server pulls jre-21-headless with it:
+sudo dnf install -y openvox-server
+```
+
+A FIPS agent is happy talking to a normal server, and the other way around. Do **not** compile catalogs from eyaml on a FIPS server. JRuby’s openssl extension will not load once Bouncy Castle FIPS owns the JVM, so `hiera-eyaml` dies with `cannot load (ext) org.jruby.ext.openssl.OpenSSL`. Keep every compiler that touches eyaml on a normal build. The agent’s own Ruby decrypts eyaml just fine.
+
+A few more things that bite:
+
+- **Ed25519 is dead** on a FIPS host. `sshd` will not offer it, and `ssh-keygen -t ed25519` refuses. Give OpenBolt (and r10k deploy keys) an ECDSA or RSA key. Write a new ECDSA key as PEM: `ssh-keygen -t ecdsa -m PEM`.
+- **`java_ks` cannot import a private key** on a FIPS agent (`mac generation error`). Build the keystore somewhere else, or use `keytool`.
+- **`openssl md5` fails.** Puppet’s `md5()` function and `checksum => md5` still work, because they use Ruby’s digest, not the FIPS provider. If your policy forbids MD5, grep your modules yourself. `digest_algorithm` no longer accepts `md5` at all.
+- Switching an already-installed `el` agent onto the FIPS build can **delete** `/opt/puppetlabs/puppet/ssl/openssl.cnf`. The agent then quietly runs without the FIPS provider. Restore it and check:
+
+```bash
+cd /opt/puppetlabs/puppet/ssl
+sudo cp --preserve openssl-fips.cnf openssl.cnf
+/opt/puppetlabs/puppet/bin/ruby -ropenssl -e 'puts OpenSSL.fips_mode'
+# expect: true
+```
+
+The `fips_enabled` fact tells your manifests which world a node lives in. A package resource that only ensures `openvox9-release` is present will **not** swap an `el` repo for `redhatfips` — same package name, different build. Check the release tag.
 
 ---
 

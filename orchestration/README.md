@@ -25,32 +25,26 @@ This guide covers:
 
 ## OpenBolt (Puppet Bolt)
 
-Bolt — now **OpenBolt** (latest **5.6.0**; lab captured at 5.4.0 as of 2026-05-23) in the OpenVox ecosystem — is an **agentless** orchestration tool. It connects to remote nodes via SSH (or WinRM for Windows) and runs commands, scripts, tasks, and plans — without requiring a Puppet agent on the target. Think of it as the "do it now" complement to Puppet's "keep it this way forever" model.
+**OpenBolt** (latest **5.6.0**; lab captured at 5.4.0 on 2026-05-23) is the agentless half of the toolkit. It runs on your workstation, connects, does the work, and disconnects. There is no agent daemon on the target. SSH is the default. WinRM covers Windows. You can also talk to Docker and Podman containers, the local machine, network devices through a proxy target, and [Choria](https://choria.io/). Tasks, plans, modules, and inventory files you already have keep working.
+
+The official [OpenBolt 5](https://docs.openvoxproject.org/openbolt/latest/) pages dropped the old Puppet Enterprise-only material (the PCP transport and the `puppet_agent` task among it). If a blog post from the PE era tells you to install those, skip that paragraph. The product name in those pages is OpenBolt; the binary is still `bolt`.
 
 ### Installation
 
-The OpenVox project ships Bolt as `openbolt` from the Vox Pupuli repos. The legacy `puppet-bolt` package name still works during the transition.
+Install the `openbolt` package from the Vox Pupuli repos. There is no FIPS build — run OpenBolt from a host that is not in FIPS mode, and give it an ECDSA or RSA key for targets that are (FIPS `sshd` refuses Ed25519).
 
 ```bash
-# RHEL/CentOS/Rocky (from the Vox Pupuli repo)
-sudo yum install -y openbolt          # preferred
-# or, transitionally:
-sudo yum install -y puppet-bolt
+# RHEL / Rocky / Alma (OpenVox 9 repo already enabled)
+sudo dnf install -y openbolt
 
-# Debian/Ubuntu
+# Debian / Ubuntu
 sudo apt-get install -y openbolt
-# or:
-sudo apt-get install -y puppet-bolt
 
-# macOS
-brew install puppet-bolt
-
-# Verify installation
+# Verify
 bolt --version
-# 5.4.0
 ```
 
-> The binary is still called `bolt`, regardless of which package name you use.
+> The lab capture still prints `5.4.0`. Upstream is **5.6.0**. A container image exists for people who would rather not install the package; the [containers page](https://docs.openvoxproject.org/openvox-containers/latest/) points at the repo, and each image’s own README is the config reference.
 
 ### Project Setup
 

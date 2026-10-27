@@ -355,7 +355,7 @@ Here's a complete picture of how data flows through the system:
 | **Primary Server** | The central PuppetServer that compiles catalogs |
 | **Resource** | A single unit of configuration (file, package, service, etc.) |
 | **r10k** | Tool for deploying Puppet code from Git. Bundled only inside OpenBolt; install it separately on a server. |
-| **OpenVox Containers** | Community images for OpenVox Server, OpenVoxDB, and OpenBolt, plus CRAFTY (compose) and Helm examples. [Official page](https://docs.openvoxproject.org/openvox-containers/latest/). |
+| **OpenVox Containers** | Community images for OpenVox Server, OpenVoxDB, and OpenBolt, plus CRAFTY (compose), a Helm chart, PuppetBoard, OpenVoxView, and CI images (VoxBox, onceover, r10k). Each image’s own repo is the config reference. [Official page](https://docs.openvoxproject.org/openvox-containers/latest/). |
 
 ---
 

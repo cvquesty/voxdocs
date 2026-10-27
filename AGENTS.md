@@ -16,7 +16,7 @@ Full merge rules: **[EDITORIAL.md](EDITORIAL.md)**.
 - When facts diverge, **update this repo to match official** — do not overwrite our design with their site
 - Weekly job should be a **content audit**, not a full-site mirror
 
-## Current Latest Shipping (canonical check 2026-10-27)
+## Current Latest Shipping (canonical check 2026-10-27, docs pass v2.5.0)
 Cross-checked with official docs SBOM tables + GitHub releases.
 **OpenVox 9 is current.** OpenVox 8 remains supported for high-priority/security fixes.
 

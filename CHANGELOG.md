@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-10-27
+
+### Changed — Second pass against docs.openvoxproject.org
+- Re-checked component tags (unchanged: agent 9.2.1, server 9.1.0, OpenVoxDB 9.1.0, OpenFact 6.2.1, OpenBolt 5.6.0) and folded docs landed 25–27 October 2026
+- **FIPS:** redhatfips packages for EL 8/9/10 x86-64, Java 21 only, no OpenBolt FIPS build, eyaml-on-a-FIPS-compiler failure, Ed25519 refusal, openssl.cnf restore. Paraphrased from the official FIPS page
+- **Legacy facts:** `include_legacy_facts` defaults to false since OpenVox 8; structured facts are the path. Credited the generated OpenFact 6.2.1 core-facts page
+- **OpenBolt:** current transports (SSH, WinRM, containers, local, proxy, Choria); PE-only PCP / `puppet_agent` material called out as removed upstream; install examples use `openbolt` only
+- **Containers:** PuppetBoard, OpenVoxView, and the CI images named alongside server/DB/OpenBolt
+- **Credit:** README attribution now names Puppet, Inc. and Vox Pupuli (CC BY-SA 3.0), links the docs site, and thanks the openvox-docs contributors, including the docs SIG work by Michael Harp
+- Narrative stays in this repo’s voice. No official page is copied
+
 ## [2.4.0] - 2026-10-27
 
 ### Changed — Fact alignment with OpenVox 9

@@ -66,7 +66,16 @@ $safe_var = pick($myvar, 'default_value')
 
 ### 2. Legacy Facts are Removed
 
-**All legacy top-scope facts have been removed.** You must use the structured `$facts` hash.
+**Top-scope legacy facts are gone, and agents do not send them by default.** Since OpenVox 8, `include_legacy_facts` defaults to `false`. A manifest that still says `$osfamily` fails with “Unknown variable”, and `$facts['osfamily']` comes back empty. The same data lives on the structured fact (`$facts['os']['family']`). `facter` and `puppet facts show` hide the legacy names unless you pass `--show-legacy` or ask for one by name.
+
+If a module you cannot patch yet still needs them, set this on the agents while you migrate, then take it back out:
+
+```ini
+[main]
+include_legacy_facts = true
+```
+
+That default is documented on the official [OpenFact core facts](https://docs.openvoxproject.org/openfact/latest/core_facts.html) page (generated from OpenFact 6.2.1). Use structured facts in anything you write.
 
 | ❌ Legacy (Removed) | ✅ Structured (Required) |
 |---------------------|--------------------------|
