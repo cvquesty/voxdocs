@@ -36,7 +36,7 @@ quickly — then graduate to the full official docs.
 
 Before we dive in, you'll need:
 
-- A Linux server (RHEL 8/9/10, Rocky, AlmaLinux, Ubuntu 22.04+, Debian 11+, or Fedora 42+)
+- A Linux server that OpenVox **9** still builds packages for (RHEL 8/9/10, Rocky, AlmaLinux, Ubuntu 22.04/24.04/26.04, Debian 13 for a server, Debian 12 for an agent, Fedora 43/44, Amazon Linux 2023, or SLES 15/16)
 - Root or `sudo` access
 - Internet connectivity (to reach the package repos)
 - A healthy sense of adventure
@@ -49,8 +49,8 @@ Linux is the platform for OpenVox **servers**, but agents run on plenty of other
 
 | Platform | Download Location |
 |----------|-------------------|
-| **Windows** | [downloads.voxpupuli.org/windows](https://downloads.voxpupuli.org/windows) |
-| **macOS** | [downloads.voxpupuli.org/mac](https://downloads.voxpupuli.org/mac) |
+| **Windows (OpenVox 9)** | [downloads.voxpupuli.org/windows/openvox9](https://downloads.voxpupuli.org/windows/openvox9/) |
+| **macOS (OpenVox 9)** | [downloads.voxpupuli.org/mac/openvox9](https://downloads.voxpupuli.org/mac/openvox9/) |
 
 After downloading, run the installer. The agent uses the same `puppet.conf` settings, the same SSL workflow, and the same agent-server protocol as Linux nodes; only the install method differs. The official [Installing OpenVox](https://voxpupuli.org/openvox/install/) guide has step-by-step instructions for each platform.
 
@@ -65,16 +65,19 @@ OpenVox packages live in the Vox Pupuli repositories. First, let's add the appro
 #### RHEL / CentOS / Rocky / AlmaLinux / Fedora
 
 ```bash
-# Install the OpenVox 8 release repository
-sudo rpm -Uvh https://yum.voxpupuli.org/openvox8-release-el-$(rpm -E %{rhel}).noarch.rpm
+# Install the OpenVox 9 release repository (current).
+# EL 7 has no OpenVox 9 packages — stay on openvox8 there.
+sudo rpm -Uvh https://yum.voxpupuli.org/openvox9-release-el-$(rpm -E %{rhel}).noarch.rpm
 ```
 
 #### Debian / Ubuntu
 
 ```bash
-# Download and install the OpenVox 8 release package
-wget https://apt.voxpupuli.org/openvox8-release-$(lsb_release -cs).deb
-sudo dpkg -i openvox8-release-$(lsb_release -cs).deb
+# Download and install the OpenVox 9 release package (current).
+# Example for Ubuntu 22.04. Debian 11 and Ubuntu 25.04 have no OpenVox 9 packages.
+# Debian 12 gets the agent only — server and OpenVoxDB need Debian 13 or newer.
+wget https://apt.voxpupuli.org/openvox9-release-$(lsb_release -cs).deb
+sudo dpkg -i openvox9-release-$(lsb_release -cs).deb
 sudo apt-get update
 ```
 
@@ -141,8 +144,13 @@ puppetserver version: 8.12.1
 > `bundle` / a separately installed `r10k` behave.
 >
 > **Version note:** Output blocks below show the **lab capture** (`8.26.x` / `5.6.0` /
-> server `8.12.1`). **Latest shipping** agent/server/db/bolt numbers live on the
-> [home page](../README.md#current-shipping-versions) and track official releases.
+> server `8.12.1`). **Latest shipping** is **OpenVox 9** (agent `9.2.1`, server `9.1.0`,
+> OpenVoxDB `9.1.0`, OpenFact `6.2.1`, OpenBolt `5.6.0`). Numbers live on the
+> [home page](../README.md#current-shipping-versions).
+>
+> On OpenVox 9, set `server` in `puppet.conf` before the first agent run. Agents no
+> longer fall back to a host named `puppet`. Install a JDK (**21 or 25**) before
+> `openvox-server`. The server package does not bundle Java.
 
 ### Step 4: (Optional) Install the OpenVox Server
 

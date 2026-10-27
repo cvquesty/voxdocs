@@ -139,7 +139,7 @@ lookup('classes', Array[String], 'unique').include
 
 ### 4. Ruby Version Updated
 
-OpenVox 8 ships with **Ruby 3.2.x** (Puppet 7 used Ruby 2.7.x). This affects:
+OpenVox 8 ships with **Ruby 3.2.x** (Puppet 7 used Ruby 2.7.x). **OpenVox 9** moves the bundled interpreter to **Ruby 4.0.x** (4.0.9 in agent 9.2.1). Gems you installed with `/opt/puppetlabs/puppet/bin/gem` live under `lib/ruby/gems/3.2.0` and must be installed again into `lib/ruby/gems/4.0.0`. This affects:
 
 - Custom facts written in Ruby
 - Custom functions
@@ -153,9 +153,9 @@ OpenVox 8 ships with **Ruby 3.2.x** (Puppet 7 used Ruby 2.7.x). This affects:
 
 ---
 
-### 5. OpenSSL 3.0
+### 5. OpenSSL 3.0 (and 3.5 on OpenVox 9)
 
-OpenVox 8 uses **OpenSSL 3.0.x** instead of 1.1.1. This affects:
+OpenVox 8 uses **OpenSSL 3.0.x** instead of 1.1.1. OpenVox 9 uses **OpenSSL 3.5** (3.5.9 in agent 9.2.1), which adds the post-quantum algorithms ML-KEM, ML-DSA, and SLH-DSA. Agent-to-server TLS inside OpenVox is unaffected; an external CA, TLS-inspecting proxy, or HSM in the path needs a check. This affects:
 
 - SSL/TLS cipher suites
 - Certificate handling
@@ -251,8 +251,9 @@ If you're migrating from Puppet packages to OpenVox packages:
 # Remove old Puppet repository
 sudo yum remove puppet-release puppet7-release
 
-# Install OpenVox repository
-sudo rpm -Uvh https://yum.voxpupuli.org/openvox8-release-el-$(rpm -E %{rhel}).noarch.rpm
+# Install the current OpenVox 9 repository.
+# Hosts that must stay on OpenVox 8 (EL 7, or a deliberate delay) use openvox8-release instead.
+sudo rpm -Uvh https://yum.voxpupuli.org/openvox9-release-el-$(rpm -E %{rhel}).noarch.rpm
 
 # Replace packages
 sudo yum swap puppet-agent openvox-agent
@@ -266,8 +267,8 @@ sudo yum swap puppetserver openvox-server  # If running a server
 sudo rm /etc/apt/sources.list.d/puppet*.list
 
 # Install OpenVox repository
-wget https://apt.voxpupuli.org/openvox8-release-$(lsb_release -cs).deb
-sudo dpkg -i openvox8-release-$(lsb_release -cs).deb
+wget https://apt.voxpupuli.org/openvox9-release-$(lsb_release -cs).deb
+sudo dpkg -i openvox9-release-$(lsb_release -cs).deb
 sudo apt-get update
 
 # Replace packages
@@ -277,11 +278,22 @@ sudo apt-get install openvox-server # Replaces puppetserver (if needed)
 
 ### Configuration
 
-Your existing configuration files work as-is:
+Most configuration files work as-is when you swap Puppet packages for OpenVox **8**:
 
-- `/etc/puppetlabs/puppet/puppet.conf` — No changes needed
+- `/etc/puppetlabs/puppet/puppet.conf` — No changes needed for an 8.x swap
 - `/etc/puppetlabs/code/` — Your environments, modules, and Hiera data work unchanged
 - SSL certificates — Continue working (same CA)
+
+Moving on to **OpenVox 9** is a major upgrade of the runtime, not of the language. Before you do it, work through the official [OpenVox 8 → 9 checklist](https://docs.openvoxproject.org/openvox/latest/upgrade_major.html). The short list:
+
+- Set `server` on every agent. There is no `server=puppet` fallback.
+- Set `reports = store` (or `puppetdb`) on the server if you still want reports. The default is `none`.
+- Install **Java 21 or 25**. Java 17 will not run Server 9 or OpenVoxDB 9.
+- Move OpenVoxDB to **PostgreSQL 14+**.
+- Reinstall gems that lived in the agent's Ruby 3.2 gem home.
+- Drop removed settings: `configprint`, `pluginsync`, `data_binding_terminus`.
+- Use `systemctl` to start and stop `puppetserver` and `puppetdb`. The `start` and `stop` subcommands are gone.
+- OpenVox 8 agents can keep checking in to OpenVox 9 servers while you roll the fleet.
 
 ---
 

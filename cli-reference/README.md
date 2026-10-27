@@ -17,7 +17,7 @@ Each command has its own page with the complete `--help` output and practical us
 
 | # | Command | Version | Description |
 |---|---------|---------|-------------|
-| 1 | [**puppet**](puppet.md) | Latest 8.28.1 · lab 8.26.2 (binary reports 8.26.1) | The main OpenVox CLI — overview and subcommand list |
+| 1 | [**puppet**](puppet.md) | Latest 9.2.1 (8.x line 8.31.1) · lab 8.26.2 (binary reports 8.26.1) | The main OpenVox CLI — overview and subcommand list |
 | 2 | [**puppet agent**](puppet-agent.md) | | Agent daemon — connects to server, applies catalogs |
 | 3 | [**puppet apply**](puppet-apply.md) | | Apply manifests locally (no server needed) |
 | 4 | [**puppet resource**](puppet-resource.md) | | Inspect and manage system resources directly |
@@ -31,11 +31,11 @@ Each command has its own page with the complete `--help` output and practical us
 
 | # | Command | Version | Description |
 |---|---------|---------|-------------|
-| 10 | [**facter**](facter.md) | Latest 5.7.0 · lab 5.6.0 | Cross-platform system fact discovery (OpenFact) |
-| 11 | [**puppetserver**](puppetserver.md) | Latest 8.15.0 · lab 8.12.1 | Server management and Certificate Authority |
+| 10 | [**facter**](facter.md) | OpenFact 6.2.1 in agent 9 · 5.7.2 in agent 8.31 · lab 5.6.0 | Cross-platform system fact discovery (OpenFact) |
+| 11 | [**puppetserver**](puppetserver.md) | Latest 9.1.0 (8.x line 8.17.0) · lab 8.12.1 | Server management and Certificate Authority |
 | 12 | [**r10k**](r10k.md) | 5.0.3 via OpenBolt · lab 5.0.2 | Code deployment from Git; **not** bundled in openvox-server |
 | 13 | [**bolt** (OpenBolt)](bolt.md) | Latest 5.6.0 · lab 5.4.0 | Agentless orchestration; package `openbolt` |
-| —  | **OpenVoxDB** (was PuppetDB) | Latest 8.15.0 · lab 8.12.1 | systemd service `puppetdb`; query via `puppet query` (row 15) |
+| —  | **OpenVoxDB** (was PuppetDB) | Latest 9.1.0 (8.x line 8.17.0) · lab 8.12.1 | systemd service `puppetdb`; query via `puppet query` (row 15) |
 
 ### Additional References
 

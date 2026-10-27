@@ -23,9 +23,12 @@ Running an OpenVox infrastructure involves three server-side roles:
 
 **Official facts that bite people in production:**
 
-- OpenVox server needs a supported **JDK 17 or 21** installed **separately** (not inside the RPM/DEB).
-- OpenVoxDB needs **PostgreSQL 11+** (project recommends **14+**), also external.
+- **OpenVox 9** server needs a supported **JDK 21 or 25** installed **separately** (not inside the RPM/DEB). The package prefers Java 25; EL 8 and FIPS builds use Java 21. Java 17 is OpenVox 8 only.
+- **OpenVoxDB 9** needs **PostgreSQL 14 or later** (tested on 15, 16, and 18), also external. OpenVoxDB 8 still accepts PostgreSQL 11+ and recommends 14+.
 - **r10k is not** shipped with `openvox-server` — install it yourself or use **OpenBolt**’s bundled r10k for orchestration workflows.
+- `openvox-server` 9.x depends on `openvox-agent` 9.x on the same host.
+- On OpenVox 9, `puppetserver start` and `puppetserver stop` are removed. Use `systemctl`. `puppetserver foreground` and `systemctl reload puppetserver` remain.
+- Server `reports` defaults to **`none`** on OpenVox 9. Set `reports = store` (or `puppetdb`) if you still want report processing.
 
 This guide is day-to-day admin, tuning, backup, and “why is the heap on fire?”
 
@@ -41,8 +44,9 @@ sudo systemctl start puppetserver
 sudo systemctl stop puppetserver
 sudo systemctl restart puppetserver
 
-# Graceful reload (reloads config without dropping connections)
-sudo puppetserver reload
+# Graceful reload (reloads config without dropping connections).
+# OpenVox 9 removed `puppetserver start` and `puppetserver stop`; reload stays.
+sudo systemctl reload puppetserver
 
 # Check status
 sudo systemctl status puppetserver
@@ -79,7 +83,7 @@ And the JVM heap in `/etc/sysconfig/puppetserver` (RHEL) or `/etc/default/puppet
 ```bash
 # JVM heap — recommended: 2GB per JRuby instance + 512MB overhead
 # For 3 JRuby instances: 3 * 2GB + 512MB ≈ 7GB
-JAVA_ARGS="-Xms4g -Xmx4g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"
+JAVA_ARGS="-Xms4g -Xmx4g"
 ```
 
 **Rules of thumb:**
@@ -117,7 +121,9 @@ sudo systemctl restart puppetserver
 
 ### Installation
 
-**OpenVoxDB** (the rebranded PuppetDB) **requires** PostgreSQL 11 or later, but the official OpenVox project now **recommends PostgreSQL 14 or later** to take advantage of newer query-planner and indexing features. The packages are `openvoxdb` and `openvoxdb-termini`, which provide the `puppetdb` systemd service and binaries for compatibility. If your distribution doesn't ship a recent enough PostgreSQL, install one from the [PostgreSQL Global Development Group](https://yum.postgresql.org/) (yum) or [apt.postgresql.org](https://apt.postgresql.org/) (apt) repositories.
+**OpenVoxDB** (the rebranded PuppetDB) **9 requires PostgreSQL 14 or later** and is tested against PostgreSQL 15, 16, and 18. The OpenVox 8 line still accepts PostgreSQL 11+ and recommends 14+. The packages are `openvoxdb` and `openvoxdb-termini`, which provide the `puppetdb` systemd service and binaries for compatibility. If your distribution doesn't ship a recent enough PostgreSQL, install one from the [PostgreSQL Global Development Group](https://yum.postgresql.org/) (yum) or [apt.postgresql.org](https://apt.postgresql.org/) (apt) repositories.
+
+> **Warning:** If you upgrade OpenVoxDB from **8.14.0 or earlier** and you edited `/etc/puppetlabs/puppetdb/bootstrap.cfg`, the package keeps your copy. The service then fails because that file still loads `jetty10-service`. Replace that line with `puppetlabs.trapperkeeper.services.webserver.jetty-service/jetty-service`. See the [OpenVoxDB 9 release notes](https://docs.openvoxproject.org/openvoxdb/latest/release_notes.html).
 
 ```bash
 # Install PostgreSQL

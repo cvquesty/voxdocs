@@ -393,10 +393,17 @@ pdk test unit
 pdk build
 ```
 
-The community maintains two open-source alternatives that do not require a Puppet account:
+The official [Developer Tooling](https://docs.openvoxproject.org/ecosystem/latest/devkit/) guide is the map for this work. The pieces it covers, in our words:
 
-- **[VoxBox](https://github.com/voxpupuli/container-voxbox)** -- A container image maintained by Vox Pupuli that includes rspec-puppet, Litmus, RuboCop, and other testing gems. It is the recommended way to run unit and acceptance tests for OpenVox modules in CI and local development.
-- **[jig](https://github.com/avitacco/jig)** -- A Go-based reimplementation of PDK. Ships as a single static binary with no Ruby runtime dependency and supports module scaffolding, building, and releasing.
+| Tool | What you use it for |
+|------|---------------------|
+| **[jig](https://github.com/voxpupuli/jig)** | Scaffold modules, classes, and defined types. Go binary, no Ruby runtime of its own. |
+| **[VoxBox](https://github.com/voxpupuli/container-voxbox)** | CI image with rspec-puppet, Litmus, RuboCop, and the rest of the test stack. |
+| **modulesync** | Keep the same CI and lint config across a pile of modules. |
+| **onceover** | Smoke-test a control repo. |
+| **Beaker** | Acceptance tests on real (or virtual) operating systems. |
+
+Official docs also describe migrating an old PDK module onto this toolchain. PDK 3.4.0 still runs if you already have it; it is not the path new OpenVox modules should start on.
 
 ---
 

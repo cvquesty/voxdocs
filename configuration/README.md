@@ -93,7 +93,7 @@ reports = store,puppetdb
 |---------|---------|-------------|
 | `runinterval` | `30m` | How often the agent runs (supports time suffixes: `s`, `m`, `h`, `d`). |
 | `report` | `true` | Whether to send reports to the server. |
-| `pluginsync` | `true` | Download plugins (custom facts, functions, types) from the server. |
+| `pluginsync` | (removed in 9) | Plugins always sync. The setting was removed in OpenVox 9; a leftover line is ignored. |
 | `show_diff` | `false` | Show file diffs in agent output. **Warning:** May expose sensitive data in logs! |
 | `noop` | `false` | Default to noop mode (dry-run). Useful for new nodes. |
 | `splay` | `false` | Add random delay before agent runs to spread load. |
@@ -109,7 +109,7 @@ reports = store,puppetdb
 | `dns_alt_names` | — | Extra hostnames for the server's certificate (comma-separated). Set before initial setup! |
 | `storeconfigs` | `false` | Enable exported resources via PuppetDB. |
 | `storeconfigs_backend` | `puppetdb` | Backend for stored configurations. |
-| `reports` | `store` | Comma-separated list of report processors. Common: `store,puppetdb`. |
+| `reports` | `none` (OpenVox 9); `store` on OpenVox 8 | Comma-separated list of report processors. Set `store` or `puppetdb` explicitly on 9.x if you want reports kept. |
 | `ca` | `true` | Whether this server acts as the Certificate Authority. |
 | `ca_ttl` | `5y` | Certificate TTL (how long certs are valid). |
 | `autosign` | `false` | Auto-sign certificate requests. Can be `true`, `false`, or a path to an autosign script. |

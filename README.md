@@ -44,41 +44,63 @@ Where both cover a topic: **their facts win**; we keep **our narrative and uniqu
 
 These versions reflect the **latest stable upstream releases** from OpenVoxProject
 (cross-checked against [docs.openvoxproject.org](https://docs.openvoxproject.org/)
-and GitHub release tags as of **2026-07-22**). Official docs are **canonical for facts**;
-this community site keeps its own design and voice.
+component tables and GitHub release tags as of **2026-10-27**). Official docs are
+**canonical for facts**; this community site keeps its own design and voice.
+
+There is no single “OpenVox platform version.” `openvox-agent`, `openvox-server`,
+`openvoxdb`, and `openbolt` ship on **independent lines**. **OpenVox 9** is current.
+**OpenVox 8** stays in the `openvox8` repositories and still receives high-priority
+and security fixes (latest 8.x tags below).
 
 CLI examples and many `--version` blocks remain **real lab captures** from a dated lab
 snapshot — they intentionally lag “latest shipping” so the pasted output stays honest.
+That lab is an **OpenVox 8** host. Do not read those numbers as current.
 
-| Component | Latest Shipping | Lab Verified (2026-05-23) | Binary Path | Notes |
-|-----------|-----------------|-----------------------------|-------------|-------|
-| **openvox-agent** | `8.28.1` | 8.26.2 (puppet reports 8.26.1) | `/opt/puppetlabs/puppet/bin/puppet` | Independent release line; agent packages ship OpenVox + OpenFact + Ruby/OpenSSL |
-| **openvox-server** | `8.15.0` | 8.12.1 | `/opt/puppetlabs/bin/puppetserver` | Independent line; requires external JDK 17/21 (not bundled) |
-| **OpenFact** (was Facter) | `5.7.0` | 5.6.0 | `/opt/puppetlabs/puppet/bin/facter` | Product rename; binary stays `facter`. Agent 8.28.x bundles OpenFact 5.6.1+ |
-| **Hiera** | 5 (integrated) | 5 | Built into puppet | Hierarchical data lookup |
-| **OpenBolt** (was Bolt) | `5.6.0` | 5.4.0 | `/usr/local/bin/bolt` | Own 5.x line; package `openbolt`. **Only OpenVox package that bundles r10k** |
-| **r10k** | `5.0.3` (via OpenBolt) | 5.0.2 | gem / OpenBolt bundle | **Not** shipped in `openvox-server` or `openvox-agent` — install separately or use OpenBolt’s bundle |
-| **OpenVoxDB** (was PuppetDB) | `8.15.0` | 8.12.1 (+ termini) | systemd service `puppetdb` | Independent line; termini version matches OpenVoxDB; needs external PostgreSQL 11+ (14+ recommended) |
+| Component | Latest (9.x current) | Previous line (8.x) | Lab Verified (2026-05-23) | Notes |
+|-----------|----------------------|---------------------|---------------------------|-------|
+| **openvox-agent** | `9.2.1` | `8.31.1` | 8.26.2 (puppet reports 8.26.1) | 9.x bundles OpenFact 6.2.1, Ruby 4.0.9, OpenSSL 3.5.9. **curl is no longer bundled.** |
+| **openvox-server** | `9.1.0` | `8.17.0` | 8.12.1 | Depends on `openvox-agent` of the same major. **Java 21 or 25** (not bundled). FIPS packages: Java 21 only. JRuby 10.1.2.0 on 9.x. |
+| **OpenFact** (was Facter) | `6.2.1` (bundled in agent 9) | `5.7.2` (bundled in agent 8.31) | 5.6.0 | Binary stays `facter`. Standalone 6.x is the current series; 5.x matches the 8.x agent. |
+| **Hiera** | 5 (integrated) | 5 | 5 | Hierarchical data lookup. Hiera 3 functions are gone on 9.x; a v3 `hiera.yaml` still loads with a warning. |
+| **OpenBolt** (was Bolt) | `5.6.0` | (same 5.x line) | 5.4.0 | Own 5.x line; package `openbolt`. **Only OpenVox package that bundles r10k.** 5.6.0 bundles OpenVox 8.28.0 for `bolt apply`. |
+| **r10k** | `5.0.3` (via OpenBolt 5.6.0) | `5.0.3` | 5.0.2 | **Not** shipped in `openvox-server` or `openvox-agent`. Install separately, or use OpenBolt’s copy. |
+| **OpenVoxDB** (was PuppetDB) | `9.1.0` | `8.17.0` | 8.12.1 (+ termini) | `openvoxdb-termini` matches the OpenVoxDB version. **PostgreSQL 14+** on 9.x (8.x: 11+, 14+ recommended). Java 21 or 25. Jetty 12. |
+| **OpenVox Containers** | current images | — | — | Server, DB, and OpenBolt images, plus CRAFTY (compose) and a Helm chart. [Containers docs](https://docs.openvoxproject.org/openvox-containers/latest/). |
 
 **Lab package set on capture date (2026-05-23):** `openvox-agent-8.26.2`, `openvox-server-8.12.1`, `openvoxdb-8.12.1`, `openvoxdb-termini-8.12.1`, `openbolt-5.4.0` on RHEL 9.7 (SELinux enforcing). CLI Reference `--version` / `--help` blocks are from this snapshot unless noted otherwise.
 
-**Bundled runtimes (from official component tables):** recent agents ship **Ruby 3.2.11** and **OpenSSL 3.0.2x**. Server/DB require a supported JDK you install yourself — Java is not inside the package.
+**Bundled runtimes (from the official 9.x component table):** agent **9.2.1** ships **Ruby 4.0.9**, **OpenSSL 3.5.9**, and **OpenFact 6.2.1**. Server and OpenVoxDB bundle JRuby and Jetty; you install Java and PostgreSQL yourself.
+
+> **Note:** OpenVox 9 changes a few defaults that 8.x installs still have. Agents no longer fall back to a host named `puppet` — set `server` explicitly. The server `reports` setting defaults to `none` (set `reports = store` if you still want YAML reports). `preprocess_deferred` defaults to `true`. The full checklist is [Upgrading from OpenVox 8 to 9](https://docs.openvoxproject.org/openvox/latest/upgrade_major.html).
 
 ### Supported Platforms
 
-OpenVox publishes official `openvox-agent` packages for these platforms (per the [official OpenVox docs](https://github.com/OpenVoxProject/openvox-docs)):
+OpenVox **9** package builds (from the official
+[supported platforms](https://docs.openvoxproject.org/openvox/latest/supported_platforms.html)
+list, the same one the build system uses). A check in the server column means
+`openvox-server` and `openvoxdb` packages exist for that OS.
 
-| Platform | Supported Versions |
-|----------|-------------------|
-| **RHEL / CentOS / Rocky / AlmaLinux** | 7, 8, 9, 10 |
-| **SLES** | 15, 16 |
-| **Debian** | 10 (Buster), 11 (Bullseye), 12 (Bookworm), 13 |
-| **Ubuntu** | 18.04, 20.04, 22.04, 24.04, 25.04, 26.04 |
-| **Fedora** | 36, 40, 41, 42, 43 |
-| **Windows** | Server 2008R2, 2012R2, 2016; Desktop 10 Enterprise |
-| **macOS** | 10.12+, Intel and Apple Silicon |
+| Operating system | Agent / OpenBolt | Server / OpenVoxDB |
+|------------------|------------------|--------------------|
+| **Enterprise Linux 8, 9, 10** (RHEL, Alma, Rocky, Oracle) † | x86-64, Arm64 | Yes |
+| **Amazon Linux 2023** | x86-64, Arm64 | Yes |
+| **Fedora 43, 44** | x86-64, Arm64 | Yes |
+| **SLES 15** | x86-64 | Yes |
+| **SLES 16** | x86-64, Arm64 | Yes |
+| **Debian 12** | x86-64, Arm64 | **Agent only** (no Java 21/25) |
+| **Debian 13** | x86-64, Arm64, armhf | Yes |
+| **Ubuntu 22.04** | x86-64, Arm64 | Yes |
+| **Ubuntu 24.04, 26.04** | x86-64, Arm64, armhf | Yes |
+| **macOS** | Intel, Apple Silicon | No (agent only) |
+| **Windows** | x86-64 | No (agent only) |
 
-Ruby 3.2.x is the only tested interpreter. OpenVox also runs (without official packages) on Gentoo, Arch, Solaris 10+, AIX 6.1+, FreeBSD 4.7+, and HP-UX.
+† Also has **FIPS** builds of `openvox-agent`, `openvox-server`, `openvoxdb`, and `openvoxdb-termini` on x86-64. OpenBolt has no FIPS build. FIPS packages run on **Java 21 only**.
+
+**Dropped in OpenVox 9** (no new packages): Enterprise Linux 7, Amazon Linux 2, Fedora 42, Debian 11, and Ubuntu 25.04. Those stay on the OpenVox 8 repositories.
+
+OpenVox 9 packages bundle and test **Ruby 4.0.x**. The `openvox` gem requires at least Ruby 3.2. Without official packages, OpenVox is known to run on Gentoo, Arch, Mandriva, Solaris 10+, AIX 6.1+, FreeBSD 4.7+, OpenBSD 4.1+, and HP-UX.
+
+**Server hardware (official minimums):** two cores and 1 GB RAM; about 2–4 cores and 4 GB RAM to serve ~1,000 nodes. The server package defaults to a **2 GB** JVM heap. Linux and other Unix-like systems are the supported **server** platforms.
 
 > **📌 Note:** All CLI output in this documentation is **real output** captured from a live OpenVox server running RHEL 9.x with SELinux in enforcing mode. Nothing here is fabricated. Hardware details (CPU count, RAM) are representative of typical production setups.
 
@@ -93,7 +115,7 @@ This documentation is organized into focused guides. Read them in order for a le
 | 3 | [📝 **The Puppet Language**](language/README.md) | Resources, classes, defined types, and the DSL |
 | 4 | [⌨️ **CLI Reference**](cli-reference/README.md) | Every binary, every flag — with real output |
 | 5 | [⚙️ **Configuration Reference**](configuration/README.md) | `puppet.conf`, `hiera.yaml`, and all the knobs |
-| 6 | [🖥️ **Server Administration**](server-admin/README.md) | PuppetServer, PuppetDB, the CA, and backups |
+| 6 | [🖥️ **Server Administration**](server-admin/README.md) | OpenVox Server, OpenVoxDB, the CA, and backups |
 | 7 | [📚 **Hiera Deep-Dive**](hiera/README.md) | Hierarchical data, merge strategies, and eyaml |
 | 8 | [📦 **Module Development**](module-development/README.md) | Writing, testing, and publishing modules |
 | 9 | [🎯 **Orchestration**](orchestration/README.md) | OpenBolt, r10k, tasks, plans, and code deployment |
@@ -124,14 +146,18 @@ This documentation is an **original work**, written specifically for the OpenVox
 
 OpenVox packages are available from the Vox Pupuli repositories:
 
-| Platform | Repository URL | Supported Releases |
+Current installs use the **`openvox9`** release packages. OpenVox 8 stays on `openvox8`.
+
+| Platform | Repository URL | OpenVox 9 releases |
 |----------|---------------|-------------------|
-| **RHEL / CentOS / Rocky / AlmaLinux** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | EL 8, 9, 10 |
-| **Fedora** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | 42+ |
-| **Debian** | [apt.voxpupuli.org](https://apt.voxpupuli.org) | 11 (Bullseye), 12 (Bookworm) |
-| **Ubuntu** | [apt.voxpupuli.org](https://apt.voxpupuli.org) | 22.04 (Jammy), 24.04 (Noble) |
-| **Windows** | [downloads.voxpupuli.org/windows](https://downloads.voxpupuli.org/windows) | MSI installers |
-| **macOS** | [downloads.voxpupuli.org/mac](https://downloads.voxpupuli.org/mac) | PKG installers (Intel + Apple Silicon) |
+| **RHEL / Rocky / Alma / Oracle** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | EL 8, 9, 10 (`openvox9-release-el-9.noarch.rpm` and friends) |
+| **Amazon Linux** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | 2023 |
+| **Fedora** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | 43, 44 |
+| **SLES** | [yum.voxpupuli.org](https://yum.voxpupuli.org) | 15, 16 |
+| **Debian** | [apt.voxpupuli.org](https://apt.voxpupuli.org) | 13 (server + DB); 12 is agent-only |
+| **Ubuntu** | [apt.voxpupuli.org](https://apt.voxpupuli.org) | 22.04, 24.04, 26.04 |
+| **Windows** | [downloads.voxpupuli.org/windows/openvox9](https://downloads.voxpupuli.org/windows/openvox9/) | MSI (`x64-mingw-ucrt`) |
+| **macOS** | [downloads.voxpupuli.org/mac/openvox9](https://downloads.voxpupuli.org/mac/openvox9/) | PKG (Intel + Apple Silicon) |
 
 For the canonical, always-up-to-date install instructions across every platform,
 see the official [Installing OpenVox](https://voxpupuli.org/openvox/install/) guide.
@@ -143,7 +169,7 @@ see the official [Installing OpenVox](https://voxpupuli.org/openvox/install/) gu
 | 🦊 | **OpenVox Project** | [github.com/openvoxproject](https://github.com/openvoxproject) |
 | 📥 | **Installing OpenVox** | [voxpupuli.org/openvox/install](https://voxpupuli.org/openvox/install/) |
 | 🛟 | **OpenVox Support** | [voxpupuli.org/openvox/support](https://voxpupuli.org/openvox/support/) |
-| 📚 | **Official OpenVox Docs** | [github.com/OpenVoxProject/openvox-docs](https://github.com/OpenVoxProject/openvox-docs) |
+| 📚 | **Official OpenVox Docs** | [docs.openvoxproject.org](https://docs.openvoxproject.org/) |
 | 🐾 | **Vox Pupuli** | [voxpupuli.org](https://voxpupuli.org/) |
 | 📦 | **Puppet Forge** | [forge.puppet.com](https://forge.puppet.com/) — all modules work with OpenVox! |
 | 📚 | **Puppet docs-archive** | [github.com/puppetlabs/docs-archive](https://github.com/puppetlabs/docs-archive) |

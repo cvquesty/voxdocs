@@ -82,6 +82,8 @@ The Puppet/OpenVox ecosystem is vast. Here are some projects worth knowing about
 | **puppetboard** | PuppetDB / OpenVoxDB web frontend | [github.com/voxpupuli/puppetboard](https://github.com/voxpupuli/puppetboard) |
 | **openvox-gui** | Web-based management GUI for OpenVox | [github.com/cvquesty/openvox-gui](https://github.com/cvquesty/openvox-gui) |
 | **jig** | OpenVox-oriented module build tooling | [github.com/voxpupuli/jig](https://github.com/voxpupuli/jig) |
+| **OpenVox Containers** | Server, OpenVoxDB, and OpenBolt images; CRAFTY compose and Helm examples | [docs.openvoxproject.org/openvox-containers](https://docs.openvoxproject.org/openvox-containers/latest/) |
+| **VoxBox** | CI image with rspec-puppet, Litmus, and friends | [github.com/voxpupuli/container-voxbox](https://github.com/voxpupuli/container-voxbox) |
 
 ---
 

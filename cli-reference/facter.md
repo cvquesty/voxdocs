@@ -6,7 +6,7 @@
 
 ---
 
-Facter — rebranded as **OpenFact** in the OpenVox project (5.6.0+) — is the cross-platform fact-gathering tool. The binary is still called `facter` and the config file is still `facter.conf`; only the project name has changed. It discovers everything about your system — hardware, OS, networking, virtualization, cloud metadata — and makes it available to Puppet as variables.
+Facter — rebranded as **OpenFact** in the OpenVox project — is the cross-platform fact-gathering tool. The binary is still called `facter` and the config file is still `facter.conf`; only the project name has changed. Current agents bundle **OpenFact 6.2.1** (`openvox-agent` 9.x). The OpenVox 8 agent line bundles **OpenFact 5.7.2** (agent 8.31.1). It discovers everything about your system — hardware, OS, networking, virtualization, cloud metadata — and makes it available to Puppet as variables.
 
 ## `facter --help`
 
@@ -140,7 +140,7 @@ processors.count => 8
 virtual => physical
 ```
 
-> **Notice** how Facter 5.x returns structured data with nested hashes. You can query specific sub-keys using dot notation like `os.release.major`. This is exactly how you'll access these values in your Puppet manifests: `$facts['os']['release']['major']`.
+> **Notice** how OpenFact returns structured data with nested hashes. The lab capture below is OpenFact 5.6.0. You can query specific sub-keys using dot notation like `os.release.major`. This is exactly how you'll access these values in your Puppet manifests: `$facts['os']['release']['major']`.
 
 [← Back to CLI Reference](README.md)
 

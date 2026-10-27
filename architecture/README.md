@@ -88,7 +88,7 @@ OpenVox server is the **catalog compiler** and usually the **CA**. It's a JVM ap
 4. **Manages certificates** (unless you split the CA)
 5. **Talks to OpenVoxDB** when termini are configured
 
-**Official fact:** a supported **JDK (17 or 21)** is **not** bundled — you install Java yourself before or with the server.
+**Official fact (OpenVox 9):** a supported **JDK (21 or 25)** is **not** bundled — you install Java yourself before or with the server. Enterprise Linux 8 provides Java 21 only. FIPS packages run on Java 21 only. Java 17 is an OpenVox **8** requirement, not a 9.x one. The 9.x systemd unit starts the JVM directly (`puppetserver start` / `stop` are gone; use `systemctl`). `systemctl reload puppetserver` still works.
 
 Yes, it's Java wrapping Ruby. No, we don't lead with that at parties.
 
@@ -112,7 +112,7 @@ Yes, it's Java wrapping Ruby. No, we don't lead with that at parties.
 
 Packages: `openvoxdb` + `openvoxdb-termini` (termini version matches OpenVoxDB). The systemd unit remains `puppetdb`.
 
-**Official fact:** OpenVoxDB needs **PostgreSQL 11+** (project recommends **14+**). PostgreSQL is **not** inside the OpenVoxDB package.
+**Official fact:** OpenVoxDB **9** needs **PostgreSQL 14+** (tested against 15, 16, and 18). PostgreSQL is **not** inside the OpenVoxDB package. The OpenVox **8** line still accepts PostgreSQL 11+ and recommends 14+. Java 21 or 25, same rules as the server. The `openvoxdb` 9 package requires `openvox-agent` 9 on the same host; `openvoxdb-termini` 9 depends on `openvox-agent` without a version pin.
 
 Want every CentOS node with >16 GB RAM? **PQL** can do that in one line:
 
@@ -151,7 +151,7 @@ Facter is a **cross-platform system profiling tool**. It discovers facts about t
 
 Facts are available in your Puppet code as variables (e.g., `$facts['os']['name']`), which lets you write conditional logic like "install Apache on RedHat, install apache2 on Debian."
 
-> **Branding note:** Facter has been rebranded to **OpenFact** in the OpenVox ecosystem. The `facter` binary, `facter.conf` configuration file, and the `facts.d/` directory all keep their existing names — only the project/product name has changed. Standalone OpenFact is at **5.7.0+**; recent agents bundle OpenFact **5.6.1+**.
+> **Branding note:** Facter has been rebranded to **OpenFact** in the OpenVox ecosystem. The `facter` binary, `facter.conf` configuration file, and the `facts.d/` directory all keep their existing names — only the project/product name has changed. **OpenFact 6.2.1** ships inside `openvox-agent` 9.x. The 8.x agent line bundles **OpenFact 5.7.2** (as of agent 8.31.1). OpenFact 6 drops the `ldapname` option and deprecates `Facter::Core::Execution.exec` in favor of `execute`.
 
 ### 📚 Hiera
 
@@ -354,7 +354,8 @@ Here's a complete picture of how data flows through the system:
 | **PQL** | Puppet Query Language — SQL-like language for querying PuppetDB |
 | **Primary Server** | The central PuppetServer that compiles catalogs |
 | **Resource** | A single unit of configuration (file, package, service, etc.) |
-| **r10k** | Tool for deploying Puppet code from Git |
+| **r10k** | Tool for deploying Puppet code from Git. Bundled only inside OpenBolt; install it separately on a server. |
+| **OpenVox Containers** | Community images for OpenVox Server, OpenVoxDB, and OpenBolt, plus CRAFTY (compose) and Helm examples. [Official page](https://docs.openvoxproject.org/openvox-containers/latest/). |
 
 ---
 

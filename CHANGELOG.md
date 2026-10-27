@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-10-27
+
+### Changed — Fact alignment with OpenVox 9
+- Latest shipping is **OpenVox 9** (checked against docs.openvoxproject.org and GitHub tags on 2026-10-27):
+  agent **9.2.1**, server **9.1.0**, OpenVoxDB **9.1.0**, OpenFact **6.2.1**, OpenBolt **5.6.0** (r10k 5.0.3)
+- Previous line kept visible: agent **8.31.1**, server **8.17.0**, OpenVoxDB **8.17.0**, OpenFact **5.7.2**
+- Java for server/DB 9 is **21 or 25** (FIPS and EL 8: 21 only). PostgreSQL for OpenVoxDB 9 is **14+**
+- Agent 9 runtime: Ruby **4.0.9**, OpenSSL **3.5.9**; curl is no longer bundled
+- Platform table replaced with the official OpenVox 9 build list (EL 7, Amazon Linux 2, Fedora 42, Debian 11, Ubuntu 25.04 dropped; Debian 12 is agent-only)
+- Install examples use the **openvox9** release packages; Windows/macOS point at the `openvox9` download directories
+- Documented OpenVox 9 behavior: no `server=puppet` fallback, `reports` defaults to `none`, `pluginsync` removed, `systemctl` replaces `puppetserver start/stop`
+- Added **OpenVox Containers** (server, DB, OpenBolt, CRAFTY, Helm) and the official devkit tool list (jig, VoxBox, modulesync, onceover, Beaker)
+- Lab CLI captures stay dated **2026-05-23** (OpenVox 8.26.2 / server 8.12.1)
+
 ## [2.3.0] - 2026-07-22
 
 ### Changed — Juxtaposed content model

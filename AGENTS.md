@@ -16,15 +16,18 @@ Full merge rules: **[EDITORIAL.md](EDITORIAL.md)**.
 - When facts diverge, **update this repo to match official** — do not overwrite our design with their site
 - Weekly job should be a **content audit**, not a full-site mirror
 
-## Current Latest Shipping (canonical check 2026-07-22)
-Cross-checked with official docs SBOM tables + GitHub releases:
+## Current Latest Shipping (canonical check 2026-10-27)
+Cross-checked with official docs SBOM tables + GitHub releases.
+**OpenVox 9 is current.** OpenVox 8 remains supported for high-priority/security fixes.
 
-- openvox-agent / OpenVox agent line: **8.28.1**
-- openvox-server: **8.15.0**
-- openvoxdb / openvoxdb-termini: **8.15.0**
-- openbolt: **5.6.0** (bundles r10k **5.0.3**)
-- OpenFact: **5.7.0** standalone; recent agents bundle **5.6.1+**
+- openvox-agent: **9.2.1** (previous line **8.31.1**)
+- openvox-server: **9.1.0** (previous line **8.17.0**) — Java **21 or 25** (FIPS: 21 only)
+- openvoxdb / openvoxdb-termini: **9.1.0** (previous line **8.17.0**) — PostgreSQL **14+**
+- openbolt: **5.6.0** (bundles r10k **5.0.3** and OpenVox **8.28.0** for `bolt apply`)
+- OpenFact: **6.2.1** bundled with agent 9.x; **5.7.2** bundled with agent 8.31.x
 - r10k: **not** in openvox-server/agent packages — OpenBolt is the only OpenVox package that bundles it
+- OpenVox 9 agent runtime: Ruby **4.0.9**, OpenSSL **3.5.9**; curl is **not** bundled
+- OpenVox Containers: server, DB, OpenBolt images plus CRAFTY and Helm examples
 
 ## Lab Verified Snapshot (2026-05-23) — CLI capture source
 - OpenVox Agent: 8.26.2 (package; `puppet --version` reports 8.26.1 due to openvox#415)

@@ -18,7 +18,7 @@ OpenVox's agent-server model is great for **convergence** (gradually bringing sy
 This guide covers:
 
 - [**OpenBolt**](#openbolt-puppet-bolt) — Agentless orchestration
-- [**r10k**](#r10k-code-deployment-v502) — Code deployment from Git
+- [**r10k**](#r10k-code-deployment) — Code deployment from Git
 - [**Tasks and Plans**](#tasks-and-plans) — Reusable automation
 
 ---
